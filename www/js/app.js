@@ -14,4 +14,4 @@ angular.module('adventure-map', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-})
+});
