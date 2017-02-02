@@ -1,1 +1,6 @@
 /* Empty. Add your own CSS if you like */
+.eighty_percent {
+  width: 80%;
+  margin: auto;
+  padding-top: 30px;
+}

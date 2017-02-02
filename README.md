@@ -18,6 +18,11 @@ $ npm install -g protractor
 $ webdriver-manager update
 ```
 
+This line may be necessary:
+```
+node_modules/protractor/bin/webdriver-manager update
+```
+
 ##### Running the tests
 In order to run features, an instance of the application must be running:
 
@@ -30,4 +35,3 @@ then open another tab on your terminal and to run the test you must run the foll
 $ npm run cucumber
 ```
 
-_

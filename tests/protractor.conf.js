@@ -14,11 +14,11 @@ exports.config = {
     'features/*.feature'
   ],
 
-  baseURL: 'http://localhost:8100/',
+  baseUrl: 'http://localhost:8100/',
 
   cucumberOpts: {
     require:  [
-      'features/step_definitions/*.steps.js',
+      'features/step_definitions/*_steps.js',
       'features/support/*.js'
     ],
     tags: false,
