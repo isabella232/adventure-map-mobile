@@ -9,6 +9,7 @@
     "angular": "1.6.1"
   },
   "dependencies": {
-    "ng-token-auth": "^0.0.29"
+    "ng-token-auth": "^0.0.29",
+    "angular-resource": "^1.6.1"
   }
 }

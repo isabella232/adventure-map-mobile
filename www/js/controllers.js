@@ -1,7 +1,8 @@
 angular
   .module('adventureMap.controllers', [])
   .controller('userSessionController', userSessionController)
-  .controller('activitiesController', activitiesController);
+  .controller('activitiesController', activitiesController)
+  .controller('createActivitiesController', createActivitiesController);
 
 
 function userSessionController($scope, $auth, $ionicLoading, $state) {
@@ -11,7 +12,8 @@ function userSessionController($scope, $auth, $ionicLoading, $state) {
       template: 'Logging in...'
     });
     $auth.submitLogin($scope.loginData)
-      .then(function () {
+      .then(function (response) {
+        $scope.user = response;
         $state.go('activities');
         $ionicLoading.hide();
       })
@@ -22,6 +24,24 @@ function userSessionController($scope, $auth, $ionicLoading, $state) {
   }
 }
 
-function activitiesController($scope) {
-  $scope.message = 'This is the Activities View'
+function activitiesController($scope, $state) {
+  $scope.message = 'This is the Activities View';
+  $scope.addActivity = function () {
+    $state.go('create_activity');
+  }
+}
+
+function createActivitiesController($scope, $ionicLoading, $state, Activity) {
+  $scope.activityData = {};
+  $scope.categories = ['Hiking', 'Cross country skiing', 'Back country skiing', 'Paddling', 'Mountain biking', 'Horse riding', 'Climbing', 'Snow mobiling', 'Cross country ice skating', 'Foraging'];
+
+  $scope.createActivity = function () {
+    $ionicLoading.show({
+      template: 'Saving...'
+    });
+    Activity.save($scope.activityData, function(){
+      $state.go('activities');
+      $ionicLoading.hide();
+    });
+  }
 }

@@ -10,7 +10,7 @@ Feature: User can log in using email and password
     Given I open the app
     And I fill in "Email" with "thomas2@random.se"
     And I fill in "Password" with "password"
-    And I click "Log in"
+    And I click "Login"
     Then I should be on the "activities" page
     And I should see "This is the Activities View"
 
@@ -19,7 +19,7 @@ Feature: User can log in using email and password
     Given I open the app
     And I fill in "Email" with "thomas2@random.se"
     And I fill in "Password" with "wrong_password"
-    And I click "Log in"
+    And I click "Login"
     Then I should be on the "home" page
     And I should see "Invalid credentials"
 

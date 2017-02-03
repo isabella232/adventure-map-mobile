@@ -1,0 +1,29 @@
+<ion-view>
+  <ion-content class="padding">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text" placeholder="Pick a headline for your activity" ng-model="activityData.title">
+      </label>
+      <label class="item item-input textarea">
+        <textarea placeholder="Describe the activity" ng-model="activityData.body"></textarea>
+      </label>
+      <label class="item item-input">Difficulty {{activityData.difficulty}}</label>
+      <div class="item range">
+        <input type="range" id="difficulty" ng-model="activityData.difficulty" ng-init="activityData.difficulty = 1" min="1" max="3" value="1" >
+      </div>
+      <div class="list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Category
+          </div>
+          <select ng-model="activityData.category">
+            <option ng-repeat="category in categories">{{category}}</option>
+          </select>
+        </label>
+        <div>
+          <button class='button button-block button-positive' ng-click="createActivity()">Create</button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
