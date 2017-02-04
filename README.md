@@ -29,9 +29,52 @@ In order to run features, an instance of the application must be running:
 ```shell
 $ ionic serve
 ```
+(See below for more options)
 
-then open another tab on your terminal and to run the test you must run the following command:
+Then open another tab on your terminal and to run the test you must run the following command:
 ```
 $ npm run cucumber
 ```
+
+In order to run a specific scenario you can run `protractor` with a `--specs` flag: 
+```
+protractor tests/protractor.conf.js --specs tests/features/feature_file_.feature 
+```
+
+### Running the app
+You can run the app by starting the Ionic server with:
+```
+$ ionic serve
+```
+
+You can access the application by navigalign to:
+```
+http://localhost:8100/
+``` 
+ 
+If you prefer to view a simulator of iOS and Android side by side, you can choose to do that by navigating to:
+```
+http://localhost:8100/ionic-lab
+```
+
+You can also choose to run the Ionic server in the background by using `screen` Execute the following command:
+
+```
+$ screen -d -m -L ionic serve --address localhost -p 8100 --nolivereload --nogulp --nobrowser &
+``
+Remember to terminate the process when you no longer need to run the process:
+
+1. Find out the PID (numeric value) for the process
+  ```
+  ps aux|grep ionic
+  ```
+  That will return a list of processes that runs Ionic
+2. Terminate the process with the `kill` command
+  ```
+  $ kill 11111 #whatever number your process has (PID)
+  ``` 
+  
+If you revisit `http://localhost:8100/` yu shot no longer be able to access the application. 
+
+
 

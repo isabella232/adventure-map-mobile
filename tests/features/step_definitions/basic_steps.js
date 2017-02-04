@@ -12,22 +12,27 @@ var basicStepDefinitionsWrapper = function () {
   });
 
   this.Given(/^I go to "([^"]*)"$/, function (site, callback) {
-    browser.get(site);
-    callback();
+    browser.get(site).then(function(){
+      callback();
+    });
+
   });
 
   this.Given(/^I open the app$/, function (callback) {
-    browser.get('');
-    callback();
+    browser.get('').then(function(){
+      callback();
+    });
   });
 
   this.Given(/^I fill in "([^"]*)" with "([^"]*)"$/, function (element, value, callback) {
     var field = browser.element(by.css('body')).element(by.css('input[placeholder="' + element + '"]'));
-    field.sendKeys(value);
-    callback();
+    field.sendKeys(value).then(function(){
+      callback();
+    });
   });
 
-  this.Given(/^I click "([^"]*)"$/, function (element, callback) {
+
+  this.Then(/^I click "([^"]*)"$/, function (element, callback) {
     var button = browser.element(by.buttonText(element));
     button.click().then(function(){
       callback();
@@ -41,8 +46,9 @@ var basicStepDefinitionsWrapper = function () {
     var loginButton = browser.element(by.buttonText("Login"));
     emailField.sendKeys(username);
     passwordField.sendKeys(password);
-    loginButton.click();
-    callback();
+    loginButton.click().then(function(){
+      callback();
+    });
   });
 
 

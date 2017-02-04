@@ -9,3 +9,7 @@ www/lib
 
 coverage
 npm-debug.log
+
+
+.io-config.json
+screenlog.0
