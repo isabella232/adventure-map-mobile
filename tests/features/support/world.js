@@ -7,4 +7,8 @@ World = function World() {
   this.expect = chai.expect;
 };
 
+module.exports = function() {
+  this.setDefaultTimeout(60 * 1000);
+};
+
 module.exports.World = World;
