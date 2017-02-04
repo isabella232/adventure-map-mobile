@@ -8,6 +8,7 @@ angular
 function userSessionController($scope, $auth, $ionicLoading, $state) {
   $scope.loginData = {};
   $scope.userSignIn = function () {
+    $auth.getConfig().apiUrl = 'https://adventuremap-dev.herokuapp.com/api/v1';
     $ionicLoading.show({
       template: 'Logging in...'
     });
@@ -23,24 +24,36 @@ function userSessionController($scope, $auth, $ionicLoading, $state) {
       })
   };
 
-  $scope.facebookSignIn = function() {
+  $scope.facebookSignIn = function () {
+    $auth.getConfig().apiUrl = 'http://adventuremap-dev.herokuapp.com/api/v1';
     $ionicLoading.show({
       template: 'Logging in with Facebook...'
     });
     $auth.authenticate('facebook')
-      .then(function(response) {
+      .then(function (response) {
         $state.go('activities');
         $ionicLoading.hide();
       })
-      .catch(function(ev, response) {
+      .catch(function (ev, response) {
         // handle errors
         $ionicLoading.hide();
       });
   }
 }
 
-function activitiesController($scope, $state) {
+function activitiesController($scope, $state, $ionicLoading, Activity) {
   $scope.message = 'This is the Activities View for ' + $scope.user.email;
+
+  $scope.$on("$ionicView.enter", function () {
+    $ionicLoading.show({
+      template: 'Getting activities...'
+    });
+    Activity.query(function (response) {
+      $scope.activities = response.activities.reverse();
+      $ionicLoading.hide();
+    });
+  });
+
   $scope.addActivity = function () {
     $state.go('create_activity');
   }
@@ -54,9 +67,12 @@ function createActivitiesController($scope, $ionicLoading, $state, Activity) {
     $ionicLoading.show({
       template: 'Saving...'
     });
-    Activity.save($scope.activityData, function(){
+    Activity.save($scope.activityData, function (resp) {
       $state.go('activities');
       $ionicLoading.hide();
+      console.log(resp);
+    }, function(resp){
+      console.log(resp);
     });
   }
 }

@@ -8,3 +8,41 @@
 .textarea {
   height: 100px;
 }
+
+.item h2 {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.item h3 {
+  font-size: 110%;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.gray {
+  background-color: #cccccc;
+}
+
+.card-bottom {
+  font-size: 170%;
+}
+
+.centered {
+  text-align: center;
+}
+
+.item-inner {
+  margin: 0px;
+  padding: 0px;
+  border: solid #000000;
+  border-width: 1px 1px 1px 1px;
+}
+
+.padding {
+  padding: 10px;
+}
+
+.row {
+  margin-top: 10px;
+}

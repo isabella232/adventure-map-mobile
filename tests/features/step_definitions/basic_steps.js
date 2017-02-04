@@ -41,13 +41,15 @@ var basicStepDefinitionsWrapper = function () {
   });
 
   this.Given(/^I am logged in as "([^"]*)" with password "([^"]*)"$/, function (username, password, callback) {
-    var emailField = browser.element(by.css('body')).element(by.css('input[placeholder="Email"]'));
-    var passwordField = browser.element(by.css('body')).element(by.css('input[placeholder="Password"]'));
-    var loginButton = browser.element(by.buttonText("Login"));
-    emailField.sendKeys(username);
-    passwordField.sendKeys(password);
-    loginButton.click().then(function(){
-      callback();
+    browser.get('').then(function(){
+      var emailField = browser.element(by.css('body')).element(by.css('input[placeholder="Email"]'));
+      var passwordField = browser.element(by.css('body')).element(by.css('input[placeholder="Password"]'));
+      var loginButton = browser.element(by.buttonText("Login"));
+      emailField.sendKeys(username);
+      passwordField.sendKeys(password);
+      loginButton.click().then(function(){
+        callback();
+      });
     });
   });
 

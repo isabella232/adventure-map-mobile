@@ -86,5 +86,5 @@ Terminate the process with the `kill` command
 $ kill 11111 #whatever number your process has (PID)
 ``` 
   
-If you revisit `http://localhost:8100/` yu shot no longer be able to access the application. 
+If you revisit `http://localhost:8100/` you shold no longer be able to access the application. 
 

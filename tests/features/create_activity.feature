@@ -15,4 +15,5 @@ Feature: User can create an Activity
     And I select Activity "Category" to "Back country skiing"
     And I click "Create"
     Then I should be on the "activities" page
+    And I should see "Hiking in Vättlefjäll"
 
