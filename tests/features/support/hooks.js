@@ -4,6 +4,7 @@ var myHooks = function () {
   });
 
   this.Before(function(scenario, callback) {
+    browser.restart();
     browser.manage().timeouts().pageLoadTimeout(40000);
     browser.manage().timeouts().implicitlyWait(40000);
     browser.manage().window().setSize(260, 900);
@@ -11,7 +12,6 @@ var myHooks = function () {
   });
 
   this.After(function(scenario, callback) {
-    browser.restart();
     console.log('Scenario is successful: ' + scenario.isSuccessful());
     callback();
   });
