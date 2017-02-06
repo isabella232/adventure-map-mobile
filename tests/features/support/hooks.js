@@ -3,7 +3,15 @@ var myHooks = function () {
     callback();
   });
 
+  this.Before(function(scenario, callback) {
+    browser.manage().timeouts().pageLoadTimeout(40000);
+    browser.manage().timeouts().implicitlyWait(40000);
+    browser.manage().window().setSize(260, 900);
+    callback();
+  });
+
   this.After(function(scenario, callback) {
+    browser.restart();
     console.log('Scenario is successful: ' + scenario.isSuccessful());
     callback();
   });

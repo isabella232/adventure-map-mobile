@@ -27,5 +27,10 @@ exports.config = {
     'no-source': true
   },
   chromeOnly: true,
-  directConnect: true
+  directConnect: true,
+  onPrepare: function() {
+    browser.manage().timeouts().pageLoadTimeout(40000);
+    browser.manage().timeouts().implicitlyWait(40000);
+    browser.manage().window().setSize(260, 900);
+  }
 };

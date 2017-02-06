@@ -2,8 +2,9 @@ var basicStepDefinitionsWrapper = function () {
 
   this.World = require("../support/world.js").World;
 
-  this.Then(/^start the debugger$/, function () {
+  this.Then(/^start the debugger$/, function (callback) {
     browser.enterRepl();
+    callback();
   });
 
   this.Then(/^pause the browser$/, function (callback) {
@@ -12,45 +13,49 @@ var basicStepDefinitionsWrapper = function () {
   });
 
   this.Given(/^I go to "([^"]*)"$/, function (site, callback) {
-    browser.get(site).then(function(){
-      callback();
+    browser.get(site).then(function () {
+      browser.sleep(3000).then(function () {
+        callback();
+      });
     });
 
   });
 
   this.Given(/^I open the app$/, function (callback) {
-    browser.get('').then(function(){
-      callback();
-    });
+    browser.ignoreSynchronization = true;
+    browser.get('http://localhost:8100/#/');
+    callback();
   });
 
   this.Given(/^I fill in "([^"]*)" with "([^"]*)"$/, function (element, value, callback) {
     var field = browser.element(by.css('body')).element(by.css('input[placeholder="' + element + '"]'));
-    field.sendKeys(value).then(function(){
+    field.sendKeys(value).then(function () {
       callback();
     });
   });
 
 
   this.Then(/^I click "([^"]*)"$/, function (element, callback) {
-    var button = browser.element(by.buttonText(element));
-    button.click().then(function(){
+    var button = browser.element(by.css('body')).element(by.buttonText(element));
+    button.click();
+    browser.sleep(1000).then(function () {
       callback();
     });
 
   });
 
   this.Given(/^I am logged in as "([^"]*)" with password "([^"]*)"$/, function (username, password, callback) {
-    browser.get('').then(function(){
-      var emailField = browser.element(by.css('body')).element(by.css('input[placeholder="Email"]'));
-      var passwordField = browser.element(by.css('body')).element(by.css('input[placeholder="Password"]'));
-      var loginButton = browser.element(by.buttonText("Login"));
-      emailField.sendKeys(username);
-      passwordField.sendKeys(password);
-      loginButton.click().then(function(){
+    var emailField = browser.element(by.css('ion-content')).element(by.css('input[placeholder="Email"]'));
+    var passwordField = browser.element(by.css('ion-content')).element(by.css('input[placeholder="Password"]'));
+    var loginButton = browser.element(by.css('ion-content')).element(by.buttonText("Login"));
+    emailField.sendKeys(username);
+    passwordField.sendKeys(password);
+    loginButton.click().then(function(){
+      browser.sleep(1000).then(function () {
         callback();
       });
     });
+
   });
 
   this.Given(/^I login using Facebook as "([^"]*)" and password "([^"]*)"$/, function (username, password, callback) {
@@ -74,7 +79,15 @@ var basicStepDefinitionsWrapper = function () {
               });
           });
       });
-    callback();
+    browser.sleep(1000).then(function () {
+      callback();
+    });
+  });
+
+  this.Given(/^I wait for the application to load$/, function (callback) {
+    browser.sleep(3000).then(function () {
+      callback();
+    });
   });
 };
 
