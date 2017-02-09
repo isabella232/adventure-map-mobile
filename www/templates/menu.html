@@ -12,11 +12,65 @@
     </header>
     <ion-content class="has-header">
       <ion-list>
-        <ion-item ng-show="!$state.includes('app.profile')" menu-close ng-if="user.email" ng-controller="activitiesController" ng-click="viewProfile()">
+        <ion-item ng-show="!$state.includes('app.profile')" menu-close ng-if="user.email"
+                  ng-controller="activitiesController" ng-click="viewProfile()">
           Profile
         </ion-item>
-        <ion-item  ng-show="!$state.includes('app.activities')" menu-close href="#/app/activities">
+        <ion-item ng-show="!$state.includes('app.activities')" menu-close href="#/app/activities">
           Activity Feed
+        </ion-item>
+
+        <!-- This is the menu for the activities filters -->
+
+        <ion-item ng-show="$state.includes('app.activities')">
+          <ul class="list">
+
+            <div class="item item-toggle">
+              Only users I follow
+              <label class="toggle toggle-positive">
+                <input type="checkbox" ng-model="filters.follow">
+                <div class="track">
+                  <div class="handle"></div>
+                </div>
+              </label>
+            </div>
+            <div></div>
+            <div class="list">
+              <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Change Location" ng-model="filters.location">
+              </label>
+            </div>
+            <div class="list">
+              <button class="button-icon" ng-repeat="star in stars track by $index" ng-click="toggleStars($index+1)">
+                <i class="icon" ng-class="star ? 'ion-android-star': 'ion-android-star-outline'"></i>
+              </button>
+            </div>
+            <div class="list">
+              <label class="item item-input">Difficulty</label>
+              <ion-list>
+                <ion-checkbox ng-model="filters.difficulty1">1</ion-checkbox>
+                <ion-checkbox ng-model="filters.difficulty2">2</ion-checkbox>
+                <ion-checkbox ng-model="filters.difficulty3">3</ion-checkbox>
+              </ion-list>
+            </div>
+            <div class="list">
+              <label class="item item-input">Sport</label>
+              <ion-list>
+                <ion-checkbox ng-model="filters.sports1">Hiking</ion-checkbox>
+                <ion-checkbox ng-model="filters.sports2">Cross-country skiing</ion-checkbox>
+                <ion-checkbox ng-model="filters.sports3">Back country skiing</ion-checkbox>
+                <ion-checkbox ng-model="filters.sports4">Paddling</ion-checkbox>
+                <ion-checkbox ng-model="filters.sports5">Mountain biking</ion-checkbox>
+                <ion-checkbox ng-model="filters.sports6">Horse riding</ion-checkbox>
+                <ion-checkbox ng-model="filters.sports7">Climbing</ion-checkbox>
+                <ion-checkbox ng-model="filters.sports8">Snow mobiling</ion-checkbox>
+                <ion-checkbox ng-model="filters.sports9">Cross country ice skating</ion-checkbox>
+                <ion-checkbox ng-model="filters.sports10">Foraging</ion-checkbox>
+              </ion-list>
+            </div>
+          </ul>
+          <button class="button button-block button-positive" ng-click="setFilters()" menu-close>Filter</button>
         </ion-item>
       </ion-list>
     </ion-content>

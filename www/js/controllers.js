@@ -1,5 +1,3 @@
-
-
 angular
   .module('adventureMap.controllers', [])
   .controller('userSessionController', userSessionController)
@@ -8,14 +6,7 @@ angular
   .controller('userController', userController);
 
 
-
-
-
-
-
-
 function userController($scope, $state) {
-
 
 }
 

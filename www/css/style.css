@@ -74,3 +74,7 @@
   font-size: x-large !important;
   font-weight: normal !important;
 }
+
+.filters {
+  transition: all .05s ease-in-out;
+}

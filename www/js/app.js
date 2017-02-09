@@ -76,12 +76,14 @@ angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers'
         url: '/app',
         abstract: true,
         templateUrl: "templates/menu.html",
+        controller: 'activitiesController',
         data: {
           requireLogin: true // this property will apply to all children of 'app'
         }
       })
       .state('app.activities', {
         url: '/activities',
+        cache: false,
         views: {
           'menuContent' :{
             templateUrl: 'templates/activities.html',

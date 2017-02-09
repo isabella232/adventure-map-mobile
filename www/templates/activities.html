@@ -4,15 +4,16 @@
   </ion-nav-buttons>
 
   <ion-nav-buttons side="right">
-    <button class="button" ng-click="addActivity()">
-      New
-    </button>
+    <div>
+      <a class="button" href="#/app/create_activity">
+        New
+      </a>
+    </div>
   </ion-nav-buttons>
   <ion-content class="padding has-header">
     <div class="list card" ng-repeat="activity in activities">
 
       <div class="item item-avatar gray">
-        <!--<img src={{activity.user.image}}>-->
         <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
         <h2 class="activity_title">{{activity.user.name}}</h2>
         <p ng-repeat="interest in activity.user.interests">{{interest}}</p>
@@ -21,7 +22,6 @@
 
       <div class="item item-body gray">
         <span>{{activity.category}}</span>, <span>{{activity.difficulty}}</span>
-        <!--<img class="full-image" src={{activity.images[0]}}>-->
         <div class="item gray card item-inner">
           <img class="full-image" src="img/dummy_images/snow.jpg">
           <div class="padding">
@@ -55,5 +55,4 @@
 
 
   </ion-content>
-
 </ion-view>
