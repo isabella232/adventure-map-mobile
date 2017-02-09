@@ -1,0 +1,19 @@
+<ion-view title="Profile">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="padding">
+    <div class="list card">
+      <ion-item class="profile-item">
+        <div class="profile-picture big-profile-picture">
+          <img ng-src="{{user.image ? user.image : 'img/dummy_images/empty_image.svg'}}">
+        </div>
+        <h2 class="profile-name dark">{{user.name}}</h2>
+        <div class="profile-info">{{user.interests}}</div>
+      </ion-item>
+
+    </div>
+    <button class="button button-block button-positive" ng-controller="userSessionController" ng-click="performSignOut()">Log out</button>
+  </ion-content>
+</ion-view>

@@ -11,7 +11,7 @@ Feature: User can create an Activity
     And I wait for the application to load
 
   Scenario: Successfully creates an activity
-    And I click "New" in the navigation bar
+    And I click "New" on the right side in the navigation bar
     And I set the Activity "Title" to "Hiking in Angered"
     And I set the Activity "Body" to "Had a great time in Angered and so can you!"
     And I slide "Difficulty" to "3"

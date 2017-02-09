@@ -1,7 +1,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('adventureMap', ['ionic', 'adventureMap.controllers', 'adventureMap.services', 'ngCordova', 'ng-token-auth', 'ngResource'])
+angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers', 'adventureMap.services', 'ngCordova', 'ng-token-auth', 'ngResource'])
   .constant('API_URL', 'https://adventuremap-dev.herokuapp.com/api/v1')
   //.constant('API_URL', 'http://localhost:3000/api/v1')
 
@@ -26,7 +26,12 @@ angular.module('adventureMap', ['ionic', 'adventureMap.controllers', 'adventureM
     }
   })
 
-  .run(function ($ionicPlatform) {
+  .config(function($ionicConfigProvider) {
+    $ionicConfigProvider.backButton.text('').icon('ion-ios-arrow-back').previousTitleText(false);
+  })
+
+  .run(function ($ionicPlatform, $rootScope, $state) {
+    $rootScope.$state = $state;
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -37,24 +42,72 @@ angular.module('adventureMap', ['ionic', 'adventureMap.controllers', 'adventureM
         StatusBar.styleDefault();
       }
     });
+
+    $rootScope.$on('$stateChangeStart', function (event, toState) {
+      var requireLogin = toState.data.requireLogin;
+      //debugger;
+      if (requireLogin && isLoggedIn()) {
+        event.preventDefault();
+        $state.go('home');
+      }
+    });
+
+    function isLoggedIn(){
+      if (typeof $rootScope.user === 'undefined' || Object.getOwnPropertyNames($rootScope.user).length == 0){
+        return true;
+      }
+    }
   })
+
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
         url: '/home',
         templateUrl: 'templates/login.html',
-        controller: 'userSessionController'
+        controller: 'userSessionController',
+        data: {
+          requireLogin: false
+        },
+        cache: false
       })
-      .state('activities', {
+
+      .state('app', {
+        url: '/app',
+        abstract: true,
+        templateUrl: "templates/menu.html",
+        data: {
+          requireLogin: true // this property will apply to all children of 'app'
+        }
+      })
+      .state('app.activities', {
         url: '/activities',
-        templateUrl: 'templates/activities.html',
-        controller: 'activitiesController'
+        views: {
+          'menuContent' :{
+            templateUrl: 'templates/activities.html',
+            controller: 'activitiesController'
+          }
+        }
       })
-      .state('create_activity', {
+      .state('app.profile', {
+        url: '/profile',
+        views: {
+          'menuContent' :{
+            templateUrl: 'templates/profile.html',
+            controller: 'userController'
+          }
+        }
+
+      })
+      .state('app.create_activity', {
         url: '/create_activity',
-        templateUrl: 'templates/create_activity.html',
-        controller: 'createActivitiesController'
+        views: {
+          'menuContent' :{
+            templateUrl: 'templates/create_activity.html',
+            controller: 'createActivityController'
+          }
+        }
       });
-    $urlRouterProvider.otherwise('home');
+
+    $urlRouterProvider.otherwise('/home');
   });
