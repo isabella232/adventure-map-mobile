@@ -1,17 +1,17 @@
 function activitiesController($scope, $state, $ionicLoading, Activity) {
-  $scope.filters = {};
+  $scope.activityData = $scope.activityData || {activityData: {}};
+  $scope.activityData.filters = {};
   $scope.stars = [true, false, false, false, false];
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
-    console.log(states.stateName == "app.activities");
     if (states.stateName == "app.activities") {
       $ionicLoading.show({
         template: 'Getting activities...'
       });
       Activity.query(function (response) {
         console.log(response);
-        $scope.activities = response.data.reverse();
-        $scope.cachedActivities = $scope.activities; // This keeps the entire activity list so users can un-filter.
+        $scope.activityData.activityList = response.data.reverse();
+        $scope.activityData.cachedActivities = $scope.activityData.activityList; // This keeps the entire activity list so users can un-filter.
         $ionicLoading.hide();
       });
     }
@@ -38,9 +38,11 @@ function activitiesController($scope, $state, $ionicLoading, Activity) {
     } else {
       rating = 1
     }
-    $scope.filters.rating = rating;
+    $scope.activityData.filters.rating = rating;
 
-    console.log($scope.filters);
+    console.log($scope.activityData.filters);
+
+    applyFilters()
   };
 
   $scope.toggleStars = function (star_id) {
@@ -64,4 +66,28 @@ function activitiesController($scope, $state, $ionicLoading, Activity) {
         $scope.stars = [false, false, false, false, false];
     }
   };
+
+  function applyFilters() {
+    $scope.activityData.activityList = $scope.activityData.cachedActivities.filter(function (activity) {
+      if ($scope.activityData.filters.difficulty1) {
+        if (activity.difficulty == 1) {
+          return activity;
+        }
+      }
+      if ($scope.activityData.filters.difficulty2) {
+        if (activity.difficulty == 2) {
+          return activity;
+
+        }
+      }
+      if ($scope.activityData.filters.difficulty3) {
+        if (activity.difficulty == 3) {
+          return activity;
+        }
+      }
+    });
+
+    console.log('activities: ' + $scope.activityData.activityList.length);
+
+  }
 }
