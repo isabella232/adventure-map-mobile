@@ -91,6 +91,15 @@ angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers'
           }
         }
       })
+      .state('app.map', {
+        url: '/map',
+        views: {
+          'menuContent' :{
+            templateUrl: 'templates/map.html',
+            controller: 'mapController'
+          }
+        }
+      })
       .state('app.profile', {
         url: '/profile',
         views: {

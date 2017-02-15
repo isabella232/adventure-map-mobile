@@ -6,11 +6,13 @@
     "angular-mocks": "^1.6.1"
   },
   "resolutions": {
-    "angular": "1.6.1"
+    "angular": "1.6.1",
+    "leaflet": "^1.0.3"
   },
   "dependencies": {
     "ng-token-auth": "^0.0.29",
     "angular-resource": "^1.6.1",
-    "ngCordova": "^0.1.27-alpha"
+    "ngCordova": "^0.1.27-alpha",
+    "leaflet": "http://cdn.leafletjs.com/leaflet/v1.0.3/leaflet.zip"
   }
 }
