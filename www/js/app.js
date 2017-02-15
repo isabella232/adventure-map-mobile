@@ -1,7 +1,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers', 'adventureMap.services', 'ngCordova', 'ng-token-auth', 'ngResource'])
+angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers', 'adventureMap.services', 'adventureMap.directives', 'ngCordova', 'ng-token-auth', 'ngResource'])
   .constant('API_URL', 'https://adventuremap-dev.herokuapp.com/api/v1')
   //.constant('API_URL', 'http://localhost:3000/api/v1')
 
@@ -26,7 +26,7 @@ angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers'
     }
   })
 
-  .config(function($ionicConfigProvider) {
+  .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.backButton.text('').icon('ion-ios-arrow-back').previousTitleText(false);
   })
 
@@ -52,8 +52,8 @@ angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers'
       }
     });
 
-    function isLoggedIn(){
-      if (typeof $rootScope.user === 'undefined' || Object.getOwnPropertyNames($rootScope.user).length == 0){
+    function isLoggedIn() {
+      if (typeof $rootScope.user === 'undefined' || Object.getOwnPropertyNames($rootScope.user).length == 0) {
         return true;
       }
     }
@@ -85,7 +85,7 @@ angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers'
         url: '/activities',
         cache: false,
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: 'templates/activities.html',
             controller: 'activitiesController'
           }
@@ -103,7 +103,7 @@ angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers'
       .state('app.profile', {
         url: '/profile',
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: 'templates/profile.html',
             controller: 'userController'
           }
@@ -113,7 +113,7 @@ angular.module('adventureMap', ['ionic', 'ui.router', 'adventureMap.controllers'
       .state('app.create_activity', {
         url: '/create_activity',
         views: {
-          'menuContent' :{
+          'menuContent': {
             templateUrl: 'templates/create_activity.html',
             controller: 'createActivityController'
           }

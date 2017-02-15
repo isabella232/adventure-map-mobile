@@ -1,20 +1,14 @@
-<ion-view title="Activity Feed">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
-
-  <ion-nav-buttons side="right">
-    <div>
-      <a class="button" href="#/app/create_activity">
-        New
-      </a>
-    </div>
-  </ion-nav-buttons>
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">{{ activity.title }}</h1>
+    <button class="button" ng-click="closeModal()">
+      Close
+    </button>
+  </ion-header-bar>
   <ion-content class="padding has-header">
-
-    <div class="list card" ng-repeat="activity in activityData.activityList">
-      <div ng-controller="showActivityController" ng-click="openModal(activity)">
+    <div class="list card">
       <div class="item item-avatar gray">
+        <!--<img src={{activity.user.image}}>-->
         <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
         <h2 class="activity_title">{{activity.user.name}}</h2>
         <p ng-repeat="interest in activity.user.interests">
@@ -22,11 +16,9 @@
         </p>
         <p>{{activity.created_at}}</p>
       </div>
-
       <div class="item item-body gray">
         <span>{{activity.category}}</span>, <span>{{activity.difficulty}}</span>
         <div class="item gray card item-inner">
-          <!--<img class="full-image" src="img/dummy_images/snow.jpg">-->
           <display-first-image images_for="{{activity}}"></display-first-image>
           <div class="padding">
             <h3>{{activity.title}}</h3>
@@ -54,7 +46,6 @@
           </div>
         </div>
       </div>
-      </div>
     </div>
   </ion-content>
-</ion-view>
+</ion-modal-view>

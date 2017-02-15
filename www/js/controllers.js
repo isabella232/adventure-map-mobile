@@ -3,6 +3,7 @@ angular
   .controller('userSessionController', userSessionController)
   .controller('activitiesController', activitiesController)
   .controller('createActivityController', createActivityController)
+  .controller('showActivityController', showActivityController)
   .controller('mapController', mapController)
   .controller('userController', userController);
 
@@ -10,5 +11,3 @@ angular
 function userController($scope, $state) {
 
 }
-
-

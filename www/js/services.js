@@ -1,8 +1,9 @@
 angular.module('adventureMap.services', [])
 
   .factory('Activity', function ($resource, API_URL) {
-    return $resource(API_URL + '/activities/:id', {id: '@id'}, {
-      'save': { method: 'POST' },
-      'query': { method: 'GET' }
+    return $resource(API_URL + '/activities/:id', {}, {
+      save: {method: 'POST'},
+      query: {method: 'GET'},
+      get: {method: 'GET'}
     });
   });

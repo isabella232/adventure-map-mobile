@@ -79,6 +79,60 @@
   transition: all .05s ease-in-out;
 }
 
+
+/*modal animation*/
+.zoom-from-center {
+  -webkit-transform: translate3d(0, 0, 0) scale(0);
+  transform: translate3d(0, 0, 0) scale(0);
+  opacity: 0;
+}
+
+.zoom-from-center.ng-enter, .zoom-from-center > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 600ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 600ms;
+}
+
+.zoom-from-center.ng-enter-active, .zoom-from-center > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+}
+
+.zoom-from-center.ng-leave, .zoom-from-center > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+}
+
+
+/*end modal animation*/
+
+.mybadge.badge-royal {
+  background-color: #595959;
+  color: #fff;
+}
+
+.mybadge {
+  background-color: transparent;
+  color: #AAAAAA;
+  z-index: 1;
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 10px;
+  vertical-align: baseline;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0;
+  -moz-box-flex: 0;
+  -moz-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
+  display: block;
+  min-width: 24px;
+}
 /*******************
 MAP
  *******************/
