@@ -1,7 +1,10 @@
-function activitiesController($scope, $rootScope, $state, $ionicLoading, Activity) {
+function activitiesController($scope, $state, $ionicLoading, Activity, Filters) {
   $scope.activityData = $scope.activityData || {activityData: {}};
   $scope.activityData.filters = {};
+  $scope.activityData.filters.category = [];
+  $scope.activityData.message = undefined;
   $scope.stars = [true, false, false, false, false];
+  const categories = ['Hiking', 'Cross-country skiing', 'Back country skiing', 'Paddling', 'Mountain biking', 'Horse riding', 'Climbing', 'Snow mobiling', 'Cross country ice skating', 'foraging'];
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
     if (states.stateName == "app.activities") {
@@ -26,6 +29,9 @@ function activitiesController($scope, $rootScope, $state, $ionicLoading, Activit
   };
 
   $scope.setFilters = function () {
+    // reset no-results-found message
+    $scope.activityData.message = undefined;
+
     var rating = 1;
     if ($scope.stars[4]) {
       rating = 5
@@ -40,9 +46,7 @@ function activitiesController($scope, $rootScope, $state, $ionicLoading, Activit
     }
     $scope.activityData.filters.rating = rating;
 
-    console.log($scope.activityData.filters);
-
-    applyFilters()
+    Filters.applyFilters($scope, categories)
   };
 
   $scope.toggleStars = function (star_id) {
@@ -67,27 +71,4 @@ function activitiesController($scope, $rootScope, $state, $ionicLoading, Activit
     }
   };
 
-  function applyFilters() {
-    $scope.activityData.activityList = $scope.activityData.cachedActivities.filter(function (activity) {
-      if ($scope.activityData.filters.difficulty1) {
-        if (activity.difficulty == 1) {
-          return activity;
-        }
-      }
-      if ($scope.activityData.filters.difficulty2) {
-        if (activity.difficulty == 2) {
-          return activity;
-
-        }
-      }
-      if ($scope.activityData.filters.difficulty3) {
-        if (activity.difficulty == 3) {
-          return activity;
-        }
-      }
-    });
-
-    console.log('activities: ' + $scope.activityData.activityList.length);
-
-  }
 }

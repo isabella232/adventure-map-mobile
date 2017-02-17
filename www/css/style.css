@@ -79,6 +79,20 @@
   transition: all .05s ease-in-out;
 }
 
+/* Don't know why I have to use !important here! */
+.filter-button {
+  margin-top: 0 !important;
+  min-height: 50px !important;
+  font-size: 18px !important;
+}
+
+.bar-footer-filter {
+  min-height: 60px;
+}
+
+.has-footer-filter {
+  bottom: 60px;
+}
 
 /*modal animation*/
 .zoom-from-center {

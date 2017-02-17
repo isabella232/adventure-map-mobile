@@ -11,7 +11,9 @@
     </div>
   </ion-nav-buttons>
   <ion-content class="padding has-header">
-
+    <div ng-show="activityData.message">
+      {{activityData.message}}
+    </div>
     <div class="list card" ng-repeat="activity in activityData.activityList">
       <div ng-controller="showActivityController" ng-click="openModal(activity)">
       <div class="item item-avatar gray">
