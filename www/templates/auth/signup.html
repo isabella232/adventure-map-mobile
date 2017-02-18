@@ -1,0 +1,62 @@
+<ion-view class="signup-view auth-view" cache-view="false" hide-nav-bar="true">
+  <ion-header-bar class="signup-header auth-header">
+    <div class="buttons">
+      <button class="button button-clear button-icon icon ion-ios-close-empty cancel-button" ng-click="cancelAuth()">
+      </button>
+    </div>
+    <h3 class="title">Signup</h3>
+  </ion-header-bar>
+  <ion-content class="auth-content" has-bouncing="false">
+    <div class="content-wrapper">
+      <div class="row row-no-padding everything-but-legal">
+        <div class="col">
+          <div class="row social-buttons-row">
+            <div class="col">
+              <button class="button button-block icon-left ion-social-facebook social-button facebook-button" ng-click="facebookSignIn()">
+                <span class="inner-text">Sign up via Facebook</span>
+              </button>
+            </div>
+          </div>
+          <form class="row form-container" novalidate>
+            <div class="col">
+              <div class="list">
+                <div class="item item-divider">
+                  <span>or sign up using email</span>
+                </div>
+                <div class="item item-divider" ng-if="errorMessage">
+                  <span class="error-message" ng-bind="errorMessage"></span>
+                </div>
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Name</span>
+                  <input type="text" placeholder="required" ng-model="signupForm.name">
+                </label>
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Email</span>
+                  <input type="email" placeholder="required" ng-model="signupForm.email">
+                </label>
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Password</span>
+                  <input type="password" placeholder="required" name="password" ng-model="signupForm.password">
+                </label>
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Password Confirmation</span>
+                  <input type="password" placeholder="required" name="password_confirmation" ng-model="signupForm.password_confirmation">
+                </label>
+              </div>
+              <button class="button action-button button-block button-balanced" ng-click="signup()">SIGN UP</button>
+              <div class="col alt-actions-container">
+                <span class="pre-button-text">Already a member?</span>
+                <a class="button button-clear button-small button-stable login-button" ui-sref="intro.login">Login</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row row-no-padding legal-row">
+        <div class="col">
+          <p class="legal-text">By creating an account your agree to AdventureMap's <a ui-sref="#">Terms of Service</a>, <a ui-sref="#">Privacy Policy</a>, <a ui-sref="#">Cookie Policy</a> and <a ui-sref="#">Content Policies</a></p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

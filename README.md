@@ -46,6 +46,7 @@ You can choose to run the app on your phone or in an emulator.
 #### iOs Simulator
 Run the following commands
 ```
+$ gulp sass # May not be necessary - This will compile the stylesheets
 $ ionic platform remove ios (optional)
 $ ionic platform add ios
 $ ionic emulate ios
@@ -54,14 +55,15 @@ $ ionic emulate ios
 #### Browser
 You can run the app in your browser by starting the Ionic server with:
 ```
+$ gulp watch sass # Run this in a separate terminal
 $ ionic serve
 ```
 
 You can access the application by navigalign to:
 ```
 http://localhost:8100/
-``` 
- 
+```
+
 If you prefer to view a simulator of iOS and Android side by side, you can choose to do that by navigating to:
 ```
 http://localhost:8100/ionic-lab
@@ -77,14 +79,14 @@ Remember to terminate the process when you no longer need to run the process:
 
 Find out the PID (numeric value) for the process
 ```
-ps aux|grep ionic
+ps aux | grep ionic
 ```
 That will return a list of processes that runs Ionic
 
 Terminate the process with the `kill` command
 ```
 $ kill 11111 #whatever number your process has (PID)
-``` 
-  
-If you revisit `http://localhost:8100/` you shold no longer be able to access the application. 
+```
+
+If you revisit `http://localhost:8100/` you shold no longer be able to access the application.
 

@@ -1,0 +1,82 @@
+/* Empty. Add your own CSS if you like */
+.eighty_percent {
+  width: 80%;
+  margin: auto;
+  padding-top: 30px;
+}
+
+.textarea {
+  height: 100px;
+}
+
+.item {
+  h2 {
+    font-size: 120%;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 110%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+}
+
+.gray {
+  background-color: #cccccc;
+}
+
+.card-bottom {
+  font-size: 170%;
+}
+
+.centered {
+  text-align: center;
+}
+
+.item-inner {
+  margin: 0px;
+  padding: 0px;
+  border: solid #000000;
+  border-width: 1px 1px 1px 1px;
+}
+
+.padding {
+  padding: 10px;
+}
+
+.row {
+  margin-top: 10px;
+}
+
+.profile-item {
+  text-align: center;
+}
+
+.profile-picture {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  padding: 3px;
+  border-radius: 100%;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+
+  img {
+    width: 50px;
+    border-radius: 100%;
+  }
+}
+
+.profile-name {
+  padding-top: 20px;
+  font-size: x-large !important;
+  font-weight: normal !important;
+}
+
+.filters {
+  transition: all .05s ease-in-out;
+}

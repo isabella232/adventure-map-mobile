@@ -1,4 +1,19 @@
 {
   "name": "adventure-map-mobile",
-  "app_id": "7e351a02"
+  "app_id": "7e351a02",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ],
+  "livereload": [
+    "www/**/*.html",
+    "www/**/*.js",
+    "www/**/*.css"
+  ]
 }
