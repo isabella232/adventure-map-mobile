@@ -7,11 +7,17 @@ angular.module('adventureMap', [
     'adventureMap.controllers',
     'adventureMap.directives',
     'adventureMap.services',
+    'adventureMap.s3FileUpload',
     'ngCordova', 'ng-token-auth',
     'ngResource'
   ])
   .constant('API_URL', 'https://adventuremap-dev.herokuapp.com/api/v1')
   // .constant('API_URL', 'http://localhost:3000/api/v1')
+
+  .config(function($httpProvider){
+    // Remove cache headers from put requests - AWS S3 doesn't like them
+    delete $httpProvider.defaults.headers.put['If-Modified-Since']
+  })
 
   .config(function ($authProvider, API_URL) {
     $authProvider.configure({

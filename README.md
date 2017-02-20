@@ -90,3 +90,36 @@ $ kill 11111 #whatever number your process has (PID)
 
 If you revisit `http://localhost:8100/` you shold no longer be able to access the application.
 
+### How to upload files to S3
+
+Make use of the `S3FileUpload` service to upload files to an S3 bucket. This service makes a request to the API to get
+a presigned (encrypted) url that it then uses to upload the file to the bucket. This way we don't have to expose all
+AWS secret credentials on the client. This service can be used to upload any type of files from the client app.
+
+#### Example: Upload an image
+
+In order to upload an image, just inject `S3FileUpload` in the controller responsible for handling the file upload. Then
+call the `upload` function of the service that takes *02 arguments*, the _file type_ (`images` in this case) and the _file to upload_
+
+```javascript
+resp = S3FileUpload.upload('images', $scope.file);
+```
+
+If the file is uploaded successfully, the `upload` function returns the following object:
+
+```javascript
+{
+  message: 'File was successfully uploaded!',
+  public_url: 'https://bucket_name.s3-region.amazonaws.com/images/file_name.png',
+  success: true
+}
+```
+
+In case of failure, we get the following response:
+
+```javascript
+{
+  message: 'An error occurred while attaching your file',
+  success: false
+}
+```
