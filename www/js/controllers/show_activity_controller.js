@@ -1,4 +1,4 @@
-function showActivityController($scope, $ionicModal, Activity){
+function showActivityController($scope, $ionicModal, Activity, $ionicSlideBoxDelegate){
   $scope.openModal = function (activity) {
     $ionicModal.fromTemplateUrl('templates/activity.html', {
       scope: $scope,
@@ -7,6 +7,7 @@ function showActivityController($scope, $ionicModal, Activity){
       $scope.modal = modal;
       Activity.get({id: activity.id}, function (response) {
         $scope.activity = response.data;
+        console.log(activity);
         $scope.modal.show();
       });
     });
@@ -16,5 +17,8 @@ function showActivityController($scope, $ionicModal, Activity){
     $scope.modal.hide();
     $scope.modal.remove();
   };
-}
 
+  $scope.nextSlide = function(index) {
+    $ionicSlideBoxDelegate.slide(index);
+  }
+}

@@ -108,6 +108,15 @@ FILTERS
   bottom: 60px;
 }
 
+/***************
+ACTIVITY PAGE SLIDER
+ */
+
+// The height of the profile image slider.
+.slider-slide {
+  height: 300px;
+}
+
 /*modal animation*/
 .zoom-from-center {
   -webkit-transform: translate3d(0, 0, 0) scale(0);

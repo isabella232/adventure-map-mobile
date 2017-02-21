@@ -19,7 +19,15 @@
       <div class="item item-body gray">
         <span>{{activity.category}}</span>, <span>{{activity.difficulty}}</span>
         <div class="item gray card item-inner">
-          <display-first-image images_for="{{activity}}"></display-first-image>
+          <ion-slide-box on-slide-changed="nextSlide($index)">
+            <ion-slide ng-if="activity.images[0]" ng-repeat="image in activity.images">
+              <img class="full-image" src="{{image.file_attachment}}">
+            </ion-slide>
+            <!-- Show a dummy image if there are no images for this activity -->
+            <ion-slide ng-if="!activity.images[0]">
+              <img class="full-image" src="img/dummy_images/snow.jpg">
+            </ion-slide>
+          </ion-slide-box>
           <div class="padding">
             <h3>{{activity.title}}</h3>
             <p>

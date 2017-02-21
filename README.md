@@ -123,3 +123,9 @@ In case of failure, we get the following response:
   success: false
 }
 ```
+
+#### Development Server Credentials
+```
+admin@calabs.se
+password
+```
