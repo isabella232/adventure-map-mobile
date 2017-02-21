@@ -1,39 +1,77 @@
+function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading, $ionicPlatform, MapService) {
+  var lat, long, map;
 
-function mapController($cordovaGeolocation) {
+  $scope.inProgress = false;
+  $scope.currentRoute = [];
+  $scope.hasRecording = false;
 
-  let posOptions = {timeout: 10000, enableHighAccuracy: false};
-  $cordovaGeolocation
-    .getCurrentPosition(posOptions)
-    .then(function (position) {
-      let lat  = position.coords.latitude;
-      let long = position.coords.longitude;
-      console.log(lat + ', ' + long);
-      mymap.setView([lat, long], 10); // Center the map on user's geolocation after it loads.
-    }, function(err) {
-      // error
+  $ionicPlatform.ready(function() {
+    // called when ready
+    var posOptions = {
+      maximumAge: 30000,
+      timeout: 5000,
+      enableHighAccuracy: false
+    };
+
+    map = L.map('map-container', {
+      zoomControl: false
     });
 
-
-  // Create a map, center it on Gothenburg.
-  const mymap = L.map('mapContainer', {
-    zoomControl: false
-  })
-    .setView([57.7, 11.97], 10);
-
-  // Add zoom controls
-  L.control.zoom({
-    position: 'bottomleft'
-  }).addTo(mymap);
-
-  // A marker example
-  L.marker([57.6, 11.97]).addTo(mymap);
+    const geolocation = $cordovaGeolocation.getCurrentPosition(posOptions);
+    //document.getElementById("stop-tracking").addEventListener('click', MapService.stopTracking(map));
 
 
-  // The map "tile layer"
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.outdoors',
-    accessToken: 'pk.eyJ1IjoiYXF1YWFtYmVyIiwiYSI6ImNpejVreGVxNzAwNTEyeXBnbWc5eXNlcTYifQ.ah37yE5P2LH9LVzNelgymQ'
-  }).addTo(mymap);
+    $ionicLoading.show({
+      template: 'Loading current location...'
+    });
+
+    geolocation.then(function (position) {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+      console.log(lat + ', ' + long);
+
+      map.setView([lat, long], 13);
+      MapService.addToMap(lat, long, map);
+      $ionicLoading.hide();
+      //document.getElementById("start-tracking").addEventListener('click', MapService.startTracking(lat, long, map));
+    }, function (err) {
+      // error
+    });
+  });
+
+  $scope.startTracking = function(){
+    $scope.inProgress = true;
+    $scope.currentRoute = MapService.startTracking(lat, long, map);
+  };
+
+  $scope.stopTracking =  function(){
+    $scope.inProgress = false;
+    MapService.stopTracking(map, $scope.currentRoute[$scope.currentRoute.length - 1].lat, $scope.currentRoute[$scope.currentRoute.length - 1].long);
+    $scope.hasRecording = true;
+    console.log($scope.currentRoute);
+    saveToFile($scope.currentRoute[0].timestamp, $scope.currentRoute)
+  };
+
+  $scope.clearRoute = function(){
+    MapService.clearRoute(map);
+  };
+
+  function saveToFile(timestamp, route) {
+    var fileName = (timestamp + ".txt");
+    $cordovaFile.createFile(cordova.file.dataDirectory, fileName, true)
+      .then(function (success) {
+        console.log(success);
+        console.log('created file: ' + fileName);
+      }, function (error) {
+        console.log(error);
+      });
+
+    $cordovaFile.writeFile(cordova.file.dataDirectory, fileName, route, true)
+      .then(function (success) {
+        console.log(success);
+        console.log('wrote to file: ' + fileName);
+      }, function (error) {
+        console.log(error);
+      });
+  }
 }

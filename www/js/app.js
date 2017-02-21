@@ -8,6 +8,7 @@ angular.module('adventureMap', [
     'adventureMap.directives',
     'adventureMap.services',
     'adventureMap.s3FileUpload',
+    'adventureMap.mapService',
     'ngCordova', 'ng-token-auth',
     'ngResource'
   ])
@@ -30,7 +31,7 @@ angular.module('adventureMap', [
     function windowType() {
       var IONIC_APP_ID = '7e351a02';
       if (window.location.href.indexOf('com.ionic.viewapp') > -1 || window.location.href.indexOf(IONIC_APP_ID) > -1) {
-        return 'newWindow';
+        return 'sameWindow';
       }
       if (window.cordova == undefined) {
         return 'newWindow';
@@ -88,7 +89,7 @@ angular.module('adventureMap', [
           views: {
             'menuContent': {
               templateUrl: 'templates/auth/walkthrough.html',
-              controller: 'AuthController'
+              controller: 'authController'
             }
           }
         })
@@ -97,7 +98,7 @@ angular.module('adventureMap', [
           views: {
             'menuContent': {
               templateUrl: 'templates/auth/login.html',
-              controller: 'AuthController'
+              controller: 'authController'
             }
           }
         })
@@ -106,7 +107,7 @@ angular.module('adventureMap', [
           views: {
             'menuContent': {
               templateUrl: 'templates/auth/signup.html',
-              controller: 'AuthController'
+              controller: 'authController'
             }
           }
         })

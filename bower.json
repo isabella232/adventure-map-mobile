@@ -7,7 +7,7 @@
   },
   "resolutions": {
     "angular": "1.5.3",
-     "leaflet": "^1.0.3"
+    "leaflet": "^1.0.3"
   },
   "dependencies": {
     "ng-token-auth": "^0.0.29",
