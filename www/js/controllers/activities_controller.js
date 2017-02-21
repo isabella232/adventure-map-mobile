@@ -4,7 +4,7 @@ function activitiesController($scope, $state, $ionicLoading, Activity, Filters) 
   $scope.activityData.filters.category = [];
   $scope.activityData.message = undefined;
   $scope.stars = [true, false, false, false, false];
-  const categories = ['Hiking', 'Cross-country skiing', 'Back country skiing', 'Paddling', 'Mountain biking', 'Horse riding', 'Climbing', 'Snow mobiling', 'Cross country ice skating', 'foraging'];
+  const categories = ['Hiking', 'Cross-country skiing', 'Back country skiing', 'Paddling', 'Mountain biking', 'Horse riding', 'Climbing', 'Snow mobiling', 'Cross country ice skating', 'Foraging'];
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
     if (states.stateName == "app.activities") {
@@ -13,7 +13,10 @@ function activitiesController($scope, $state, $ionicLoading, Activity, Filters) 
       });
       Activity.query(function (response) {
         console.log(response);
-        $scope.activityData.activityList = response.data.reverse();
+        // Sort by date
+        $scope.activityData.activityList = response.data.sort(function(a,b) {
+          return Date.parse(b.created_at) - Date.parse(a.created_at);
+        });
         $scope.activityData.cachedActivities = $scope.activityData.activityList; // This keeps the entire activity list so users can un-filter.
         $ionicLoading.hide();
       });
@@ -46,7 +49,7 @@ function activitiesController($scope, $state, $ionicLoading, Activity, Filters) 
     }
     $scope.activityData.filters.rating = rating;
 
-    Filters.applyFilters($scope, categories)
+    Filters.applyFilters($scope, categories);
   };
 
   $scope.toggleStars = function (star_id) {

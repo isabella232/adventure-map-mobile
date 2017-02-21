@@ -33,13 +33,14 @@ angular.module('adventureMap.services', [])
 
         // Category filters
         tempList.filter(function (activity) {
-          const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+          var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-          array.forEach(function(num){
+          array.forEach(function(num) {
             if ($scope.activityData.filters.category[num] && activity.category == categories[num - 1]) {
               categoryArray.push(activity);
             }
           });
+
           categoryArray.forEach(function(activity){
             return activity;
           });
@@ -48,14 +49,12 @@ angular.module('adventureMap.services', [])
         $scope.activityData.activityList = categoryArray;
 
         // Show users a message instead of a blank screen if there are no activities that match their search.
-        if ($scope.activityData.activityList.length == 0) {
-          $scope.activityData.message = 'Your search returned no results. Try adding some categories, difficulties or looking for activities from strangers.'
+        if ($scope.activityData.activityList.length === 0) {
+          $scope.activityData.message = 'Your search returned no results. Try adding some categories, difficulties or looking for activities from strangers.';
         }
 
         console.log('activities: ' + $scope.activityData.activityList.length);
 
-
       }
-    }
-  })
-
+    };
+  });

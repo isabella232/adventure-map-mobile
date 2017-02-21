@@ -77,8 +77,20 @@
   font-weight: normal !important;
 }
 
+/**************
+FILTERS
+ */
+
 .filters {
   transition: all .05s ease-in-out;
+}
+
+.has-footer {
+  bottom: 60px;
+}
+
+.bar-footer {
+  height: 60px !important;
 }
 
 /* Don't know why I have to use !important here! */
