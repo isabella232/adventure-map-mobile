@@ -113,8 +113,10 @@ ACTIVITY PAGE SLIDER
  */
 
 // The height of the profile image slider.
-.slider-slide {
-  height: 300px;
+.activity-show {
+  .slider-slide {
+    height: auto;
+  }
 }
 
 /*modal animation*/
