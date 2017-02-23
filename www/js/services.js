@@ -8,6 +8,12 @@ angular.module('adventureMap.services', [])
     });
   })
 
+  .factory('Comment', function ($resource, API_URL) {
+    return $resource(API_URL + '/activities/:id/comments', {id: '@id'}, {
+      save: {method: 'POST'}
+    });
+  })
+
   .factory('Filters', function () {
     return {
       applyFilters: function ($scope, categories) {
@@ -35,13 +41,13 @@ angular.module('adventureMap.services', [])
         tempList.filter(function (activity) {
           var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-          array.forEach(function(num) {
+          array.forEach(function (num) {
             if ($scope.activityData.filters.category[num] && activity.category == categories[num - 1]) {
               categoryArray.push(activity);
             }
           });
 
-          categoryArray.forEach(function(activity){
+          categoryArray.forEach(function (activity) {
             return activity;
           });
         });

@@ -33,7 +33,6 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, API_UR
 
     $auth.submitRegistration($scope.signupForm)
       .then(function (response) {
-        $rootScope.user = response;
         $state.go('app.activities');
         $ionicLoading.hide();
       })

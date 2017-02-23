@@ -16,14 +16,14 @@
     </div>
     <div class="list card" ng-repeat="activity in activityData.activityList">
       <div ng-controller="showActivityController" ng-click="openModal(activity)">
-      <div class="item item-avatar gray">
-        <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
-        <h2 class="activity_title">{{activity.user.name}}</h2>
-        <p ng-repeat="interest in activity.user.interests">
-          <i class="mybadge badge-royal">{{interest.name}}</i>
-        </p>
-        <p>{{activity.created_at}}</p>
-      </div>
+        <div class="item item-avatar gray">
+          <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
+          <h2 class="activity_title">{{activity.user.name}}</h2>
+          <p ng-repeat="interest in activity.user.interests">
+            <i class="mybadge badge-royal">{{interest.name}}</i>
+          </p>
+          <p>{{activity.created_at}}</p>
+        </div>
 
       <div class="item item-body gray">
         <span>{{activity.category}}</span>, <span>{{activity.difficulty_word}}</span>
@@ -51,8 +51,11 @@
             <p>Follow</p>
           </div>
           <div class='col'>
-            <i class="icon ion-chatboxes card-bottom"></i>
-            <p>Comments</p>
+             <span class="count-icon">
+              <i class="icon ion-chatboxes card-bottom"></i>
+              <span class="count-span">{{activity.comments_count}}</span>
+              <p>Comments</p>
+            </span>
           </div>
         </div>
       </div>

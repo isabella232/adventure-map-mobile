@@ -48,12 +48,21 @@
             <i class="icon ion-person card-bottom"></i>
             <p>Follow</p>
           </div>
-          <div class='col'>
+          <div class='col' ng-click="openCommentBox(activity.id)">
             <i class="icon ion-chatboxes card-bottom"></i>
-            <p>Comments</p>
+            <p>Make a Comment</p>
           </div>
         </div>
       </div>
     </div>
+    <div class="comment-list" ng-repeat="comment in activity.comments">
+        <div class="comment-user">{{comment.user.name}}:</div>
+
+      <div class="comment-body">
+        {{comment.body}}
+      </div>
+      <div class="comment-date">{{comment.created_at}}</div>
+    </div>
+
   </ion-content>
 </ion-modal-view>
