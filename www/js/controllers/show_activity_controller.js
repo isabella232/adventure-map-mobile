@@ -1,4 +1,4 @@
-function showActivityController($scope, $ionicModal, $ionicLoading, Activity, Comment, $ionicSlideBoxDelegate) {
+function showActivityController($scope, $ionicModal, $ionicLoading, Activity, Comment, $ionicSlideBoxDelegate, $ionicPopup) {
   $scope.openModal = function (activity) {
     $ionicModal.fromTemplateUrl('templates/activity.html', {
       scope: $scope,
@@ -41,11 +41,16 @@ function showActivityController($scope, $ionicModal, $ionicLoading, Activity, Co
     });
     Comment.save({body: $scope.commentData.body, id: activityId}, function (resp) {
       $ionicLoading.hide();
-      $scope.closeCommentModal();
-      console.log(resp);
+      if (resp.status == 'success') {
+        $scope.closeCommentModal();
+      } else {
+        console.log('error ' + resp.message[0]);
+        $ionicPopup.alert({
+          title: resp.message[0]
+        });
+      }
     }, function (resp) {
       $ionicLoading.hide();
-      console.log(resp);
     });
   };
 
@@ -54,7 +59,7 @@ function showActivityController($scope, $ionicModal, $ionicLoading, Activity, Co
   };
 
   function prepareComments() {
-    $scope.activity.comments = $scope.activity.comments.sort(function(a,b) {
+    $scope.activity.comments = $scope.activity.comments.sort(function (a, b) {
       return Date.parse(b.created_at) - Date.parse(a.created_at);
     });
     if ($scope.activity.comments != []) {
