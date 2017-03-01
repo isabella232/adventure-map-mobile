@@ -1,9 +1,8 @@
-function activitiesController($scope, $state, $ionicLoading, Activity, Filters) {
+function activitiesController($scope, $state, $ionicLoading, Activity, Filters, DIFFICULTY_WORDS) {
   $scope.activityData = $scope.activityData || {activityData: {}};
   $scope.activityData.filters = {};
   $scope.activityData.filters.category = [];
   $scope.activityData.message = undefined;
-  $scope.activityData.difficulty_words = ['Easy', 'Moderate', 'Hard'];
   $scope.stars = [true, false, false, false, false];
   const categories = ['Hiking', 'Cross-country skiing', 'Back country skiing', 'Paddling', 'Mountain biking', 'Horse riding', 'Climbing', 'Snow mobiling', 'Cross country ice skating', 'Foraging'];
 
@@ -80,13 +79,13 @@ function activitiesController($scope, $state, $ionicLoading, Activity, Filters) 
     $scope.activityData.activityList = $scope.activityData.activityList.map(function (activity) {
       switch (activity.difficulty) {
         case 1:
-          activity.difficulty_word = $scope.activityData.difficulty_words[0];
+          activity.difficulty_word = DIFFICULTY_WORDS[0];
           break;
         case 2:
-          activity.difficulty_word = $scope.activityData.difficulty_words[1];
+          activity.difficulty_word = DIFFICULTY_WORDS[1];
           break;
         case 3:
-          activity.difficulty_word = $scope.activityData.difficulty_words[2];
+          activity.difficulty_word = DIFFICULTY_WORDS[2];
           break;
         default:
           activity.difficulty_word = '';

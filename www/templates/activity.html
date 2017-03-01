@@ -17,7 +17,7 @@
         <p>{{activity.created_at}}</p>
       </div>
       <div class="item item-body gray">
-        <span>{{activity.category}}</span>, <span>{{activity.difficulty}}</span>
+        <span>{{activity.category}}</span>, <span>{{activity.difficulty_word}}</span>
         <div class="item gray card item-inner">
           <ion-slide-box on-slide-changed="nextSlide($index)">
             <ion-slide ng-if="activity.images[0]" ng-repeat="image in activity.images">
