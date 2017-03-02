@@ -7,6 +7,7 @@ function activitiesController($scope, $state, $ionicLoading, Activity, Filters, 
   const categories = ['Hiking', 'Cross-country skiing', 'Back country skiing', 'Paddling', 'Mountain biking', 'Horse riding', 'Climbing', 'Snow mobiling', 'Cross country ice skating', 'Foraging'];
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
+    console.log($scope.activityData);
     if (states.stateName == "app.activities") {
       $ionicLoading.show({
         template: 'Getting activities...'

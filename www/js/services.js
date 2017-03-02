@@ -14,6 +14,12 @@ angular.module('adventureMap.services', [])
     });
   })
 
+  .factory('Follow', function ($resource, API_URL) {
+    return $resource(API_URL + '/follows', {}, {
+      save: {method: 'POST'}
+    });
+  })
+
   .factory('Filters', function () {
     return {
       applyFilters: function ($scope, categories) {

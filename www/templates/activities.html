@@ -47,8 +47,20 @@
             <p>Recommend</p>
           </div>
           <div class='col'>
-            <i class="icon ion-person card-bottom"></i>
-            <p>Follow</p>
+            <div class="blue" ng-if=activity.user.following >
+              <span class="count-icon">
+              <i class="icon ion-person card-bottom"></i>
+                <span class="count-span">{{activity.user.followers_count}}</span>
+                <p>Following</p>
+              </span>
+            </div>
+            <div ng-if=!activity.user.following >
+              <span class="count-icon">
+              <i class="icon ion-person card-bottom"></i>
+                <span class="count-span count-span-follow">{{activity.user.followers_count}}</span>
+                <p>Follow</p>
+              </span>
+            </div>
           </div>
           <div class='col'>
              <span class="count-icon">

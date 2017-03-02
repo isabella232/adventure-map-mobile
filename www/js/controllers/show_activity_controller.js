@@ -1,28 +1,25 @@
-function showActivityController($scope, $ionicModal, $ionicLoading, Activity, Comment, $ionicSlideBoxDelegate, $ionicPopup, DIFFICULTY_WORDS) {
+function showActivityController($scope, $ionicModal, $ionicLoading, Activity, Comment, Follow, $ionicSlideBoxDelegate, $ionicPopup, DIFFICULTY_WORDS) {
   $scope.openModal = function (activity) {
     $ionicModal.fromTemplateUrl('templates/activity.html', {
       scope: $scope,
       animation: 'zoom-from-center'
     }).then(function (modal) {
+      $scope.activity_id = activity.id;
       $scope.modal = modal;
-      Activity.get({id: activity.id}, function (response) {
-        $scope.activity = response.data;
-        prepareComments();
-        setDifficultyWords();
-        console.log(response);
-        $scope.modal.show();
-      });
+      getActivity();
     });
   };
 
   $scope.closeModal = function () {
     $scope.modal.hide();
     $scope.modal.remove();
+    window.location.reload();
   };
 
   $scope.closeCommentModal = function () {
     $scope.comment_modal.hide();
     $scope.comment_modal.remove();
+    getActivity();
   };
 
   $scope.openCommentBox = function () {
@@ -55,6 +52,24 @@ function showActivityController($scope, $ionicModal, $ionicLoading, Activity, Co
     });
   };
 
+  $scope.followUser = function(userId) {
+    $ionicLoading.show({
+      template: 'Following user...'
+    });
+    Follow.save({user_id: userId}, function (response) {
+      $ionicLoading.hide();
+      if (response.status == 'success') {
+        console.log('user followed');
+        getActivity();
+      } else {
+        console.log(response);
+        $ionicPopup.alert({
+          title: 'User could not be followed.'
+        })
+      }
+    })
+  };
+
   $scope.nextSlide = function (index) {
     $ionicSlideBoxDelegate.slide(index);
   };
@@ -71,6 +86,16 @@ function showActivityController($scope, $ionicModal, $ionicLoading, Activity, Co
       })
     }
 
+  }
+
+  function getActivity() {
+    Activity.get({id: $scope.activity_id}, function (response) {
+      $scope.activity = response.data;
+      prepareComments();
+      setDifficultyWords();
+      console.log(response);
+      $scope.modal.show();
+    });
   }
   function setDifficultyWords() {
       switch ($scope.activity.difficulty) {
