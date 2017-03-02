@@ -1,3 +1,9 @@
+@mixin position($bottom, $left, $width) {
+  bottom: $bottom;
+  left: $left;
+  width: $width;
+}
+
 .walkthrough-view {
 	.intro-header {
 		background-color: $walkthrough-slider-bg !important;
@@ -51,16 +57,30 @@
 				font-size: 42px;
 			}
 
+      .slide-heading {
+        @extend .slide-title;
+        font-size: 32px;
+
+        position: absolute;
+        @include position(40%, 5%, 90%);
+      }
+
 			.slide-sub-title {
-				text-align: center;
-				color: $walkthrough-color;
+        @extend .slide-title;
 				font-weight: 300;
 				font-size: 20px;
 
 				position: absolute;
-			  width: 90%;
-			  bottom: 25%;
-				left: 5%;
+        @include position(25%, 5%, 90%);
+			}
+
+			.slide-text {
+        @extend .slide-title;
+				font-weight: 300;
+				font-size: 14px;
+
+				position: absolute;
+        @include position(18%, 5%, 90%);
 			}
 
 			.slide-1 {
@@ -84,8 +104,8 @@
 			.slide-3,
 			.slide-4 {
 				.slide-image-container {
-				  width: 80%;
-					margin: 5% auto 0px;
+				  width: 35%;
+					margin: 8% auto 0px;
 				}
 
 				.slide-image {
