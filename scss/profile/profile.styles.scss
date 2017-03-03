@@ -1,0 +1,90 @@
+.profile-view {
+  background-color: $profile-alt-bg;
+  color: $profile-color;
+}
+
+.user-col {
+  background-color: $profile-bg;
+
+  .user-image-container {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 95px;
+  }
+
+  .avatar-image {
+    &.pre-img {
+      border-radius: 50%;
+    }
+
+    img {
+      border: 2px solid $profile-color;
+      border-radius: 50%;
+      width: 100%;
+    }
+  }
+
+  .user-name {
+    color: $profile-color;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .username {
+    color: rgba($profile-color, .7);
+    text-align: center;
+  }
+
+  .user-social {
+    color: $profile-color;
+    text-align: center;
+  }
+
+  .user-bio {
+    color: rgba($profile-color, .8);
+    margin: 0 10% 12%;
+    text-align: center;
+  }
+}
+
+.profile-list {
+  .list {
+    background-color: $profile-color;
+  }
+
+  .profile-divider {
+    height: 35px;
+  }
+
+  .list-item {
+    border-left: 0;
+    margin-left: 8px;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    .item-content {
+      padding-bottom: 12px;
+      padding-left: 8px;
+      padding-top: 12px;
+    }
+
+    .main-text {
+      color: $profile-bg;
+    }
+
+    .badge {
+      color: $profile-alt-color;
+      font-size: 18px;
+      font-weight: 300;
+      top: 11px;
+    }
+
+    .icon {
+      color: $profile-alt-color;
+      font-size: 22px;
+    }
+  }
+}

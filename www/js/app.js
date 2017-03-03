@@ -4,6 +4,7 @@
 angular.module('adventureMap', [
     'ionic',
     'ui.router',
+    'angular-md5',
     'adventureMap.controllers',
     'adventureMap.directives',
     'adventureMap.services',

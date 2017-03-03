@@ -15,28 +15,28 @@
   background-color: $pre-img-bg;
   border-radius: 2px;
 
-	// If the image is rounded
-	&.rounded-image {
-		border-radius: 50%;
-	}
+  // If the image is rounded
+  &.rounded-image {
+    border-radius: 50%;
+  }
 
   &.finish-loading {
     background-color: transparent;
     border: none;
 
-		img {
-			visibility: visible;
-			opacity: 1;
-	  }
+    img {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 
   img {
     position: absolute;
-		left: 0px;
-		top: 0px;
-		visibility: hidden;
-		opacity: 0;
-		@include transition(visibility 0s linear, opacity 0.5s linear);
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+    opacity: 0;
+    @include transition(visibility 0s linear, opacity 0.5s linear);
   }
 }
 
@@ -51,25 +51,25 @@
 }
 
 .spinner-on-load {
-	position: absolute;
-	font-size: $spinner-size;
-	width: $spinner-size;
-	height: $spinner-size;
-	line-height: $spinner-size;
+  position: absolute;
+  font-size: $spinner-size;
+  width: $spinner-size;
+  height: $spinner-size;
+  line-height: $spinner-size;
   color: $spinner-color;
-	@include animation(spin 2s infinite linear);
-	@include calc(top, "50% - #{($spinner-size/2)}");
-	@include calc(left, "50% - #{($spinner-size/2)}");
+  @include animation(spin 2s infinite linear);
+  @include calc(top, "50% - #{($spinner-size/2)}");
+  @include calc(left, "50% - #{($spinner-size/2)}");
 }
 
 ion-spinner.spinner-on-load {
-	@include animation(none);
+  @include animation(none);
   stroke: $spinner-color;
-	width: $spinner-svg-size;
+  width: $spinner-svg-size;
   height: $spinner-svg-size;
-	line-height: inherit;
-	@include calc(top, "50% - #{($spinner-svg-size/2)}");
-	@include calc(left, "50% - #{($spinner-svg-size/2)}");
+  line-height: inherit;
+  @include calc(top, "50% - #{($spinner-svg-size/2)}");
+  @include calc(left, "50% - #{($spinner-svg-size/2)}");
 }
 
 .error-message {

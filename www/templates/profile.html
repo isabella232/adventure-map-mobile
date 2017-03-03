@@ -1,24 +1,60 @@
-<ion-view title="Profile">
+<ion-view class="profile-view" view-title="Profile">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
-  <ion-content class="padding">
-    <div class="list card">
-      <ion-item class="profile-item">
-        <div class="profile-picture big-profile-picture">
-          <img ng-src="{{user.image ? user.image : 'img/dummy_images/empty_image.svg'}}">
-        </div>
-        <h2 class="profile-name dark">{{user.name}}</h2>
-        <div class="profile-info">{{user.interests}}</div>
-      </ion-item>
+  <ion-nav-buttons side="right">
+    <button class="button button-positive" ng-controller="authController" ng-click="performSignOut()">
+      Logout
+    </button>
+  </ion-nav-buttons>
 
+  <ion-content>
+    <div class="row row-no-padding">
+      <div class="col user-col">
+        <div class="user-image-container">
+          <pre-img ratio="_1_1" helper-class="avatar-image">
+            <img ng-src="{{profileImage()}}" spinner-on-load>
+          </pre-img>
+        </div>
+        <h2 class="user-name">{{user.name}}</h2>
+        <a ui-sref="main.profile">
+          <h5 class="username">@{{user.nickname}}</h5>
+        </a>
+        <p class="user-social">
+          <i class="ion-heart"></i>
+          <span>74</span> &nbsp;
+          <i class="ion-location"></i>
+          <span>{{user.city}}</span>
+        </p>
+        <div class="row">
+          <div class="col">
+            <p class="user-bio">{{user.interests}}</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <button class="button button-block button-positive" ng-controller="authController" ng-click="performSignOut()">Log out</button>
-    <ion-list ng-if="files">
-      <ion-item ng-repeat="file in files">
-        {{file.fileName}}
-        <p>{{file.date}}</p>
+    <ion-list class="profile-list">
+      <div class="item item-divider profile-divider"></div>
+      <ion-item class="item item-icon-right list-item" ui-sref="main.profile.following">
+        <span class="main-text">My Threads</span>
+        <span class="badge">7</span>
+        <i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
+      <ion-item class="item item-icon-right list-item" ui-sref="main.profile.following">
+        <span class="main-text">My Adventures</span>
+        <span class="badge">2</span>
+        <i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
+      <ion-item class="item item-icon-right list-item" ui-sref="main.profile.following">
+        <span class="main-text">Following</span>
+        <span class="badge">34</span>
+        <i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
+      <ion-item class="item item-icon-right list-item" ui-sref="main.profile.following">
+        <span class="main-text">Followers</span>
+        <span class="badge">48</span>
+        <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
     </ion-list>
   </ion-content>

@@ -28,6 +28,8 @@ For example, you might change some of the default colors:
 @import "scss/walkthrough/walkthrough.variables";
 // Auth
 @import "scss/auth/auth.variables";
+// Profile
+@import "scss/profile/profile.variables";
 // Map
 @import "scss/map/map.variables";
 
@@ -41,8 +43,10 @@ For example, you might change some of the default colors:
 @import "scss/auth/auth.styles";
 @import "scss/auth/login.styles";
 @import "scss/auth/signup.styles";
+// Profile
+@import "scss/profile/profile.styles";
 // Map
 @import "scss/map/map.styles";
 
 // Previous stylesheet
- @import "old-styles.scss";
+@import "old-styles.scss";
