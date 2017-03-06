@@ -3,8 +3,19 @@ function activitiesController($scope, $state, $ionicLoading, Activity, Filters, 
   $scope.activityData.filters = {};
   $scope.activityData.filters.category = [];
   $scope.activityData.message = undefined;
-  $scope.stars = [true, false, false, false, false];
   const categories = ['Hiking', 'Cross-country skiing', 'Back country skiing', 'Paddling', 'Mountain biking', 'Horse riding', 'Climbing', 'Snow mobiling', 'Cross country ice skating', 'Foraging'];
+  $scope.categories = categories;
+  $scope.difficulty_words = DIFFICULTY_WORDS;
+
+  // Set default filters - these should change based on the user's default filter.
+  for (var i = 1; i < 11; i++) {
+    $scope.activityData.filters.category[i] = true;
+  }
+  $scope.activityData.filters.difficulty1 = true;
+  $scope.activityData.filters.difficulty2 = true;
+  $scope.activityData.filters.difficulty3 = true;
+  $scope.activityData.filters.follow = true;
+  $scope.stars = [true, false, false, false, false];
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
     console.log($scope.activityData);

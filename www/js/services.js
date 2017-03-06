@@ -23,6 +23,8 @@ angular.module('adventureMap.services', [])
   .factory('Filters', function () {
     return {
       applyFilters: function ($scope, categories) {
+        console.log($scope.activityData.filters);
+
         var tempArray = [];
 
         var tempList = $scope.activityData.cachedActivities;
@@ -79,7 +81,7 @@ angular.module('adventureMap.services', [])
         if ($scope.activityData.activityList.length === 0) {
           $scope.activityData.message = 'Your search returned no results. Try adding some categories, difficulties or looking for activities from strangers.';
         }
-        console.log($scope.activityData.filters);
+
         console.log('activities: ' + $scope.activityData.activityList.length);
 
       }

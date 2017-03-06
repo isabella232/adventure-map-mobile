@@ -28,9 +28,9 @@
         <ion-item ng-show="$state.includes('app.activities')">
           <ul class="list">
             <div class="item item-toggle">
-              Only users I follow
+              Users I follow
               <label class="toggle toggle-positive">
-                <input type="checkbox" ng-model="activityData.filters.follow">
+                <input type="checkbox" ng-model="activityData.filters.follow" ng-checked="true">
                 <div class="track">
                   <div class="handle"></div>
                 </div>
@@ -51,24 +51,26 @@
             <div class="list">
               <label class="item item-input">Difficulty</label>
               <ion-list>
-                <ion-checkbox ng-model="activityData.filters.difficulty1">Easy</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.difficulty2">Moderate</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.difficulty3">Hard</ion-checkbox>
+                <ion-checkbox ng-model="activityData.filters.difficulty1"
+                              ng-checked="activityData.filters.difficulty1">
+                  {{difficulty_words[0]}}
+                </ion-checkbox>
+                <ion-checkbox ng-model="activityData.filters.difficulty2"
+                              ng-checked="activityData.filters.difficulty2">
+                  {{difficulty_words[1]}}
+                </ion-checkbox>
+                <ion-checkbox ng-model="activityData.filters.difficulty3"
+                              ng-checked="activityData.filters.difficulty2">
+                  {{difficulty_words[2]}}
+                </ion-checkbox>
               </ion-list>
             </div>
             <div class="list">
               <label class="item item-input">Sport</label>
-              <ion-list>
-                <ion-checkbox ng-model="activityData.filters.category[1]">Hiking</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.category[2]">Cross-country skiing</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.category[3]">Back country skiing</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.category[4]">Paddling</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.category[5]">Mountain biking</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.category[6]">Horse riding</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.category[7]">Climbing</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.category[8]">Snow mobiling</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.category[9]">Cross country ice skating</ion-checkbox>
-                <ion-checkbox ng-model="activityData.filters.category[10]">Foraging</ion-checkbox>
+              <ion-list ng-repeat="category in categories">
+                <ion-checkbox ng-model="activityData.filters.category[$index + 1]"
+                              ng-checked="activityData.filters.category[$index + 1]">{{categories[$index]}}
+                </ion-checkbox>
               </ion-list>
             </div>
           </ul>
