@@ -1,4 +1,4 @@
-function authController($scope, $auth, $ionicLoading, $state, $rootScope, API_URL) {
+function authController($scope, $auth, $ionicLoading, $state, $rootScope, API_URL, $ionicHistory) {
   console.log($scope.user);
   $scope.credentials = {};
   $scope.signupForm = {};
@@ -72,5 +72,9 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, API_UR
 
   $scope.cancelAuth = function(){
     $state.go('intro.walkthrough');
+  };
+
+  $scope.back = function(){
+    $ionicHistory.goBack();
   };
 }
