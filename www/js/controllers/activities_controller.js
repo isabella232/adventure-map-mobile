@@ -1,21 +1,34 @@
-function activitiesController($scope, $state, $ionicLoading, Activity, Filters, DIFFICULTY_WORDS) {
+function activitiesController($scope,
+                              $state,
+                              $ionicLoading,
+                              $localStorage,
+                              Activity,
+                              Filters,
+                              DIFFICULTY_WORDS) {
+
+  console.dir($localStorage.defaultFilter || 'no default filter');
+
   $scope.activityData = $scope.activityData || {activityData: {}};
-  $scope.activityData.filters = {};
-  $scope.activityData.filters.category = [];
+  $scope.activityData.filters = $localStorage.defaultFilter || {};
+  $scope.activityData.filters.default = false;
   $scope.activityData.message = undefined;
   const categories = ['Hiking', 'Cross-country skiing', 'Back country skiing', 'Paddling', 'Mountain biking', 'Horse riding', 'Climbing', 'Snow mobiling', 'Cross country ice skating', 'Foraging'];
   $scope.categories = categories;
+  $scope.stars = $localStorage.defaultFilter.stars || [true, false, false, false, false];
   $scope.difficulty_words = DIFFICULTY_WORDS;
 
   // Set default filters - these should change based on the user's default filter.
-  for (var i = 1; i < 11; i++) {
-    $scope.activityData.filters.category[i] = true;
+  if (!$localStorage.defaultFilter) {
+    $scope.activityData.filters.category = [];
+    for (var i = 1; i < 11; i++) {
+      $scope.activityData.filters.category[i] = true;
+    }
+    $scope.activityData.filters.difficulty1 = true;
+    $scope.activityData.filters.difficulty2 = true;
+    $scope.activityData.filters.difficulty3 = true;
+    $scope.activityData.filters.follow = true;
+    $scope.stars = [true, false, false, false, false];
   }
-  $scope.activityData.filters.difficulty1 = true;
-  $scope.activityData.filters.difficulty2 = true;
-  $scope.activityData.filters.difficulty3 = true;
-  $scope.activityData.filters.follow = true;
-  $scope.stars = [true, false, false, false, false];
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
     console.log($scope.activityData);
@@ -31,6 +44,11 @@ function activitiesController($scope, $state, $ionicLoading, Activity, Filters, 
         });
         setDifficultyWords();
         $scope.activityData.cachedActivities = $scope.activityData.activityList; // This keeps the entire activity list so users can un-filter.
+
+        // Apply filters on page load if there is a default filter
+        if ($localStorage.defaultFilter) {
+          Filters.applyFilters($scope, categories);
+        }
         $ionicLoading.hide();
       });
     }

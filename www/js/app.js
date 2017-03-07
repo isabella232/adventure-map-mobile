@@ -11,7 +11,8 @@ angular.module('adventureMap', [
     'adventureMap.s3FileUpload',
     'adventureMap.mapService',
     'ngCordova', 'ng-token-auth',
-    'ngResource'
+    'ngResource',
+    'ngStorage'
   ])
   .constant('API_URL', 'https://adventuremap-dev.herokuapp.com/api/v1')
   // .constant('API_URL', 'http://localhost:3000/api/v1')
