@@ -16,6 +16,7 @@
     "leaflet": "http://cdn.leafletjs.com/leaflet/v1.0.3/leaflet.zip",
     "bourbon": "^4.3.2",
     "angular-md5": "^0.1.10",
-    "identicon.js": "identicon#^2.1.0"
+    "identicon.js": "identicon#^2.1.0",
+    "ngstorage": "^0.3.11"
   }
 }
