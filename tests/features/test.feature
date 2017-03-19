@@ -5,6 +5,5 @@ Feature: Running Cucumber with Protractor
 
   Scenario: Protractor and Cucumber Test
     Given I open the app
-    Then I should see an navigation bar
-    And the navigation bar should be "Adventure Map"
+    Then I should be on the "intro/walkthrough" page
     And the title should be "AdventureMap"
