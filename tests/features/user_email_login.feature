@@ -5,19 +5,21 @@ Feature: User can log in using email and password
 
   PT Story: https://www.pivotaltracker.com/story/show/136350367
 
-  Scenario: User logs in with valid credentials
+  Background:
     Given I open the app
-    And I fill in "Email" with "thomas2@random.se"
-    And I fill in "Password" with "password"
-    And I click "Login"
-    Then I should be on the "activities" page
+    And I click "LOGIN"
+
+  Scenario: User logs in with valid credentials
+    And I enter "thomas2@random.se" as email
+    And I enter "password" as password
+    And I click button "LOGIN"
+    Then I should be on the "app/activities" page
 
   Scenario: User logs in with invalid credentials
-    Given I open the app
-    And I fill in "Email" with "thomas2@random.se"
-    And I fill in "Password" with "wrong_password"
-    And I click "Login"
-    Then I should be on the "home" page
-    And I should see "Invalid credentials"
+    And I enter "thomas2@random.se" as email
+    And I enter "wrong_password" as password
+    And I click button "LOGIN"
+    Then I should be on the "intro/login" page
+    And I should see "INVALID CREDENTIALS"
 
 

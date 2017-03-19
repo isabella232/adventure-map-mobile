@@ -36,8 +36,8 @@ var basicStepDefinitionsWrapper = function () {
 
 
   this.Then(/^I click "([^"]*)"$/, function (element, callback) {
-    var button = browser.element(by.css('body')).element(by.buttonText(element));
-    button.click();
+    var link = browser.element(by.css('body')).element(by.linkText(element));
+    link.click();
     browser.sleep(1000).then(function () {
       callback();
     });
@@ -49,10 +49,10 @@ var basicStepDefinitionsWrapper = function () {
     var emailField = browser.element(by.model('credentials.email'));
     var passwordField = browser.element(by.model('credentials.password'));
     var loginButton = browser.element(by.buttonText("LOGIN"));
-    loginNavigateButton.click().then(function(){
+    loginNavigateButton.click().then(function () {
       emailField.sendKeys(username);
       passwordField.sendKeys(password);
-      loginButton.click().then(function(){
+      loginButton.click().then(function () {
         browser.sleep(1000).then(function () {
           callback();
         });
@@ -88,6 +88,27 @@ var basicStepDefinitionsWrapper = function () {
 
   this.Given(/^I wait for the application to load$/, function (callback) {
     browser.sleep(3000).then(function () {
+      callback();
+    });
+  });
+
+  this.Given(/^I enter "([^"]*)" as password$/, function (password, callback) {
+    var passwordField = browser.element(by.model('credentials.password'));
+    passwordField.sendKeys(password).then(function () {
+      callback();
+    });
+  });
+
+  this.Given(/^I enter "([^"]*)" as email$/, function (email, callback) {
+    var emailField = browser.element(by.model('credentials.email'));
+    emailField.sendKeys(email).then(function () {
+      callback();
+    });
+  });
+
+  this.Given(/^I click button "([^"]*)"$/, function (element, callback) {
+    var button = browser.element(by.buttonText(element));
+    button.click().then(function () {
       callback();
     });
   });
