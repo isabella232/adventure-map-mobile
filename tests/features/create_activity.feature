@@ -18,6 +18,6 @@ Feature: User can create an Activity
     And I select Activity "Category" to "Back country skiing"
     And I click "Create"
     And I wait for the application to load
-    Then I should be on the "activities" page
+    Then I should be on the "app/activities" page
     And I should see "Hiking in Angered"
 

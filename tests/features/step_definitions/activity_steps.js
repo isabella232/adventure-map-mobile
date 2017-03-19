@@ -45,7 +45,7 @@ var myStepDefinitionsWrapper = function () {
   });
 
   this.Given(/^I click "([^"]*)" on the right side in the navigation bar$/, function (value, callback) {
-    var button = browser.element(by.css('.right-buttons')).element(by.buttonText(value));
+    var button = browser.element(by.css('.right-buttons')).element(by.linkText(value));
     button.click();
     browser.sleep(1000).then(function () {
       callback();

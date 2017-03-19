@@ -1,7 +1,6 @@
 var assertionStepDefinitionsWrapper = function () {
 
   this.Then(/^I should be on the "([^"]*)" page$/, function (page, callback) {
-
     this.expect(browser.getCurrentUrl()).to.eventually.equal(browser.baseUrl + "#/" + page)
       .and.notify(callback);
   });
@@ -25,7 +24,8 @@ var assertionStepDefinitionsWrapper = function () {
   });
 
   this.Then(/^I should see "([^"]*)"$/, function (content, callback) {
-    this.expect(element(by.css('body')).getText()).to.eventually.contain(content)
+    browser.waitForAngular();
+    this.expect(element(by.css('body')).getText()).to.eventually.include(content)
       .and.notify(callback);
   });
 };
