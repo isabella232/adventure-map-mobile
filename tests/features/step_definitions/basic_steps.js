@@ -61,24 +61,21 @@ var basicStepDefinitionsWrapper = function () {
   });
 
   this.Given(/^I login using Facebook as "([^"]*)" and password "([^"]*)"$/, function (username, password, callback) {
-    var button = browser.element(by.buttonText("Login with Facebook"));
-    button.click()
-      .then(function () {
-        browser.ignoreSynchronization = true;
-        browser.getAllWindowHandles()
-          .then(function (handles) {
-            browser.switchTo().window(handles[1])
-              .then(function () {
-                //do your stuff on the pop up window
-                browser.element(by.id('email')).sendKeys(username);
-                browser.element(by.id('pass')).sendKeys(password);
-                browser.element(by.id('loginbutton')).click();
-              })
-              .then(function () {
-                // back to app
-                browser.switchTo().window(handles[0]);
-                browser.ignoreSynchronization = false;
-              });
+
+    browser.ignoreSynchronization = true;
+    browser.getAllWindowHandles()
+      .then(function (handles) {
+        browser.switchTo().window(handles[1])
+          .then(function () {
+            //do your stuff on the pop up window
+            browser.element(by.id('email')).sendKeys(username);
+            browser.element(by.id('pass')).sendKeys(password);
+            browser.element(by.id('loginbutton')).click();
+          })
+          .then(function () {
+            // back to app
+            browser.switchTo().window(handles[0]);
+            browser.ignoreSynchronization = false;
           });
       });
     browser.sleep(1000).then(function () {

@@ -5,5 +5,6 @@ Feature: Enable OAuth on client
 
   Scenario: Facebook login with valid credentials
     Given I open the app
+    And I click button "Instant Facebook Connect"
     And I login using Facebook as "academy@craftacademy.se" and password "Cr@ft2017"
-    Then I should be on the "activities" page
+    Then I should be on the "app/activities" page
