@@ -20,9 +20,10 @@ var myStepDefinitionsWrapper = function () {
   });
 
   this.Given(/^I create an activity "([^"]*)"$/, function (title, callback) {
-    //var button = browser.element(by.css('.right-buttons')).element(by.buttonText('New'));
-    browser.get('#/create_activity').then(function () {
-      //browser.pause();
+    var button = browser.element(by.css('.right-buttons')).element(by.linkText('New'));
+    //browser.enterRepl();
+    //browser.pause();
+    button.click().then(function () {
       browser.sleep(1000).then(function () {
         var title_field = browser.element(by.css('body')).element(by.css('input[placeholder="' + 'Pick a headline for your activity' + '"]'));
         title_field.sendKeys(title);
@@ -39,7 +40,8 @@ var myStepDefinitionsWrapper = function () {
           });
         });
       });
-    });
+    })
+
   });
 
   this.Given(/^I click "([^"]*)" on the right side in the navigation bar$/, function (value, callback) {
@@ -51,13 +53,13 @@ var myStepDefinitionsWrapper = function () {
   });
 
 
-    this.Given(/^I click "([^"]*)" on the left side in the navigation bar$/, function (value, callback) {
-      var button = browser.element(by.css('.left-buttons')).element(by.buttonText(value));
-      button.click();
-      browser.sleep(1000).then(function () {
-        callback();
-      });
+  this.Given(/^I click "([^"]*)" on the left side in the navigation bar$/, function (value, callback) {
+    var button = browser.element(by.css('.left-buttons')).element(by.buttonText(value));
+    button.click();
+    browser.sleep(1000).then(function () {
+      callback();
     });
+  });
 };
 
 module.exports = myStepDefinitionsWrapper;

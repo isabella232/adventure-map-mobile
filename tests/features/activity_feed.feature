@@ -11,6 +11,6 @@ Feature: View activity feed
     And I create an activity "My Super Cool Activity"
 
   Scenario: I view my activity feed
-    Given I go to "#/activities"
+    Given I go to "#/app/activities"
     Then the navigation bar should be "Activity Feed"
     And I should see "My Super Cool Activity"

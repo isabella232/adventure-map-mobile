@@ -14,7 +14,7 @@ var assertionStepDefinitionsWrapper = function () {
 
   this.Then(/^the navigation bar should be "([^"]*)"$/, function (title, callback) {
     browser.waitForAngular();
-    this.expect(element(by.css('.nav-bar-title')).getText()).to.eventually.equal(title)
+    this.expect(element(by.tagName('ion-nav-bar')).getText()).to.eventually.include(title)
       .and.notify(callback);
   });
 

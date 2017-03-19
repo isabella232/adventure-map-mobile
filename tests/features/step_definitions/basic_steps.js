@@ -45,17 +45,19 @@ var basicStepDefinitionsWrapper = function () {
   });
 
   this.Given(/^I am logged in as "([^"]*)" with password "([^"]*)"$/, function (username, password, callback) {
-    var emailField = browser.element(by.css('ion-content')).element(by.css('input[placeholder="Email"]'));
-    var passwordField = browser.element(by.css('ion-content')).element(by.css('input[placeholder="Password"]'));
-    var loginButton = browser.element(by.css('ion-content')).element(by.buttonText("Login"));
-    emailField.sendKeys(username);
-    passwordField.sendKeys(password);
-    loginButton.click().then(function(){
-      browser.sleep(1000).then(function () {
-        callback();
+    var loginNavigateButton = browser.element(by.linkText("LOGIN"));
+    var emailField = browser.element(by.model('credentials.email'));
+    var passwordField = browser.element(by.model('credentials.password'));
+    var loginButton = browser.element(by.buttonText("LOGIN"));
+    loginNavigateButton.click().then(function(){
+      emailField.sendKeys(username);
+      passwordField.sendKeys(password);
+      loginButton.click().then(function(){
+        browser.sleep(1000).then(function () {
+          callback();
+        });
       });
     });
-
   });
 
   this.Given(/^I login using Facebook as "([^"]*)" and password "([^"]*)"$/, function (username, password, callback) {
