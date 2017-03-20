@@ -11,6 +11,9 @@
     </div>
   </ion-nav-buttons>
   <ion-content class="padding has-header">
+    <div ng-show="errors">
+      {{errors}}
+    </div>
     <div ng-show="activityData.message">
       {{activityData.message}}
     </div>

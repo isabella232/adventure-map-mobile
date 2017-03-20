@@ -26,15 +26,23 @@ angular.module('adventureMap', [
   .config(function ($authProvider, API_URL) {
     $authProvider.configure({
       apiUrl: API_URL,
+      tokenValidationPath: '/auth/validate_token',
       omniauthWindowType: windowType(),
       storage: 'localStorage',
-      forceHardRedirect: true
+      forceHardRedirect: true,
+      tokenFormat: {
+        "access-token": "{{ token }}",
+        "token-type": "Bearer",
+        "client": "{{ clientId }}",
+        "expiry": "{{ expiry }}",
+        "uid": "{{ uid }}"
+      }
     });
 
     function windowType() {
       var IONIC_APP_ID = '7e351a02';
       if (window.location.href.indexOf('com.ionic.viewapp') > -1 || window.location.href.indexOf(IONIC_APP_ID) > -1) {
-        return 'sameWindow';
+        return 'newWindow';
       }
       if (window.cordova == undefined) {
         return 'newWindow';
