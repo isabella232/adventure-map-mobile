@@ -61,7 +61,6 @@ var basicStepDefinitionsWrapper = function () {
   });
 
   this.Given(/^I login using Facebook as "([^"]*)" and password "([^"]*)"$/, function (username, password, callback) {
-
     browser.ignoreSynchronization = true;
     browser.getAllWindowHandles()
       .then(function (handles) {
@@ -108,6 +107,71 @@ var basicStepDefinitionsWrapper = function () {
     button.click().then(function () {
       callback();
     });
+  });
+
+  this.Given(/^I click on the toggle menu button$/, function (callback) {
+    var button = browser.element(by.css('.left-buttons')).element(by.css('.button'));
+    button.click();
+
+    browser.sleep(1000).then(function () {
+      browser.waitForAngular();
+      callback();
+    });
+
+  });
+
+  this.Given(/^I select "([^"]*)"$/, function (element, callback) {
+
+    //var EC = protractor.ExpectedConditions;
+    //var button = browser.element(by.id('profile'));
+    //var button = browser.element.all(by.id('profile')).first();
+
+
+    //browser.wait(function () {
+    //  return button.isDisplayed().then(function(displayed) {
+    //    console.log(button.isDisplayed())
+    //    button.click().then(function () {
+    //      callback();
+    //    });
+    //  });
+    //}, 5000);
+    var button = browser.element.all(by.cssContainingText('ion-item', element)).first(),
+      EC = protractor.ExpectedConditions;
+    browser.actions().mouseMove(button).perform();
+
+    browser.wait(EC.visibilityOf(button), 5000);
+
+    //
+    //browser.wait(function(){
+    //  return browser.isElementPresent(button);
+    //},10000);
+
+    //this.expect(button.isDisplayed()).to.eventually.equal(true)
+    //  .and.notify(callback);
+
+    // browser.wait(EC.visibilityOf(button), 5000);
+
+
+    //var button = browser.element(by.cssContainingText('ion-item', element));
+    //browser.waitForAngular();
+    //
+    //browser.sleep(1000).then(function () {
+    button.click().then(function () {
+      callback();
+    });
+    //})
+  });
+
+  this.Given(/^I click on the "([^"]*)" menu button$/, function (element, callback) {
+    var menuButton = browser.element(by.css('.left-buttons')).element(by.css('.button'));
+    menuButton.click().then(function () {
+      browser.sleep(5000);
+      var button = browser.element(by.css('ion-list')).element(by.cssContainingText('ion-item', element));
+      button.click().then(function () {
+        callback();
+      });
+    });
+
   });
 };
 

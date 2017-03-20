@@ -7,7 +7,7 @@ var myHooks = function () {
     browser.restart();
     browser.manage().timeouts().pageLoadTimeout(40000);
     browser.manage().timeouts().implicitlyWait(40000);
-    browser.manage().window().setSize(260, 900);
+   // browser.manage().window().setSize(260, 900);
     callback();
   });
 

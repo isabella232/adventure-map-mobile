@@ -16,7 +16,7 @@ Feature: User can create an Activity
     And I set the Activity "Body" to "Had a great time in Angered and so can you!"
     And I slide "Difficulty" to "3"
     And I select Activity "Category" to "Back country skiing"
-    And I click "Create"
+    And I click button "Create"
     And I wait for the application to load
     Then I should be on the "app/activities" page
     And I should see "Hiking in Angered"

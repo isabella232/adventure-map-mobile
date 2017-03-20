@@ -12,7 +12,7 @@
     </header>
     <ion-content class="has-header has-footer has-footer-filter">
       <ion-list>
-        <ion-item ng-show="!$state.includes('app.profile')" menu-close ng-if="user.email"
+        <ion-item id="profile" ng-show="!$state.includes('app.profile')" menu-close ng-if="user.email"
                   ng-controller="activitiesController" ng-click="viewProfile()">
           Profile
         </ion-item>

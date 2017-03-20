@@ -40,6 +40,12 @@ In order to run a specific scenario you can run `protractor` with a `--specs` fl
 protractor tests/protractor.conf.js --specs tests/features/feature_file_.feature 
 ```
 
+## "possible EventEmitter memory leak detected." warning 
+If you get this warning please run this command to install 
+```
+$ sudo npm install -g npm@next
+```
+
 ### Running the App
 You can choose to run the app on your phone or in an emulator.
 

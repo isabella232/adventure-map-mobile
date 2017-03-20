@@ -52,14 +52,6 @@ var myStepDefinitionsWrapper = function () {
     });
   });
 
-
-  this.Given(/^I click "([^"]*)" on the left side in the navigation bar$/, function (value, callback) {
-    var button = browser.element(by.css('.left-buttons')).element(by.buttonText(value));
-    button.click();
-    browser.sleep(1000).then(function () {
-      callback();
-    });
-  });
 };
 
 module.exports = myStepDefinitionsWrapper;
