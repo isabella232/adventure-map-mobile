@@ -28,5 +28,11 @@ var assertionStepDefinitionsWrapper = function () {
     this.expect(element(by.css('body')).getText()).to.eventually.include(content)
       .and.notify(callback);
   });
+
+  this.Then(/^the Leaflet map should be visible$/, function (callback) {
+    browser.waitForAngular();
+    this.expect(element(by.className('leaflet-container')).isDisplayed()).to.eventually.equal(true)
+      .and.notify(callback);
+  });
 };
 module.exports = assertionStepDefinitionsWrapper;
