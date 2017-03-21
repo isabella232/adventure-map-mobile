@@ -12,6 +12,5 @@ Feature: User profile page
   Scenario: View profile
     Given I click on the toggle menu button
     And I select "Profile"
-    #Given I click on the "Profile" menu button
     Then I should be on the "app/profile" page
 
