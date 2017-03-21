@@ -21,3 +21,8 @@ Feature: User can create an Activity
     Then I should be on the "app/activities" page
     And I should see "Hiking in Angered"
 
+  Scenario: Requires authentication to access "/app/create"
+    Given I am logged out
+    And I go to "#/app/create"
+    Then I should be on the "intro/walkthrough" page
+

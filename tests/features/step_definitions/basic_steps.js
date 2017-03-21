@@ -140,6 +140,26 @@ var basicStepDefinitionsWrapper = function () {
 
   });
 
+
+  this.Given(/^I am logged out$/, function (callback) {
+    var menuButton = browser.element(by.css('.left-buttons')).element(by.css('.button'));
+    var profileButton = browser.element.all(by.cssContainingText('ion-item', 'Profile')).last();
+    EC = protractor.ExpectedConditions;
+    //browser.wait(EC.visibilityOf(profileButton), 5000);
+
+
+    menuButton.click().then(function () {
+      profileButton.click().then(function () {
+        var logoutButton = browser.element.all(by.buttonText('Logout')).last();
+        //browser.wait(EC.visibilityOf(logoutButton), 5000);
+        logoutButton.click().then(function () {
+          callback();
+        });
+      });
+    });
+
+  });
+
 };
 
 module.exports = basicStepDefinitionsWrapper;
