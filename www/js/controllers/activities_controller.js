@@ -5,21 +5,19 @@ function activitiesController($scope,
                               $auth,
                               Activity,
                               Filters,
-                              DIFFICULTY_WORDS) {
+                              DIFFICULTY_WORDS,
+                              CATEGORY_ICONS,
+                              CATEGORY_WORDS) {
 
-  const categories = [
-    'Hiking', 'Cross-country skiing', 'Back country skiing', 'Paddling',
-    'Mountain biking', 'Horse riding', 'Climbing', 'Snow mobiling',
-    'Cross country ice skating', 'Foraging'
-  ];
+  setState();
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
     console.dir($localStorage.defaultFilter || 'no default filter');
     console.log('in activities controller');
     console.log($scope.activityData);
-    setState();
+
     if (states.stateName === "app.activities") {
-      $auth.validateUser().then(function(resp){
+      $auth.validateUser().then(function (resp) {
         console.log('validated');
         console.log(resp);
         $ionicLoading.show({
@@ -37,7 +35,7 @@ function activitiesController($scope,
 
           // Apply filters on page load if there is a default filter
           if ($localStorage.defaultFilter) {
-            Filters.applyFilters($scope, categories);
+            Filters.applyFilters($scope);
           }
           $ionicLoading.hide();
         }, function (response) {
@@ -60,21 +58,7 @@ function activitiesController($scope,
     // reset no-results-found message
     $scope.activityData.message = undefined;
 
-    var rating = 1;
-    if ($scope.stars[4]) {
-      rating = 5
-    } else if ($scope.stars[3]) {
-      rating = 4
-    } else if ($scope.stars[2]) {
-      rating = 3
-    } else if ($scope.stars[1]) {
-      rating = 2
-    } else {
-      rating = 1
-    }
-    $scope.activityData.filters.rating = rating;
-
-    Filters.applyFilters($scope, categories);
+    Filters.applyFilters($scope);
   };
 
   $scope.toggleStars = function (star_id) {
@@ -118,15 +102,16 @@ function activitiesController($scope,
     })
   }
 
-  function setState(){
+  function setState() {
     $scope.activityData = $scope.activityData || {activityData: {}};
     $scope.activityData.filters = $localStorage.defaultFilter || {};
     $scope.activityData.filters.default = false;
     $scope.activityData.message = undefined;
-    $scope.categories = categories;
+    $scope.category_icons = CATEGORY_ICONS;
+    $scope.categories = CATEGORY_WORDS;
 
-    if($localStorage.defaultFilter !== undefined)
-      $scope.stars = $localStorage.defaultFilter.stars
+    if ($localStorage.defaultFilter !== undefined)
+      $scope.stars = $localStorage.defaultFilter.stars;
     else
       $scope.stars = [true, false, false, false, false];
 

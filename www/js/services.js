@@ -23,7 +23,7 @@ angular.module('adventureMap.services', [])
 
   .factory('Filters', function ($localStorage) {
     return {
-      applyFilters: function ($scope, categories) {
+      applyFilters: function ($scope) {
         console.log($scope.activityData.filters);
 
         var tempArray = [];
@@ -64,6 +64,7 @@ angular.module('adventureMap.services', [])
             return activity;
           });
         });
+
 
         // Add all activities for users I follow if follow filter set to true
         if ($scope.activityData.filters.follow) {

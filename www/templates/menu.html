@@ -72,12 +72,16 @@
               </ion-list>
             </div>
             <div class="list">
-              <label class="item item-input">Sport</label>
-              <ion-list ng-repeat="category in categories">
-                <ion-checkbox ng-model="activityData.filters.category[$index + 1]"
-                              ng-checked="activityData.filters.category[$index + 1]">{{categories[$index]}}
-                </ion-checkbox>
-              </ion-list>
+              <div class="item item-input wrap-label">
+                <ion-list ng-repeat="icon in category_icons" class="margin-10">
+                  <div class="row" ng-click="activityData.filters.category[$index + 1] = !activityData.filters.category[$index + 1];">
+                    <div>
+                      <img class="menu-icon" ng-src="{{icon}}"  ng-if="activityData.filters.category[$index + 1]">
+                      <img class="menu-icon menu-icon-unselected" ng-src="{{icon}}" ng-if="!activityData.filters.category[$index + 1]">
+                    </div>
+                  </div>
+                </ion-list>
+              </div>
             </div>
             <div class="list">
               <ion-list>
