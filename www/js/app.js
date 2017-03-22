@@ -198,14 +198,24 @@ angular.module('adventureMap', [
             templateUrl: 'templates/profile.html',
             controller: 'userController'
           }
-        }
-      })
-      .state('app.create_activity', {
-        url: '/create_activity',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/create_activity.html',
-            controller: 'createActivityController'
+
+        })
+        .state('app.my-activities', {
+          url: '/my-activities',
+          views: {
+            'menuContent': {
+              templateUrl: 'templates/profile/my-activities.html',
+              controller: 'profileController'
+            }
+          }
+        })
+        .state('app.create_activity', {
+          url: '/create_activity',
+          views: {
+            'menuContent' :{
+              templateUrl: 'templates/create_activity.html',
+              controller: 'createActivityController'
+            }
           }
         }
       })
