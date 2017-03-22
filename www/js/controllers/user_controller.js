@@ -1,11 +1,12 @@
 function userController($scope, $ionicPlatform, md5) {
+  console.log('user controller');
   $scope.files = [];
-  $scope.profileImage = function() {
-    if($scope.user.id !== undefined) {
-      if($scope.user.image) {
+  $scope.profileImage = function () {
+    if ($scope.user.id !== undefined) {
+      if ($scope.user.image) {
         return $scope.user.image;
       } else {
-        var options = { size: 128, format: 'svg' };
+        var options = {size: 128, format: 'svg'};
 
         var hashedEmail = md5.createHash($scope.user.email);
         return 'data:image/svg+xml;base64,' + new Identicon(hashedEmail, options).toString();
@@ -19,7 +20,7 @@ function userController($scope, $ionicPlatform, md5) {
         var directoryReader = dirEntry.createReader();
         directoryReader.readEntries(dirSuccess, dirFail);
       });
-    } catch(e) {
+    } catch (e) {
       console.log("Corvova plugins aren't available in browsers.");
       console.log(e);
     }

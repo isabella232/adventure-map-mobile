@@ -9,6 +9,12 @@ angular.module('adventureMap.services', [])
     });
   })
 
+  .factory('MyActivities', function ($resource, $auth, API_URL) {
+    return $resource(API_URL + '/users/:id/activities', {id: '@id'}, {
+      get: { method: 'GET' }
+    })
+  })
+
   .factory('Comment', function ($resource, API_URL) {
     return $resource(API_URL + '/activities/:id/comments', {id: '@id'}, {
       save: {method: 'POST'}

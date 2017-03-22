@@ -1,0 +1,60 @@
+
+<div class="list card" ng-repeat="activity in activities">
+  <div ng-controller="showActivityController" ng-click="openModal(activity)">
+    <div class="item item-avatar gray">
+      <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
+      <h2 class="activity_title">{{activity.user.name}}</h2>
+      <p ng-repeat="interest in activity.user.interests">
+        <i class="mybadge badge-royal">{{interest.name}}</i>
+      </p>
+      <p>{{activity.created_at}}</p>
+    </div>
+
+    <div class="item item-body gray">
+      <span>{{activity.category}}</span>, <span>{{activity.difficulty_word}}</span>
+      <div class="item gray card item-inner">
+        <!--<img class="full-image" src="img/dummy_images/snow.jpg">-->
+        <display-first-image images_for="{{activity}}"></display-first-image>
+        <div class="padding">
+          <h3>{{activity.title}}</h3>
+          <p>
+            {{activity.body}}
+          </p>
+        </div>
+      </div>
+      <div class='row centered'>
+        <div class='col'>
+          <i class="icon ion-thumbsup card-bottom"></i>
+          <p>Interested</p>
+        </div>
+        <div class='col'>
+          <i class="icon ion-android-star-outline card-bottom"></i>
+          <p>Recommend</p>
+        </div>
+        <div class='col'>
+          <div class="blue" ng-if=activity.user.following >
+              <span class="count-icon">
+              <i class="icon ion-person card-bottom"></i>
+                <span class="count-span">{{activity.user.followers_count}}</span>
+                <p>Following</p>
+              </span>
+          </div>
+          <div ng-if=!activity.user.following >
+              <span class="count-icon">
+              <i class="icon ion-person card-bottom"></i>
+                <span class="count-span count-span-follow">{{activity.user.followers_count}}</span>
+                <p>Follow</p>
+              </span>
+          </div>
+        </div>
+        <div class='col'>
+             <span class="count-icon">
+              <i class="icon ion-chatboxes card-bottom"></i>
+              <span class="count-span">{{activity.comments_count}}</span>
+              <p>Comments</p>
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-function authController($scope, $auth, $ionicLoading, $state, $rootScope, API_URL, $ionicHistory) {
+function authController($scope, $auth, $ionicLoading, $state, $rootScope, $localStorage, API_URL, $ionicHistory) {
   $scope.credentials = {};
   $scope.signupForm = {};
   $scope.errorMessage = null;
@@ -15,6 +15,7 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, API_UR
     $auth.submitLogin($scope.credentials)
       .then(function (response) {
         $state.go('app.activities');
+        storeUser();
         $ionicLoading.hide();
       })
       .catch(function (response) {
@@ -51,6 +52,7 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, API_UR
       .then(function (response) {
         $auth.validateUser().then(function(resp){
           console.log('validateUser');
+          storeUser();
           console.log(resp)
         });
         $state.go('app.activities');
@@ -83,4 +85,10 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, API_UR
   $scope.back = function(){
     $ionicHistory.goBack();
   };
+
+  storeUser = function() {
+    $localStorage.user = $scope.user;
+    console.log('storing user');
+    console.log($localStorage.user);
+  }
 }

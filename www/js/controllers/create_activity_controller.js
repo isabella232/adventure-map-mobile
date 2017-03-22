@@ -9,6 +9,8 @@ function createActivityController($scope, $auth, $ionicLoading, $state, Activity
 
     $auth.validateUser().then(function(resp){
       Activity.save($scope.activityData, function (resp) {
+        // This takes you to the activities page, even if you created
+        // an activity from the my-activities page.
         $state.go('app.activities');
         $ionicLoading.hide();
         console.log(resp);
