@@ -20,10 +20,10 @@ angular.module('adventureMap', [
 
   .constant('DIFFICULTY_WORDS', ['Easy', 'Moderate', 'Hard'])
   .constant('CATEGORY_ICONS', [
-    '../../img/icons/hiking.svg', '../../img/icons/cc_skiing.svg', '../../img/icons/bc_skiing.svg',
-    '../../img/icons/paddling.svg', '../../img/icons/mountain_biking.svg', '../../img/icons/horse-riding.svg',
-    '../../img/icons/climbing.svg', '../../img/icons/snow_mobiling.svg', '../../img/icons/cc_ice_skating.svg',
-    '../../img/icons/foraging.svg'
+    'img/icons/hiking.svg', 'img/icons/cc_skiing.svg', 'img/icons/bc_skiing.svg',
+    'img/icons/paddling.svg', 'img/icons/mountain_biking.svg', 'img/icons/horse-riding.svg',
+    'img/icons/climbing.svg', 'img/icons/snow_mobiling.svg', 'img/icons/cc_ice_skating.svg',
+    'img/icons/foraging.svg'
   ])
   .constant('CATEGORY_WORDS', [
     'Hiking', 'Cross-country skiing', 'Back country skiing', 'Paddling',
