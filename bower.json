@@ -17,6 +17,7 @@
     "bourbon": "^4.3.2",
     "angular-md5": "^0.1.10",
     "identicon.js": "identicon#^2.1.0",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "Proj4Leaflet": "proj4leaflet#^1.0.1"
   }
 }

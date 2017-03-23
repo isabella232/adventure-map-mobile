@@ -38,6 +38,7 @@
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
     "cordova-plugin-inappbrowser",
+    "cordova-plugin-geolocation",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [

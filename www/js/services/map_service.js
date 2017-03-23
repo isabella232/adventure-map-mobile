@@ -9,6 +9,11 @@ angular.module('adventureMap.mapService', [])
     var watch = null;
     var markers = [];
 
+    var token = '92d5a97a6b85449f224b30aa589095f5'
+    var wmtsUrl = 'https://api.lantmateriet.se/open/topowebb-ccby/v1/wmts/token/' + token
+      + '/?service=wmts&request=GetTile&version=1.0.0&LAYER=topowebb&style=default&'
+      + 'tilematrixset=3006&tilematrix={z}&tilerow={y}&tilecol={x}&format=image%2Fpng';
+
     // Service methods
     var startTrackingFunction = function (lat, long, map) {
       clearLines(map);
@@ -47,14 +52,13 @@ angular.module('adventureMap.mapService', [])
     };
 
     var addToMapFunction = function (lat, long, map) {
-
       markers.push(L.marker([lat, long]).addTo(map));
 
-      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: '',
-        maxZoom: 18,
-        id: 'mapbox.outdoors',
-        accessToken: 'pk.eyJ1IjoiYXF1YWFtYmVyIiwiYSI6ImNpejVreGVxNzAwNTEyeXBnbWc5eXNlcTYifQ.ah37yE5P2LH9LVzNelgymQ'
+      new L.TileLayer(wmtsUrl, {
+        maxZoom: 9,
+        minZoom: 0,
+        continuousWorld: true,
+        attribution: "<a href='http://adventuremap.se'>AdventureMap</a>"
       }).addTo(map);
 
       L.control.scale({

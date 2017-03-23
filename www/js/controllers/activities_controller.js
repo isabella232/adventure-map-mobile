@@ -57,7 +57,6 @@ function activitiesController($scope,
   $scope.setFilters = function () {
     // reset no-results-found message
     $scope.activityData.message = undefined;
-
     Filters.applyFilters($scope);
   };
 

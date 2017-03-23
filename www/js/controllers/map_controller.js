@@ -1,5 +1,14 @@
 function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading, $ionicPlatform, MapService) {
-  var lat, long, map;
+  var lat, long;
+  var srs_code = 'EPSG:3006';
+  var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
+  var crs = new L.Proj.CRS(srs_code, proj4def, {
+      resolutions: [
+        4096, 2048, 1024, 512, 256, 128,64, 32, 16, 8
+      ],
+      origin: [-1200000.000000, 8500000.000000 ],
+      bounds:  L.bounds( [-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
+    });
 
   $scope.inProgress = false;
   $scope.currentRoute = [];
@@ -13,13 +22,14 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
       enableHighAccuracy: false
     };
 
-    map = L.map('map-container', {
+    map = new L.Map('map-container', {
+      crs: crs,
+      continuousWorld: true,
       zoomControl: false
     });
 
     const geolocation = $cordovaGeolocation.getCurrentPosition(posOptions);
     //document.getElementById("stop-tracking").addEventListener('click', MapService.stopTracking(map));
-
 
     $ionicLoading.show({
       template: 'Loading current location...'
@@ -28,6 +38,7 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
     geolocation.then(function (position) {
       lat = position.coords.latitude;
       long = position.coords.longitude;
+
       console.log(lat + ', ' + long);
 
       map.setView([lat, long], 13);
@@ -35,7 +46,7 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
       $ionicLoading.hide();
       //document.getElementById("start-tracking").addEventListener('click', MapService.startTracking(lat, long, map));
     }, function (err) {
-      // error
+      console.log(err);
     });
   });
 
