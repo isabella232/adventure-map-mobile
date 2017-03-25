@@ -1,5 +1,4 @@
 function userController($scope, $ionicPlatform, md5) {
-  console.log('user controller');
   $scope.files = [];
   $scope.profileImage = function () {
     if ($scope.user.id !== undefined) {
