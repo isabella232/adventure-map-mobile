@@ -58,9 +58,6 @@ function activitiesController($scope,
         // Loop through uploadedImages and send them to the server
         addImages(resp.data.id);
 
-        // This takes you to the activities page, even if you created
-        // an activity from the my-activities page.
-
         $ionicLoading.hide();
         $scope.createModal.hide();
         getActivities();
@@ -116,7 +113,7 @@ function activitiesController($scope,
       $scope.activityData.activityList = response.data.sort(function (a, b) {
         return Date.parse(b.created_at) - Date.parse(a.created_at);
       });
-      setDifficultyWords();
+
       $scope.activityData.cachedActivities = $scope.activityData.activityList; // This keeps the entire activity list so users can un-filter.
 
       // Apply filters on page load if there is a default filter
@@ -128,28 +125,6 @@ function activitiesController($scope,
       $ionicLoading.hide();
       $scope.errors = response.data.errors;
     });
-  }
-
-  // This function is no longer necessary.
-  // There's a now a filter that'll take the difficulty level (as a number)
-  // and render the correct word on the view
-  function setDifficultyWords() {
-    $scope.activityData.activityList = $scope.activityData.activityList.map(function (activity) {
-      switch (activity.difficulty) {
-        case 1:
-          activity.difficulty_word = DIFFICULTY_WORDS[0];
-          break;
-        case 2:
-          activity.difficulty_word = DIFFICULTY_WORDS[1];
-          break;
-        case 3:
-          activity.difficulty_word = DIFFICULTY_WORDS[2];
-          break;
-        default:
-          activity.difficulty_word = '';
-      }
-      return activity;
-    })
   }
 
   function setState() {

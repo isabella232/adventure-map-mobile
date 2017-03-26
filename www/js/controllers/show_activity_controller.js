@@ -92,24 +92,9 @@ function showActivityController($scope, $ionicModal, $ionicLoading, Activity, Co
     Activity.get({id: $scope.activity_id}, function (response) {
       $scope.activity = response.data;
       prepareComments();
-      setDifficultyWords();
+
       console.log(response);
       $scope.modal.show();
     });
-  }
-  function setDifficultyWords() {
-      switch ($scope.activity.difficulty) {
-        case 1:
-          $scope.activity.difficulty_word = DIFFICULTY_WORDS[0];
-          break;
-        case 2:
-          $scope.activity.difficulty_word = DIFFICULTY_WORDS[1];
-          break;
-        case 3:
-          $scope.activity.difficulty_word = DIFFICULTY_WORDS[2];
-          break;
-        default:
-          $scope.activity.difficulty_word = '';
-      }
   }
 }

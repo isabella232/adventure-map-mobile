@@ -52,15 +52,15 @@
         <ion-list>
           <ion-checkbox ng-model="activityData.filters.difficulty1"
                         ng-checked="activityData.filters.difficulty1">
-            {{difficulty_words[0]}}
+            {{ 1 | difficultyWord }}
           </ion-checkbox>
           <ion-checkbox ng-model="activityData.filters.difficulty2"
                         ng-checked="activityData.filters.difficulty2">
-            {{difficulty_words[1]}}
+            {{ 2 | difficultyWord }}
           </ion-checkbox>
           <ion-checkbox ng-model="activityData.filters.difficulty3"
                         ng-checked="activityData.filters.difficulty3">
-            {{difficulty_words[2]}}
+            {{ 3 | difficultyWord }}
           </ion-checkbox>
         </ion-list>
       </div>

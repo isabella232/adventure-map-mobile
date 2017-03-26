@@ -15,7 +15,7 @@ function profileController($scope, $ionicLoading,$ionicPlatform, $localStorage, 
         $scope.myActivities = resp.data.sort(function (a, b) {
           return Date.parse(b.created_at) - Date.parse(a.created_at);
         });
-        setDifficultyWords();
+
         console.log(resp);
       } else {
         console.log('error ' + resp.message[0]);
@@ -31,25 +31,4 @@ function profileController($scope, $ionicLoading,$ionicPlatform, $localStorage, 
   $ionicPlatform.ready(function () {
     showMyActivities();
   });
-
-  // This is almost a duplicate of code in activities_controller. Should be refactored.
-  function setDifficultyWords() {
-    $scope.myActivities = $scope.myActivities.map(function (activity) {
-      switch (activity.difficulty) {
-        case 1:
-          activity.difficulty_word = DIFFICULTY_WORDS[0];
-          break;
-        case 2:
-          activity.difficulty_word = DIFFICULTY_WORDS[1];
-          break;
-        case 3:
-          activity.difficulty_word = DIFFICULTY_WORDS[2];
-          break;
-        default:
-          activity.difficulty_word = '';
-      }
-      return activity;
-    })
-  }
-
 }

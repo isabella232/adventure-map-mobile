@@ -33,7 +33,10 @@ angular.module('adventureMap', [
 
   .filter('difficultyWord', function(DIFFICULTY_WORDS) {
     return function(difficulty){
-      return DIFFICULTY_WORDS[difficulty - 1];
+      if (difficulty <= 0 || difficulty > DIFFICULTY_WORDS.length)
+        return '';
+      else
+        return DIFFICULTY_WORDS[difficulty - 1];
     };
   })
 
