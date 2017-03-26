@@ -66,7 +66,7 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
       });
   };
 
-  $scope.performSignOut = function () {
+  $scope.signOut = function () {
     $ionicLoading.show({
       template: 'Signing out...'
     });

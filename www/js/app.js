@@ -31,6 +31,12 @@ angular.module('adventureMap', [
     'Cross country ice skating', 'Foraging'
   ])
 
+  .filter('difficultyWord', function(DIFFICULTY_WORDS) {
+    return function(difficulty){
+      return DIFFICULTY_WORDS[difficulty - 1];
+    };
+  })
+
   .config(function ($httpProvider) {
     // Remove cache headers from put requests - AWS S3 doesn't like them
     delete $httpProvider.defaults.headers.put['If-Modified-Since']
@@ -103,7 +109,7 @@ angular.module('adventureMap', [
       .state('intro', {
         url: '/intro',
         abstract: true,
-        templateUrl: 'templates/menu.html',
+        templateUrl: 'templates/common/intro.html',
         data: {
           requireLogin: false
         }
@@ -111,7 +117,7 @@ angular.module('adventureMap', [
       .state('intro.walkthrough', {
         url: '/walkthrough',
         views: {
-          'menuContent': {
+          'intro-view@intro': {
             templateUrl: 'templates/auth/walkthrough.html',
             controller: 'authController'
           }
@@ -120,7 +126,7 @@ angular.module('adventureMap', [
       .state('intro.login', {
         url: '/login',
         views: {
-          'menuContent': {
+          'intro-view@intro': {
             templateUrl: 'templates/auth/login.html',
             controller: 'authController'
           }
@@ -129,7 +135,7 @@ angular.module('adventureMap', [
       .state('intro.signup', {
         url: '/signup',
         views: {
-          'menuContent': {
+          'intro-view@intro': {
             templateUrl: 'templates/auth/signup.html',
             controller: 'authController'
           }
@@ -138,7 +144,7 @@ angular.module('adventureMap', [
       .state('intro.terms', {
         url: '/terms-and-conditions',
         views: {
-          'menuContent': {
+          'intro-view@intro': {
             templateUrl: 'templates/policies/terms-and-conditions.html',
             controller: 'authController'
           }
@@ -147,7 +153,7 @@ angular.module('adventureMap', [
       .state('intro.disclaimer', {
         url: '/content-policies',
         views: {
-          'menuContent': {
+          'intro-view@intro': {
             templateUrl: 'templates/policies/disclaimer.html',
             controller: 'authController'
           }
@@ -156,7 +162,7 @@ angular.module('adventureMap', [
       .state('intro.privacy', {
         url: '/privacy-policies',
         views: {
-          'menuContent': {
+          'intro-view@intro': {
             templateUrl: 'templates/policies/privacy.html',
             controller: 'authController'
           }
@@ -165,7 +171,7 @@ angular.module('adventureMap', [
       .state('intro.cookie', {
         url: '/cookies-policies',
         views: {
-          'menuContent': {
+          'intro-view@intro': {
             templateUrl: 'templates/policies/cookies.html',
             controller: 'authController'
           }
@@ -174,7 +180,7 @@ angular.module('adventureMap', [
       .state('app', {
         url: '/app',
         abstract: true,
-        templateUrl: "templates/menu.html",
+        templateUrl: "templates/common/main-tabs.html",
         controller: 'activitiesController',
         data: {
           // Should be true for production
@@ -185,7 +191,7 @@ angular.module('adventureMap', [
         url: '/activities',
         cache: false,
         views: {
-          'menuContent': {
+          'tab-activities-view': {
             templateUrl: 'templates/activities.html',
             controller: 'activitiesController'
           }
@@ -194,7 +200,7 @@ angular.module('adventureMap', [
       .state('app.profile', {
         url: '/profile',
         views: {
-          'menuContent': {
+          'tab-profile-view': {
             templateUrl: 'templates/profile.html',
             controller: 'userController'
           }
@@ -204,25 +210,16 @@ angular.module('adventureMap', [
       .state('app.my-activities', {
         url: '/my-activities',
         views: {
-          'menuContent': {
+          'tab-profile-view': {
             templateUrl: 'templates/profile/my-activities.html',
             controller: 'profileController'
-          }
-        }
-      })
-      .state('app.create_activity', {
-        url: '/create_activity',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/create_activity.html',
-            controller: 'createActivityController'
           }
         }
       })
       .state('app.map', {
         url: '/map',
         views: {
-          'menuContent': {
+          'tab-map-view': {
             templateUrl: 'templates/map.html',
             controller: 'mapController'
           }

@@ -1,15 +1,8 @@
 <ion-view title="My Activities">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-plus-round" ng-controller="activitiesController" ng-click="createModal.show()"></button>
   </ion-nav-buttons>
 
-  <ion-nav-buttons side="right">
-    <div>
-      <a class="button" href="#/app/create_activity">
-        +
-      </a>
-    </div>
-  </ion-nav-buttons>
   <ion-content>
     <show-activity-feed activities="myActivities"></show-activity-feed>
   </ion-content>

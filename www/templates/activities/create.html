@@ -1,0 +1,58 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="createModal.hide()">
+        Cancel
+      </button>
+    </div>
+    <h1 class="title">Create an Activity</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="createActivity()">
+        Post
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="has-header">
+    <div class="list">
+      <p ng-repeat="error in errors">{{error}}</p>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Title</span>
+        <input type="text" placeholder="Pick a headline for your activity" ng-model="activity.title">
+      </label>
+      <label class="item item-input item-floating-label textarea">
+        <span class="input-label">Description</span>
+        <textarea placeholder="Describe the activity" rows="6" ng-model="activity.body" style="resize: none;"></textarea>
+      </label>
+      <label class="item item-input">Difficulty: &nbsp;
+        <span>{{activity.difficulty | difficultyWord}}</span>
+      </label>
+      <div class="item range">
+        <input type="range" id="difficulty" ng-model="activity.difficulty" ng-init="activity.difficulty = 1" min="1" max="3" value="1" >
+      </div>
+      <div class="list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Category
+          </div>
+          <select ng-model="activity.category">
+            <option ng-repeat="category in categories">{{category}}</option>
+          </select>
+        </label>
+
+        <div class="list">
+          <a class="item item-icon-left" ng-click="selectPhoto()">
+            <i class="icon ion-images"></i>
+            Add Images
+          </a>
+        </div>
+      </div>
+
+      <div class="row responsive-sm">
+        <div class="col col-25" ng-repeat="image in uploadedImages">
+          <img ng-src="{{image}}" width="100%" />
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

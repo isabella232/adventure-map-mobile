@@ -1,9 +1,11 @@
 <ion-modal-view class="activity-show">
   <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <button class="button button-icon ion-chevron-left button-clear" ng-click="closeModal()">
+        back
+      </button>
+    </div>
     <h1 class="title">{{ activity.title }}</h1>
-    <button class="button" ng-click="closeModal()">
-      Close
-    </button>
   </ion-header-bar>
   <ion-content class="padding has-header">
     <div class="list card">

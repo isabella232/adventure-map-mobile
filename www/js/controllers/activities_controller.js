@@ -3,13 +3,32 @@ function activitiesController($scope,
                               $ionicLoading,
                               $localStorage,
                               $auth,
+                              $ionicModal,
                               Activity,
+                              ActivityDetail,
                               Filters,
+                              S3FileUpload,
                               DIFFICULTY_WORDS,
                               CATEGORY_ICONS,
                               CATEGORY_WORDS) {
 
   setState();
+  $scope.activity = {};
+  $scope.uploadedImages = [];
+
+  $ionicModal.fromTemplateUrl('templates/activities/filter_modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.filterModal = modal;
+  });
+
+  $ionicModal.fromTemplateUrl('templates/activities/create.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.createModal = modal;
+  });
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
     console.dir($localStorage.defaultFilter || 'no default filter');
@@ -24,27 +43,33 @@ function activitiesController($scope,
           template: 'Getting activities...'
         });
 
-        Activity.query(function (response) {
-          console.log(response);
-          // Sort by date
-          $scope.activityData.activityList = response.data.sort(function (a, b) {
-            return Date.parse(b.created_at) - Date.parse(a.created_at);
-          });
-          setDifficultyWords();
-          $scope.activityData.cachedActivities = $scope.activityData.activityList; // This keeps the entire activity list so users can un-filter.
-
-          // Apply filters on page load if there is a default filter
-          if ($localStorage.defaultFilter) {
-            Filters.applyFilters($scope);
-          }
-          $ionicLoading.hide();
-        }, function (response) {
-          $ionicLoading.hide();
-          $scope.errors = response.data.errors;
-        });
+        getActivities();
       });
     }
   });
+
+  $scope.createActivity = function () {
+    $ionicLoading.show({
+      template: 'Saving...'
+    });
+
+    $auth.validateUser().then(function(resp){
+      Activity.save($scope.activity, function (resp) {
+        // Loop through uploadedImages and send them to the server
+        addImages(resp.data.id);
+
+        // This takes you to the activities page, even if you created
+        // an activity from the my-activities page.
+
+        $ionicLoading.hide();
+        $scope.createModal.hide();
+        getActivities();
+      }, function (resp) {
+        $scope.errors = resp.data.message;
+        $ionicLoading.hide();
+      });
+    });
+  };
 
   $scope.addActivity = function () {
     $state.go('app.create_activity');
@@ -58,8 +83,10 @@ function activitiesController($scope,
     // reset no-results-found message
     $scope.activityData.message = undefined;
     Filters.applyFilters($scope);
+    $scope.filterModal.hide();
   };
 
+  // We should probably extract all this logic to a ratings directive
   $scope.toggleStars = function (star_id) {
     switch (star_id) {
       case 1:
@@ -82,6 +109,30 @@ function activitiesController($scope,
     }
   };
 
+  function getActivities() {
+    Activity.query(function (response) {
+      console.log(response);
+      // Sort by date
+      $scope.activityData.activityList = response.data.sort(function (a, b) {
+        return Date.parse(b.created_at) - Date.parse(a.created_at);
+      });
+      setDifficultyWords();
+      $scope.activityData.cachedActivities = $scope.activityData.activityList; // This keeps the entire activity list so users can un-filter.
+
+      // Apply filters on page load if there is a default filter
+      if ($localStorage.defaultFilter) {
+        Filters.applyFilters($scope);
+      }
+      $ionicLoading.hide();
+    }, function (response) {
+      $ionicLoading.hide();
+      $scope.errors = response.data.errors;
+    });
+  }
+
+  // This function is no longer necessary.
+  // There's a now a filter that'll take the difficulty level (as a number)
+  // and render the correct word on the view
   function setDifficultyWords() {
     $scope.activityData.activityList = $scope.activityData.activityList.map(function (activity) {
       switch (activity.difficulty) {
@@ -128,5 +179,80 @@ function activitiesController($scope,
       $scope.activityData.filters.follow = true;
       $scope.stars = [true, false, false, false, false];
     }
+  }
+
+  $scope.selectPhoto = function() {
+    var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
+    var options = setOptions(srcType);
+
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
+      getFileEntry(imageUri);
+    }, function cameraError(error) {
+        console.debug("Unable to obtain picture: " + error, "app");
+    }, options);
+  };
+
+  function addImages(activityId) {
+    // If there are uploaded images, register them as activity details with the server.
+    if ($scope.uploadedImages !== []) {
+      $scope.uploadedImages.forEach(function(url) {
+        ActivityDetail.save({ id: activityId, file_attachment: url, attachment_type: 'Image' }, function (resp) {
+          console.log(resp);
+        });
+      });
+    }
+  }
+
+  function setOptions(srcType) {
+    var options = {
+      quality: 50,
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: srcType,
+      encodingType: Camera.EncodingType.JPEG,
+      mediaType: Camera.MediaType.PICTURE,
+      allowEdit: true,
+      correctOrientation: true  //Corrects Android orientation quirks
+    }
+    return options;
+  }
+
+  function getFileEntry(imgUri) {
+    window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
+      // Create file object using fileEntry
+      fileEntry.file(function (file) {
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+          console.log("Successful file read: " + this.result);
+          var imageFile = new Blob([new Uint8Array(this.result)], { type: "image/jpeg" });
+          imageFile.name = file.name;
+
+          S3FileUpload.upload('images', imageFile).then(
+            function(imageResp) {
+              $scope.uploadedImages.push(imageResp.public_url);
+              $ionicLoading.hide();
+            },
+            // Image upload failed - Handle error
+            function(response) {
+              console.log(response);
+              $ionicLoading.hide();
+            }
+          );
+        };
+
+        $ionicLoading.show({
+          template: 'Uploading image...'
+        });
+        reader.readAsArrayBuffer(file);
+
+      }, function() {
+        console.log("Sorry, something went wrong and we couldn't read your file");
+      });
+
+      console.log("got file: " + fileEntry.fullPath);
+    }, function () {
+      // Perhaps we want to create the file?
+      console.log("Sorry, something went wrong while creating file object");
+    });
   }
 }
