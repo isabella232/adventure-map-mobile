@@ -3,18 +3,18 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
   var srs_code = 'EPSG:3006';
   var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
   var crs = new L.Proj.CRS(srs_code, proj4def, {
-      resolutions: [
-        4096, 2048, 1024, 512, 256, 128,64, 32, 16, 8
-      ],
-      origin: [-1200000.000000, 8500000.000000 ],
-      bounds:  L.bounds( [-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
-    });
+    resolutions: [
+      4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8
+    ],
+    origin: [-1200000.000000, 8500000.000000],
+    bounds: L.bounds([-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
+  });
 
   $scope.inProgress = false;
   $scope.currentRoute = [];
   $scope.hasRecording = false;
 
-  $ionicPlatform.ready(function() {
+  $ionicPlatform.ready(function () {
     // called when ready
     var posOptions = {
       maximumAge: 30000,
@@ -50,22 +50,6 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
     });
   });
 
-  $scope.startTracking = function(){
-    $scope.inProgress = true;
-    $scope.currentRoute = MapService.startTracking(lat, long, map);
-  };
-
-  $scope.stopTracking =  function(){
-    $scope.inProgress = false;
-    MapService.stopTracking(map, $scope.currentRoute[$scope.currentRoute.length - 1].lat, $scope.currentRoute[$scope.currentRoute.length - 1].long);
-    $scope.hasRecording = true;
-    console.log($scope.currentRoute);
-    saveToFile($scope.currentRoute[0].timestamp, $scope.currentRoute)
-  };
-
-  $scope.clearRoute = function(){
-    MapService.clearRoute(map);
-  };
 
   function saveToFile(timestamp, route) {
     var fileName = (timestamp + ".txt");
@@ -85,4 +69,41 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
         console.log(error);
       });
   }
+
+  //Menu navigation
+  var element = angular.element(document.querySelector('.filter-btn'));
+
+  $scope.toggleMenu = function () {
+
+    if (element.hasClass('open')) {
+      element.removeClass('open')
+    } else {
+      element.addClass('open');
+    }
+  };
+
+  $scope.clearRoute = function () {
+    MapService.clearRoute(map);
+    element.removeClass('open');
+    $scope.inProgress = false;
+    $scope.hasRecording = false;
+    $scope.currentRoute = [];
+  };
+
+  $scope.startTracking = function () {
+    $scope.inProgress = true;
+    $scope.currentRoute = MapService.startTracking(lat, long, map);
+    element.removeClass('open');
+  };
+
+  $scope.stopTracking = function () {
+    $scope.inProgress = false;
+    MapService.stopTracking(map, $scope.currentRoute[$scope.currentRoute.length - 1].lat, $scope.currentRoute[$scope.currentRoute.length - 1].long);
+    $scope.hasRecording = true;
+    console.log($scope.currentRoute);
+    element.removeClass('open');
+    if (window.cordova) {
+      saveToFile($scope.currentRoute[0].timestamp, $scope.currentRoute);
+    }
+  };
 }

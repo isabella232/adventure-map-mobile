@@ -3,12 +3,22 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <div id="map-container"></div>
-
-
-  <div id="over_map">
-    <button class="button button-small button-assertive" ng-click="startTracking()" ng-disabled="inProgress">Start</button>
-    <button class="button button-small button-assertive" ng-click="stopTracking()" ng-disabled="!inProgress">Stop</button>
-    <button class="button button-small button-assertive" ng-click="clearRoute()" ng-disabled="!hasRecording">Clear</button>
+  <div id="over-map">
+    <div class="filter-btn">
+      <button class="button button-clear button-small" ng-click="startTracking()" ng-disabled="inProgress || hasRecording">
+        <i class="ion-plus-circled"></i>
+      </button>
+      <button class="button button-clear button-small" ng-disabled="true">
+        <i class="ion-pinpoint"></i>
+      </button>
+      <button class="button button-clear button-small" ng-click="stopTracking()" ng-disabled="!inProgress">
+        <i class="ion-stop"></i>
+      </button>
+      <button class="button button-clear button-small" ng-click="clearRoute()" ng-disabled="!hasRecording">
+        <i class="ion-eject"></i>
+      </button>
+      <span class="toggle-btn ion-navicon-round" ng-click="toggleMenu()"></span>
+    </div>
   </div>
 
 </ion-view>

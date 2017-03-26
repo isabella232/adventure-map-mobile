@@ -11,6 +11,86 @@ MAP
 #over_map {
   position: absolute;
   z-index: 2;
-  bottom: 5px;
+  bottom: 100px;
   right: 50%;
+}
+
+.filter-btn {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  transition: all 0.4s ease-in-out 0s;
+  span {
+    width: 40px;
+    height: 40px;
+    background: #3a879f;
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: -346px;
+    text-align: center;
+    color: #fff;
+    line-height: 40px;
+    border-radius: 50%;
+    font-size: 22px;
+    z-index: 999;
+  }
+  button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    right: 15px;
+    display: block;
+    top: -346px;
+    color: #fff !important;
+    background-color: transparent !important;
+    z-index: 99;
+    font-size: 28px;
+    transition: all 0.4s cubic-bezier(0.68, 1, 0.265, 1);
+  }
+  &:after {
+    height: 170px;
+    width: 170px;
+    content: '';
+    background-color: #3a879f;
+    position: absolute;
+    top: -410px;
+    right: -50px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: all 0.3s ease-in-out 0s;
+  }
+  &.open {
+    span.toggle-btn.ion-android-funnel {
+      background-color: #3a879f;
+    }
+    .ion-android-funnel:before {
+      content: "\f2d7";
+    }
+  }
+}
+
+.open:after {
+  transform: scale(1);
+}
+
+.filter-btn {
+  &.open button {
+    &:nth-child(1) {
+      transform: translate(-1px, -55px);
+    }
+    &:nth-child(2) {
+      transform: translate(-47px, -32px);
+    }
+    &:nth-child(3) {
+      transform: translate(-52px, 23px);
+    }
+    &:nth-child(4) {
+      transform: translate(1px, 55px);
+    }
+  }
 }
