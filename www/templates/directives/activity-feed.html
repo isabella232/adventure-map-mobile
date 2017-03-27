@@ -1,6 +1,6 @@
 
 <div class="list card" ng-repeat="activity in activities">
-  <div ng-controller="showActivityController" ng-click="openModal(activity)">
+  <div ng-controller="showActivityController" ng-click="navigateToActivity(activity)">
     <div class="item item-avatar gray">
       <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
       <h2 class="activity_title">{{activity.user.name}}</h2>

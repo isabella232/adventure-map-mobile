@@ -31,10 +31,6 @@ function activitiesController($scope,
   });
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
-    console.dir($localStorage.defaultFilter || 'no default filter');
-    console.log('in activities controller');
-    console.log($scope.activityData);
-
     if (states.stateName === "app.activities") {
       $auth.validateUser().then(function (resp) {
         console.log('validated');
@@ -66,14 +62,6 @@ function activitiesController($scope,
         $ionicLoading.hide();
       });
     });
-  };
-
-  $scope.addActivity = function () {
-    $state.go('app.create_activity');
-  };
-
-  $scope.viewProfile = function () {
-    $state.go('app.profile');
   };
 
   $scope.setFilters = function () {

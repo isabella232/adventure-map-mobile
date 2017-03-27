@@ -1,12 +1,6 @@
-<ion-modal-view class="activity-show">
-  <ion-header-bar class="bar-positive">
-    <div class="buttons">
-      <button class="button button-icon ion-chevron-left button-clear" ng-click="closeModal()">
-        back
-      </button>
-    </div>
-    <h1 class="title">{{ activity.title }}</h1>
-  </ion-header-bar>
+<ion-view class="activity-show">
+  <ion-nav-title> {{ activity.title }} </ion-nav-title>
+
   <ion-content class="padding has-header">
     <div class="list card">
       <div class="item item-avatar gray">
@@ -19,7 +13,7 @@
         <!--<p>{{activity.created_at}}</p> Not available from the API endpoint yet -->
       </div>
       <div class="item item-body gray">
-        <span>{{activity.category}}</span>, <span>{{activity.difficulty | difficultyWord}}</span>
+        <span>{{activity.category}}</span>, <span>{{activity.difficulty_word}}</span>
         <div class="item gray card item-inner">
           <ion-slide-box on-slide-changed="nextSlide($index)">
             <ion-slide ng-if="activity.images[0]" ng-repeat="image in activity.images">
@@ -74,6 +68,5 @@
       </div>
       <div class="comment-date">{{comment.created_at}}</div>
     </div>
-
   </ion-content>
-</ion-modal-view>
+</ion-view>
