@@ -10,6 +10,7 @@ angular.module('adventureMap', [
     'adventureMap.services',
     'adventureMap.s3FileUpload',
     'adventureMap.mapService',
+    'adventureMap.fileService',
     'ngCordova', 'ng-token-auth',
     'ngResource',
     'ngStorage'
@@ -225,6 +226,15 @@ angular.module('adventureMap', [
           'tab-profile-view': {
             templateUrl: 'templates/profile/my-activities.html',
             controller: 'profileController'
+          }
+        }
+      })
+      .state('app.my-recordings', {
+        url: '/my-recordings',
+        views: {
+          'tab-profile-view': {
+            templateUrl: 'templates/profile/my-recordings.html',
+            controller: 'userController'
           }
         }
       })

@@ -1,4 +1,4 @@
-<ion-view class="profile-view" view-title="Profile">
+<ion-view cache-view="false" can-swipe-back="false" class="profile-view" view-title="Profile">
   <ion-nav-buttons side="right">
     <button class="button button-positive" ng-click="">
       Edit
@@ -52,11 +52,15 @@
         <span class="badge">48</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
-    </ion-list>
-    <div class="item item-divider">
-    </div>
+      <ion-item class="item item-icon-right list-item" ui-sref="app.my-recordings">
+        <span class="main-text">My Recordings</span>
+        <span class="badge">{{files.length}}</span>
+        <i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
 
-    <button class="button button-full button-outline button-assertive no-margin" ng-controller="authController" ng-click="signOut()">
+    </ion-list>
+    <button class="button button-full button-outline button-assertive no-margin" ng-controller="authController"
+            ng-click="signOut()">
       Log Out
     </button>
 

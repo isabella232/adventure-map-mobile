@@ -1,4 +1,4 @@
-function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading, $ionicPlatform, MapService) {
+function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading, $ionicPlatform, MapService, FileService) {
   var lat, long;
   var srs_code = 'EPSG:3006';
   var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
@@ -29,7 +29,6 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
     });
 
     const geolocation = $cordovaGeolocation.getCurrentPosition(posOptions);
-    //document.getElementById("stop-tracking").addEventListener('click', MapService.stopTracking(map));
 
     $ionicLoading.show({
       template: 'Loading current location...'
@@ -44,31 +43,13 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
       map.setView([lat, long], 13);
       MapService.addToMap(lat, long, map);
       $ionicLoading.hide();
-      //document.getElementById("start-tracking").addEventListener('click', MapService.startTracking(lat, long, map));
     }, function (err) {
       console.log(err);
     });
   });
 
 
-  function saveToFile(timestamp, route) {
-    var fileName = (timestamp + ".txt");
-    $cordovaFile.createFile(cordova.file.dataDirectory, fileName, true)
-      .then(function (success) {
-        console.log(success);
-        console.log('created file: ' + fileName);
-      }, function (error) {
-        console.log(error);
-      });
 
-    $cordovaFile.writeFile(cordova.file.dataDirectory, fileName, route, true)
-      .then(function (success) {
-        console.log(success);
-        console.log('wrote to file: ' + fileName);
-      }, function (error) {
-        console.log(error);
-      });
-  }
 
   //Menu navigation
   var element = angular.element(document.querySelector('.filter-btn'));
@@ -103,7 +84,7 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
     console.log($scope.currentRoute);
     element.removeClass('open');
     if (window.cordova) {
-      saveToFile($scope.currentRoute[0].timestamp, $scope.currentRoute);
+      FileService.saveToFile($scope.currentRoute[0].timestamp, $scope.currentRoute, 'Recording');
     }
   };
 }

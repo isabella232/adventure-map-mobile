@@ -1,0 +1,25 @@
+<ion-view can-swipe-back="false" title="My Recordings">
+  <ion-content>
+    <ion-list ng-repeat="file in files">
+      <ion-item class="item item-icon-right list-item" >
+        <span class="main-text" ng-click="showFile(file)">
+           <small>
+             {{file.fileName}}
+           </small>
+          </span>
+        <span class="badge">
+          <small>
+            Created: {{file.date | date }} <br> at: {{file.date | date : 'hh:m'}}</span>
+        </small>
+        <ion-option-button class="button button-positive"
+                           ng-click="">
+          Attach to Activity
+        </ion-option-button>
+        <ion-option-button class="button button-assertive"
+                           ng-click="">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

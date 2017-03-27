@@ -1,4 +1,4 @@
-function profileController($scope, $ionicLoading,$ionicPlatform, $localStorage, MyActivities, DIFFICULTY_WORDS) {
+function profileController($scope, $ionicLoading, $ionicPlatform, $localStorage, MyActivities, DIFFICULTY_WORDS) {
   const user = $localStorage.user;
 
   showMyActivities = function () {
@@ -29,6 +29,7 @@ function profileController($scope, $ionicLoading,$ionicPlatform, $localStorage, 
   };
 
   $ionicPlatform.ready(function () {
+    $window.location.reload(true);
     showMyActivities();
   });
 }
