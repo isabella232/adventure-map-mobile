@@ -1,13 +1,16 @@
 function activitiesController($scope,
-                              $state,
+                              $q,
                               $ionicLoading,
                               $localStorage,
                               $auth,
                               $ionicModal,
+                              $ionicPopup,
                               Activity,
                               ActivityDetail,
                               Filters,
                               S3FileUpload,
+                              FileService,
+                              Utilities,
                               DIFFICULTY_WORDS,
                               CATEGORY_ICONS,
                               CATEGORY_WORDS) {
@@ -15,19 +18,27 @@ function activitiesController($scope,
   setState();
   $scope.activity = {};
   $scope.uploadedImages = [];
+  $scope.uploadedFiles = [];
 
   $ionicModal.fromTemplateUrl('templates/activities/filter_modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
-  }).then(function(modal) {
+  }).then(function (modal) {
     $scope.filterModal = modal;
   });
 
   $ionicModal.fromTemplateUrl('templates/activities/create.html', {
     scope: $scope,
     animation: 'slide-in-up'
-  }).then(function(modal) {
+  }).then(function (modal) {
     $scope.createModal = modal;
+  });
+
+  $ionicModal.fromTemplateUrl('templates/activities/pick_files.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.filesModal = modal;
   });
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
@@ -49,10 +60,11 @@ function activitiesController($scope,
       template: 'Saving...'
     });
 
-    $auth.validateUser().then(function(resp){
+    $auth.validateUser().then(function (resp) {
       Activity.save($scope.activity, function (resp) {
         // Loop through uploadedImages and send them to the server
         addImages(resp.data.id);
+        addFiles(resp.data.id);
 
         $ionicLoading.hide();
         $scope.createModal.hide();
@@ -98,7 +110,13 @@ function activitiesController($scope,
     Activity.query(function (response) {
       console.log(response);
       // Sort by date
-      $scope.activityData.activityList = response.data.sort(function (a, b) {
+      $scope.activityData.activityList = response.data;
+
+      $scope.activityData.activityList.forEach(function(activity){
+        var index = $scope.activityData.activityList.indexOf(activity);
+        $scope.activityData.activityList[index].images = Utilities.sanitizeArrayFromNullObjects(activity.images);
+      });
+      $scope.activityData.activityList.sort(function (a, b) {
         return Date.parse(b.created_at) - Date.parse(a.created_at);
       });
 
@@ -144,22 +162,107 @@ function activitiesController($scope,
     }
   }
 
-  $scope.selectPhoto = function() {
+  $scope.openPicker = function (type) {
+    $scope.files = [];
+    $q.when(FileService.readDirectory(window, type)).then(function (response) {
+      $scope.files = response;
+      console.log($scope.files);
+      $scope.filesModal.show();
+    });
+  };
+
+  $scope.chooseFile = function (obj) {
+    $scope.filesModal.hide();
+    $ionicPopup.alert({
+      title: 'You chose<br>' + obj.fileName,
+      template: 'Do you want to attach this file to this activity?',
+      buttons: [
+        {
+          text: 'Cancel',
+          onTap: function (e) {
+            return true;
+          }
+        },
+        {
+          text: 'Save',
+          type: 'button-positive',
+          onTap: function (e) {
+            console.log(e);
+            uploadFile(obj);
+            return true;
+          }
+        }
+      ]
+    });
+  };
+
+  function uploadFile(obj) {
+    var path = cordova.file.dataDirectory + obj.fileName;
+    window.resolveLocalFileSystemURL(path, function success(fileEntry) {
+      // Create file object using fileEntry
+      fileEntry.file(function (file) {
+        var reader = new FileReader();
+        reader.onloadend = function () {
+          console.log("Successful file read: " + this.result);
+          var textFile = new Blob([new Uint8Array(this.result)], {type: "text/plain"});
+          textFile.name = file.name;
+
+          S3FileUpload.upload(obj.type.toLowerCase(), textFile).then(
+            function (file) {
+              $scope.uploadedFiles.push(
+                {
+                  url: file.public_url,
+                  type: obj.type
+                }
+              );
+              $ionicLoading.hide();
+            },
+            function (response) {
+              console.log(response);
+              $ionicLoading.hide();
+            }
+          );
+        };
+        $ionicLoading.show({
+          template: 'Uploading ' + obj.type + '...'
+        });
+        reader.readAsArrayBuffer(file);
+      }, function () {
+        console.log("Sorry, something went wrong and we couldn't read your file");
+      });
+      console.log("got file: " + fileEntry.fullPath);
+    }, function () {
+      // Perhaps we want to create the file?
+      console.log("Sorry, something went wrong while creating file object");
+    });
+  }
+
+  $scope.selectPhoto = function () {
     var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
     var options = setOptions(srcType);
-
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
       getFileEntry(imageUri);
     }, function cameraError(error) {
-        console.debug("Unable to obtain picture: " + error, "app");
+      console.debug("Unable to obtain picture: " + error, "app");
     }, options);
   };
 
   function addImages(activityId) {
     // If there are uploaded images, register them as activity details with the server.
     if ($scope.uploadedImages !== []) {
-      $scope.uploadedImages.forEach(function(url) {
-        ActivityDetail.save({ id: activityId, file_attachment: url, attachment_type: 'Image' }, function (resp) {
+      $scope.uploadedImages.forEach(function (url) {
+        ActivityDetail.save({id: activityId, file_attachment: url, attachment_type: 'Image'}, function (resp) {
+          console.log(resp);
+        });
+      });
+    }
+  }
+
+  function addFiles(activityId) {
+    if ($scope.uploadedFiles !== []) {
+      $scope.uploadedFiles.forEach(function (obj) {
+        var type = obj.type;
+        ActivityDetail.save({id: activityId, file_attachment: obj.url, attachment_type: type}, function (resp) {
           console.log(resp);
         });
       });
@@ -175,47 +278,40 @@ function activitiesController($scope,
       mediaType: Camera.MediaType.PICTURE,
       allowEdit: true,
       correctOrientation: true  //Corrects Android orientation quirks
-    }
+    };
     return options;
   }
 
   function getFileEntry(imgUri) {
     window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
-      // Create file object using fileEntry
       fileEntry.file(function (file) {
         var reader = new FileReader();
-
-        reader.onloadend = function() {
+        reader.onloadend = function () {
           console.log("Successful file read: " + this.result);
-          var imageFile = new Blob([new Uint8Array(this.result)], { type: "image/jpeg" });
+          var imageFile = new Blob([new Uint8Array(this.result)], {type: "image/jpeg"});
           imageFile.name = file.name;
-
           S3FileUpload.upload('images', imageFile).then(
-            function(imageResp) {
+            function (imageResp) {
               $scope.uploadedImages.push(imageResp.public_url);
               $ionicLoading.hide();
             },
-            // Image upload failed - Handle error
-            function(response) {
+            function (response) {
               console.log(response);
               $ionicLoading.hide();
             }
           );
         };
-
         $ionicLoading.show({
           template: 'Uploading image...'
         });
         reader.readAsArrayBuffer(file);
-
-      }, function() {
+      }, function () {
         console.log("Sorry, something went wrong and we couldn't read your file");
       });
-
-      console.log("got file: " + fileEntry.fullPath);
     }, function () {
       // Perhaps we want to create the file?
       console.log("Sorry, something went wrong while creating file object");
     });
   }
+
 }

@@ -11,7 +11,7 @@ angular.module('adventureMap.services', [])
 
   .factory('MyActivities', function ($resource, $auth, API_URL) {
     return $resource(API_URL + '/users/:id/activities', {id: '@id'}, {
-      get: { method: 'GET' }
+      get: {method: 'GET'}
     })
   })
 
@@ -27,7 +27,7 @@ angular.module('adventureMap.services', [])
     });
   })
 
-  .factory('ActivityDetail', function($resource, API_URL) {
+  .factory('ActivityDetail', function ($resource, API_URL) {
     return $resource(API_URL + '/activities/:id/activity_details', {id: '@id'}, {
       save: {method: 'POST'}
     })

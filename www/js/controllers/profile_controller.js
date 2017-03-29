@@ -1,5 +1,5 @@
 function profileController($scope, $ionicLoading, $ionicPlatform, $localStorage, MyActivities, MyFollowers, md5) {
-  const user = $localStorage.user;
+  const user = $localStorage.user || $scope.user;
 
   showMyActivities = function () {
     console.log(user);
@@ -30,7 +30,6 @@ function profileController($scope, $ionicLoading, $ionicPlatform, $localStorage,
 
   $scope.showMyActivities = function() {
     $ionicPlatform.ready(function () {
-      // $window.location.reload(true);
       showMyActivities();
     });
   };

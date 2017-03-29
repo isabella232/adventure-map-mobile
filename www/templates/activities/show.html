@@ -4,7 +4,6 @@
   <ion-content class="padding has-header">
     <div class="list card">
       <div class="item item-avatar gray">
-        <!--<img src={{activity.user.image}}>-->
         <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
         <h2 class="activity_title">{{activity.user.name}}</h2>
         <p ng-repeat="interest in activity.user.interests">
@@ -28,6 +27,12 @@
             <h3>{{activity.title}}</h3>
             <p>
               {{activity.body}}
+            </p>
+            <p>
+              Routes {{activity.routes.length}}
+            </p>
+            <p>
+              Waypoints {{activity.waypoints.length}}
             </p>
           </div>
         </div>

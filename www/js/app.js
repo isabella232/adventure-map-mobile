@@ -11,6 +11,7 @@ angular.module('adventureMap', [
     'adventureMap.s3FileUpload',
     'adventureMap.mapService',
     'adventureMap.fileService',
+    'adventureMap.utilities',
     'ngCordova', 'ng-token-auth',
     'ngResource',
     'ngStorage'
@@ -32,8 +33,8 @@ angular.module('adventureMap', [
     'Cross country ice skating', 'Foraging'
   ])
 
-  .filter('difficultyWord', function(DIFFICULTY_WORDS) {
-    return function(difficulty){
+  .filter('difficultyWord', function (DIFFICULTY_WORDS) {
+    return function (difficulty) {
       if (difficulty <= 0 || difficulty > DIFFICULTY_WORDS.length)
         return '';
       else

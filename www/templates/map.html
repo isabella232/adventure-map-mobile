@@ -5,7 +5,7 @@
       <button class="button button-clear button-small" ng-click="startTracking()" ng-disabled="inProgress || hasRecording">
         <i class="ion-plus-circled"></i>
       </button>
-      <button class="button button-clear button-small" ng-disabled="true">
+      <button class="button button-clear button-small" ng-click="addWaypoint()" ng-disabled="inProgress">
         <i class="ion-pinpoint"></i>
       </button>
       <button class="button button-clear button-small" ng-click="stopTracking()" ng-disabled="!inProgress">

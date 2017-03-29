@@ -16,3 +16,6 @@ npm-debug.log
 screenlog.0
 
 www/css/ionic.app.*
+
+adventuremap-release-key.keystore
+build

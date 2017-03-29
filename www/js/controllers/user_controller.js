@@ -1,4 +1,4 @@
-function userController($scope, $ionicPlatform, md5, $ionicModal, FileService) {
+function userController($scope, $q, $ionicPlatform, md5, $ionicModal, FileService) {
   $scope.files = [];
   $scope.profileImage = function () {
     if ($scope.user.id !== undefined) {
@@ -35,7 +35,9 @@ function userController($scope, $ionicPlatform, md5, $ionicModal, FileService) {
 
   $ionicPlatform.ready(function () {
     try {
-      FileService.readDirectory(window, $scope);
+      $q.when(FileService.readDirectory(window)).then(function(response){
+        $scope.files = response;
+      });
     } catch (error) {
       console.log("Corvova plugins aren't available in browsers.");
       console.log(error);

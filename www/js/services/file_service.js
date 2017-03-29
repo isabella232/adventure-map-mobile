@@ -1,12 +1,13 @@
 angular.module('adventureMap.fileService', [])
 
-  .service('FileService', function ($q, $cordovaFile, $filter) {
+  .service('FileService', function ($q, $cordovaFile, $filter, $ionicPopup) {
     var saveToFileFunction = function (timestamp, route, type) {
       var date = $filter('date')(new Date(timestamp), 'yyyy-MM-d(h-mm)');
       var fileName = (type + '-' + date + ".txt");
       var routeObject = {
         file: fileName,
         createdAt: timestamp,
+        type: type,
         route: route
       };
       var data = angular.toJson(routeObject, true);
@@ -15,13 +16,19 @@ angular.module('adventureMap.fileService', [])
         .then(function (success) {
           console.log(success);
           console.log('wrote to file: ' + fileName);
+          var lat = routeObject.route.lat || routeObject.route[0].lat;
+          var long = routeObject.route.long || routeObject.route[0].long;
+          $ionicPopup.alert({
+            title: 'Saved ' + type,
+            template: 'Lat: ' + lat + '<br>Long: ' + long
+          });
         }, function (error) {
           console.log('error in write');
           console.error(error.messageData);
         });
     };
 
-    var readFileFunction = function(object, $scope){
+    var readFileFunction = function (object, $scope) {
       $cordovaFile.readAsText(cordova.file.dataDirectory, object.fileName)
         .then(function (content) {
           $scope.object = content;
@@ -32,33 +39,66 @@ angular.module('adventureMap.fileService', [])
         });
     };
 
-    var readDirectoryFunction = function(window, $scope){
+    var readDirectoryFunction = function (window, type) {
+      var deferred = $q.defer();
+      var files = [];
       window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (dirEntry) {
         var directoryReader = dirEntry.createReader();
-        directoryReader.readEntries(function(entries) {
-          entries.forEach(function(entry) {
-            $cordovaFile.readAsText(cordova.file.dataDirectory, entry.name)
-              .then(function (content) {
-                var fileContent = angular.fromJson(content);
-                console.log("Reading file " + entry.name + '' + fileContent.createdAt);
-                $scope.files.push({
-                  fileName: entry.name,
-                  date: fileContent.createdAt
+        directoryReader.readEntries(function (entries) {
+          entries.forEach(function (entry) {
+            if ("undefined" === typeof type) {
+              $cordovaFile.readAsText(cordova.file.dataDirectory, entry.name)
+                .then(function (content) {
+                  var fileContent = angular.fromJson(content);
+                  console.log("Reading file " + entry.name + ' ' + fileContent.createdAt);
+                  files.push({
+                    fileName: entry.name,
+                    date: fileContent.createdAt
+                  });
+                  deferred.resolve(files);
+                }, function (error) {
+                  // error
+                  deferred.reject(error);
                 });
-              }, function (error) {
-                // error
-              });
-          }, function(error){
+            } else {
+              $cordovaFile.readAsText(cordova.file.dataDirectory, entry.name)
+                .then(function (content) {
+                  var fileContent = angular.fromJson(content);
+                  console.log("Reading file " + entry.name + ' ' + fileContent.createdAt);
+                  if (fileContent.type === type){
+                    files.push({
+                      fileName: entry.name,
+                      type: type,
+                      date: fileContent.createdAt
+                    });
+                  }
+                  deferred.resolve(files);
+                }, function (error) {
+                  // error
+                  deferred.reject(error);
+                });
+            }
+          }, function (error) {
             console.log("Failed to list directory contents: " + error.code);
           });
         });
+      });
+      return deferred.promise
+    };
+
+    var chooseFileFunction = function (window, $scope) {
+      $scope.files = [];
+
+      $q.when(readDirectoryFunction(window, $scope)).then(function(result) {
+        console.log('promise: ' + result);
       });
     };
 
     return {
       saveToFile: saveToFileFunction,
       readDirectory: readDirectoryFunction,
-      readFile: readFileFunction
+      readFile: readFileFunction,
+      chooseFile: chooseFileFunction
     }
   });
 

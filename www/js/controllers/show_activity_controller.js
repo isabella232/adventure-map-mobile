@@ -8,27 +8,28 @@ function showActivityController($scope,
                                 Activity,
                                 Comment,
                                 Follow,
+                                Utilities,
                                 DIFFICULTY_WORDS) {
 
   var activityId;
 
   $scope.$on("$ionicView.enter", function (scopes, states) {
-    if($stateParams.id) {
-      activityId = $stateParams.id
+    if ($stateParams.id) {
+      activityId = $stateParams.id;
       getActivity(activityId);
     }
   });
 
-  $scope.navigateToActivity = function(activity) {
-    switch($state.current.name) {
+  $scope.navigateToActivity = function (activity) {
+    switch ($state.current.name) {
       case 'app.activities':
-        $state.go('app.activity', { id: activity.id });
+        $state.go('app.activity', {id: activity.id});
         break;
       case 'app.my-activities':
-        $state.go('app.my-activity', { id: activity.id });
+        $state.go('app.my-activity', {id: activity.id});
         break;
     }
-  }
+  };
 
   $scope.closeCommentModal = function () {
     $scope.comment_modal.hide();
@@ -66,7 +67,7 @@ function showActivityController($scope,
     });
   };
 
-  $scope.followUser = function(userId) {
+  $scope.followUser = function (userId) {
     $ionicLoading.show({
       template: 'Following user...'
     });
@@ -104,9 +105,11 @@ function showActivityController($scope,
   function getActivity(id) {
     Activity.get({id: id}, function (response) {
       $scope.activity = response.data;
+      $scope.activity.images = Utilities.sanitizeArrayFromNullObjects($scope.activity.images);
+      $scope.activity.routes = Utilities.sanitizeArrayFromNullObjects($scope.activity.routes);
+      $scope.activity.waypoints = Utilities.sanitizeArrayFromNullObjects($scope.activity.waypoints);
       prepareComments();
 
-      console.log(response);
     });
   }
 }

@@ -1,4 +1,4 @@
-function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading, $ionicPlatform, MapService, FileService) {
+function mapController($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform, MapService, FileService) {
   var lat, long;
   var srs_code = 'EPSG:3006';
   var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
@@ -35,11 +35,10 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
     });
 
     geolocation.then(function (position) {
-      lat = position.coords.latitude;
-      long = position.coords.longitude;
-
+      $scope.currentLocation = setCurrentLocation(position);
+      var lat = $scope.currentLocation.coords.lat;
+      var long = $scope.currentLocation.coords.long;
       console.log(lat + ', ' + long);
-
       map.setView([lat, long], 13);
       MapService.addToMap(lat, long, map);
       $ionicLoading.hide();
@@ -47,8 +46,6 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
       console.log(err);
     });
   });
-
-
 
 
   //Menu navigation
@@ -84,7 +81,25 @@ function mapController($scope, $cordovaGeolocation, $cordovaFile, $ionicLoading,
     console.log($scope.currentRoute);
     element.removeClass('open');
     if (window.cordova) {
-      FileService.saveToFile($scope.currentRoute[0].timestamp, $scope.currentRoute, 'Recording');
+      FileService.saveToFile($scope.currentRoute[0].timestamp, $scope.currentRoute, 'Route');
     }
   };
+
+  $scope.addWaypoint = function () {
+    if (window.cordova) {
+      FileService.saveToFile($scope.currentLocation.timestamp, $scope.currentLocation.coords, 'Waypoint');
+    }
+  };
+
+  function setCurrentLocation(position) {
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    return {
+      timestamp: position.timestamp,
+      coords: {
+        lat: lat,
+        long: long
+      }
+    };
+  }
 }

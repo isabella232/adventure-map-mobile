@@ -67,6 +67,11 @@ $ ionic emulate ios -l -c
 ``` 
 This command will give you a console output in the terminal as well as reload the application on every update.  
  
+### Logging in with Facebook
+We have test users added to the AdventureMapDevelop Facebook application. If you want to log in using facebook please use:
+
+- User email: john_qhmvlan_ricesky@tfbnw.net
+- Password Cr@ft2017
 
 ### Clear files from Simulator
 You probably want to clear the simulator data after a while o

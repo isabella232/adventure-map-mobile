@@ -1,7 +1,15 @@
-<ion-view can-swipe-back="false" title="My Routes & Waypoints">
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="filesModal.hide()">
+        Cancel
+      </button>
+    </div>
+    <h1 class="title">Files</h1>
+  </ion-header-bar>
   <ion-content>
     <ion-list ng-repeat="file in files">
-      <ion-item class="item item-icon-right list-item" >
+      <ion-item class="item item-icon-right list-item" ng-click="chooseFile(file)">
         <span class="main-text" ng-click="showFile(file)">
            <small>
              {{file.fileName}}
@@ -22,4 +30,4 @@
       </ion-item>
     </ion-list>
   </ion-content>
-</ion-view>
+</ion-modal-view>
