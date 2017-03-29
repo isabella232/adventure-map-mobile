@@ -42,17 +42,17 @@
       </ion-item>
       <ion-item class="item item-icon-right list-item" ui-sref="app.my-activities">
         <span class="main-text">Activities I Made</span>
-        <span class="badge">2</span>
+        <span class="badge">{{user.counts.my_activities}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
-      <ion-item class="item item-icon-right list-item" ui-sref="main.profile.following">
+      <ion-item class="item item-icon-right list-item" ui-sref="app.followings">
         <span class="main-text">Following</span>
-        <span class="badge">34</span>
+        <span class="badge">{{user.counts.followings}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
-      <ion-item class="item item-icon-right list-item" ui-sref="main.profile.following">
+      <ion-item class="item item-icon-right list-item" ui-sref="app.followers">
         <span class="main-text">Followers</span>
-        <span class="badge">48</span>
+        <span class="badge">{{user.counts.followers}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
       <ion-item class="item item-icon-right list-item" ui-sref="app.my-recordings">

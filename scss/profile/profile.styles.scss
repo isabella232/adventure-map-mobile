@@ -57,6 +57,10 @@
     height: 35px;
   }
 
+  .smaller-profile-divider {
+    min-height: 15px;
+  }
+
   .list-item {
     border-left: 0;
     margin-left: 8px;
@@ -86,5 +90,13 @@
       color: $profile-alt-color;
       font-size: 22px;
     }
+
+    .icon-badge {
+      top: 4px !important;
+    }
+
+  }
+  .height-50 {
+    line-height: 50px;
   }
 }

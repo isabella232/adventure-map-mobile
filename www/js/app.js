@@ -229,6 +229,24 @@ angular.module('adventureMap', [
           }
         }
       })
+      .state('app.followers', {
+        url: '/followers',
+        views: {
+          'tab-profile-view': {
+            templateUrl: 'templates/profile/followers.html',
+            controller: 'profileController'
+          }
+        }
+      })
+      .state('app.followings', {
+        url: '/followings',
+        views: {
+          'tab-profile-view': {
+            templateUrl: 'templates/profile/followings.html',
+            controller: 'profileController'
+          }
+        }
+      })
       .state('app.my-recordings', {
         url: '/my-recordings',
         views: {

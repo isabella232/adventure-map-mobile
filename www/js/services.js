@@ -33,6 +33,12 @@ angular.module('adventureMap.services', [])
     })
   })
 
+  .factory('MyFollowers', function($resource, API_URL) {
+    return $resource(API_URL + '/follows', {request: '@request'}, {
+      get: { method: 'GET' }
+    })
+  })
+
   .factory('Filters', function ($localStorage) {
     return {
       applyFilters: function ($scope) {
