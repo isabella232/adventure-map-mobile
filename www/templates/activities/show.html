@@ -10,10 +10,10 @@
         <p ng-repeat="interest in activity.user.interests">
           <i class="mybadge badge-royal">{{interest.name}}</i>
         </p>
-        <!--<p>{{activity.created_at}}</p> Not available from the API endpoint yet -->
+        <p>{{activity.created_at}}</p>
       </div>
       <div class="item item-body gray">
-        <span>{{activity.category}}</span>, <span>{{activity.difficulty_word}}</span>
+        <span>{{activity.category}}</span>, <span>{{activity.difficulty | difficultyWord}}</span>
         <div class="item gray card item-inner">
           <ion-slide-box on-slide-changed="nextSlide($index)">
             <ion-slide ng-if="activity.images[0]" ng-repeat="image in activity.images">
