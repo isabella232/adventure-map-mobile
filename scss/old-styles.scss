@@ -45,6 +45,28 @@
   padding: 10px;
 }
 
+.difficulty-icon {
+  display: block;
+  text-align: right;
+}
+
+.activity-category {
+  float: left;
+  font-weight: bold;
+  bottom: -12px;
+  position: relative;
+}
+
+.ion-ios-ionic-outline:before {
+  content: url('/img/icons/bars1.png') !important;
+}
+.ion-ios-ionic:before {
+  content: url('/img/icons/bars2.png') !important;
+}
+.ion-social-angular:before {
+  content: url('/img/icons/bars3.png') !important;
+}
+
 /*****************
 PROFILE
  */

@@ -12,7 +12,12 @@
         <p>{{activity.created_at}}</p>
       </div>
       <div class="item item-body gray">
-        <span>{{activity.category}}</span>, <span>{{activity.difficulty | difficultyWord}}</span>
+        <span class="difficulty-icon">
+          <span class="activity-category">{{activity.category}}</span>
+          <i class="icon ion-ios-ionic-outline" ng-if="activity.difficulty === 1"></i>
+          <i class="icon ion-ios-ionic" ng-if="activity.difficulty === 2"></i>
+          <i class="icon ion-social-angular" ng-if="activity.difficulty === 3"></i>
+        </span>
         <div class="item gray card item-inner">
           <ion-slide-box on-slide-changed="nextSlide($index)">
             <ion-slide ng-if="activity.images[0]" ng-repeat="image in activity.images">
@@ -42,8 +47,10 @@
             <p>Interested</p>
           </div>
           <div class='col'>
-            <i class="icon ion-android-star-outline card-bottom"></i>
-            <p>Recommend</p>
+            <i class="icon ion-bookmark card-bottom"></i>
+            <p>
+              Save
+            </p>
           </div>
           <div class="col blue" ng-if=activity.user.following >
               <span class="count-icon">
