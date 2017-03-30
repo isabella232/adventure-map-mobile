@@ -244,9 +244,11 @@ COMMENTS
 }
 
 .count-span {
-  position: absolute;
-  top: -5px;
-  right: 13px;
+  position: relative;
+  display: inline-block;
+  align-content: right;
+  top: -12px;
+  right: 10px;
   height: 19px;
   width: 19px;
   background: #4ea4be;

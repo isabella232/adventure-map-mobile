@@ -1,6 +1,6 @@
 <div class="list card" ng-repeat="activity in activities">
-  <div ng-controller="showActivityController" ng-click="navigateToActivity(activity)">
-    <div class="item item-avatar gray">
+  <div ng-controller="showActivityController">
+    <div class="item item-avatar gray" ng-click="navigateToActivity(activity)">
       <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
       <h2 class="activity_title">{{activity.user.name}}</h2>
       <p ng-repeat="interest in activity.user.interests">
@@ -30,8 +30,26 @@
       </div>
       <div class='row centered'>
         <div class='col'>
-          <i class="icon ion-thumbsup card-bottom"></i>
-          <p>Interested</p>
+
+          <div class="blue" ng-if=activity.user.likes
+               ng-click="unlikeActivity(activity.id); activity.user.likes = !activity.user.likes; activity.likes_count = activity.likes_count - 1;">
+            <div class='col'>
+                <span class="count-icon">
+                  <i class="icon ion-thumbsup card-bottom"></i>
+                  <span class="count-span">{{activity.likes_count}}</span>
+                  <p>Unlike</p>
+                </span>
+            </div>
+          </div>
+          <div ng-if=!activity.user.likes
+               ng-click="likeActivity(activity.id, $event); activity.user.likes = !activity.user.likes; activity.likes_count = activity.likes_count + 1;">
+                <span class="count-icon">
+                  <i class="icon ion-thumbsup card-bottom"></i>
+                  <span class="count-span">{{activity.likes_count}}</span>
+                  <p>Like</p>
+                </span>
+            <!--<img src="img/icons/like.svg"> This is the icon sent by Morgan -->
+          </div>
         </div>
         <div class='col'>
           <i class="icon ion-bookmark card-bottom"></i>
@@ -41,7 +59,7 @@
           <div class="blue" ng-if=activity.user.following>
               <span class="count-icon">
               <i class="icon ion-person card-bottom"></i>
-                <span class="count-span">{{activity.user.followers_count}}</span>
+                <span class="count-span ">{{activity.user.followers_count}}</span>
                 <p>Following</p>
               </span>
           </div>

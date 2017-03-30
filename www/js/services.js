@@ -27,8 +27,14 @@ angular.module('adventureMap.services', [])
     });
   })
 
-  .factory('ActivityDetail', function ($resource, API_URL) {
+  .factory('ActivityDetail', function($resource, API_URL) {
     return $resource(API_URL + '/activities/:id/activity_details', {id: '@id'}, {
+      save: {method: 'POST'}
+    })
+  })
+
+  .factory('Like', function ($resource, API_URL) {
+    return $resource(API_URL + '/likes/:id', {id: '@id', activity_id: '@activity_id'}, {
       save: {method: 'POST'}
     })
   })
@@ -37,6 +43,40 @@ angular.module('adventureMap.services', [])
     return $resource(API_URL + '/follows', {request: '@request'}, {
       get: { method: 'GET' }
     })
+  })
+
+  .factory('LikeActivity', function(Like) {
+    return {
+      likeActivity: function (activity_id) {
+        Like.save({activity_id: activity_id}, function (response) {
+          if (response.status === 'success') {
+            console.log('activity liked');
+          } else {
+            console.log(response);
+            $ionicPopup.alert({
+              title: 'Like was not saved.'
+            })
+          }
+        })
+      }
+    }
+  })
+
+  .factory('UnlikeActivity', function(Like) {
+    return {
+      unlikeActivity: function(activity_id) {
+        Like.delete({id: activity_id}, function (response) {
+          if (response.status === 'success') {
+            console.log('activity unliked');
+          } else {
+            console.log(response);
+            $ionicPopup.alert({
+              title: 'Could not unlike.'
+            })
+          }
+        })
+      }
+    }
   })
 
   .factory('Filters', function ($localStorage) {
