@@ -1,0 +1,28 @@
+<ion-view class="signup-view auth-view" cache-view="false" hide-nav-bar="true">
+  <ion-header-bar class="signup-header auth-header">
+    <div class="buttons">
+      <button class="button button-clear button-icon icon ion-ios-close-empty cancel-button" ng-click="cancelAuth()">
+      </button>
+    </div>
+    <h3 class="title">Select your favourite activities</h3>
+  </ion-header-bar>
+
+  <ion-content class="padding has-header">
+    <div class="activity-images" ng-repeat="uri in activity_images">
+      <!-- show a faded image with gray text if unselected, or full opacity and white if selected -->
+      <div ng-if="signupForm.category[$index]"
+           ng-click="selectActivity($index)"
+           class="white-text">
+        <img ng-src="{{uri}}" class="activity-image-selected">
+        <h3 class="activity-name">{{category_words[$index]}}</h3>
+      </div>
+      <div ng-if="!signupForm.category[$index]"
+           ng-click="selectActivity($index)">
+        <img ng-src="{{uri}}" class="activity-image-unselected">
+        <h3 class="activity-name">{{category_words[$index]}}</h3>
+      </div>
+    </div>
+
+    <button class="button action-button button-block button-balanced" ng-click="signup()">SIGN UP</button>
+  </ion-content>
+</ion-view>

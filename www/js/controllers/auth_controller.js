@@ -1,9 +1,9 @@
-function authController($scope, $auth, $ionicLoading, $state, $rootScope, $localStorage, API_URL, $ionicHistory) {
+function authController($scope, $auth, $ionicLoading, $state, $rootScope, $localStorage, API_URL, CATEGORY_WORDS, $ionicHistory, $ionicModal) {
   $scope.credentials = {};
   $scope.signupForm = {};
   $scope.errorMessage = null;
 
-  $scope.skipIntro = function(){
+  $scope.skipIntro = function () {
     $state.go('intro.login');
   };
 
@@ -24,7 +24,12 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
       });
   };
 
-  $scope.signup = function() {
+  $scope.signup = function () {
+    translateActivityArray();
+    // The server expects a string and returns a string (instead of an array)
+    console.dir($scope.signupForm);
+    // Store activity preferences in default filter.
+    $localStorage.defaultFilter.category = $scope.signupForm.category;
     $auth.getConfig().apiUrl = API_URL;
     $ionicLoading.show({
       template: 'Signing up...'
@@ -32,13 +37,45 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
 
     $auth.submitRegistration($scope.signupForm)
       .then(function (response) {
+        $scope.activitiesModal.hide();
         $state.go('app.activities');
         $ionicLoading.hide();
       })
-      .catch(function(response) {
+      .catch(function (response) {
         $ionicLoading.hide();
         $scope.errorMessage = response.data.errors.full_messages.toString();
       })
+  };
+
+  $ionicModal.fromTemplateUrl('templates/auth/activity_selection.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.activitiesModal = modal;
+  });
+
+  $scope.category_words = CATEGORY_WORDS;
+  $scope.signupForm.category = [false, false, false, false, false, false, false, false, false, false];
+  $scope.activity_images = ['img/activity_images/hiking.png', 'img/activity_images/cross_country_skiing.png', 'img/activity_images/back_country_skiing.png', 'img/activity_images/paddling.png', 'img/activity_images/mountain_biking.png', 'img/activity_images/horse_riding.png', 'img/activity_images/climbing.png', 'img/activity_images/snow_mobiling.png', 'img/activity_images/cross_country_ice_skating.png', 'img/activity_images/foraging.png'];
+
+  $scope.getActivitySelection = function () {
+    $scope.activitiesModal.show();
+  };
+
+  $scope.selectActivity = function (index) {
+    $scope.signupForm.category[index] = !$scope.signupForm.category[index];
+    console.log($scope.signupForm.category);
+  };
+
+  // Grab activity preferences and translate to what the server expects
+  translateActivityArray = function () {
+    tempArray = [];
+    $scope.signupForm.category.forEach(function (category, index) {
+      if (category) {
+        tempArray.push(CATEGORY_WORDS[index]);
+      }
+    });
+    $scope.signupForm.interest_list = tempArray.join(', ');
   };
 
   $scope.facebookSignIn = function () {
@@ -50,11 +87,12 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
 
     $auth.authenticate('facebook')
       .then(function (response) {
-        $auth.validateUser().then(function(resp){
+        $auth.validateUser().then(function (resp) {
           console.log('validateUser');
           storeUser();
           console.log(resp)
         });
+        // This needs to be updated to send FB users through activity selection as well.
         $state.go('app.activities');
         $ionicLoading.hide();
       })
@@ -78,15 +116,16 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
       })
   };
 
-  $scope.cancelAuth = function(){
+  $scope.cancelAuth = function () {
+    $scope.activitiesModal.hide();
     $state.go('intro.walkthrough');
   };
 
-  $scope.back = function(){
+  $scope.back = function () {
     $ionicHistory.goBack();
   };
 
-  storeUser = function() {
+  storeUser = function () {
     $localStorage.user = $scope.user;
     console.log('storing user');
     console.log($localStorage.user);
