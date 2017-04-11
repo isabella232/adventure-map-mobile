@@ -230,6 +230,15 @@ angular.module('adventureMap', [
           }
         }
       })
+      .state('app.my-saved-activities', {
+        url: '/my-saved-activities',
+        views: {
+          'tab-profile-view': {
+            templateUrl: 'templates/profile/my-saved-activities.html',
+            controller: 'profileController'
+          }
+        }
+      })
       .state('app.followers', {
         url: '/followers',
         views: {

@@ -2,6 +2,9 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
   $scope.credentials = {};
   $scope.signupForm = {};
   $scope.errorMessage = null;
+  if (!$localStorage.defaultFilter) {
+    $localStorage.defaultFilter = {};
+  }
 
   $scope.skipIntro = function () {
     $state.go('intro.login');
@@ -26,6 +29,7 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
 
   $scope.signup = function () {
     translateActivityArray();
+    storeUser();
     // The server expects a string and returns a string (instead of an array)
     console.dir($scope.signupForm);
     // Store activity preferences in default filter.

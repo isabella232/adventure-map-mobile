@@ -64,10 +64,22 @@
             </div>
           </div>
           <div class='col'>
-            <i class="icon ion-bookmark card-bottom"></i>
-            <p>
-              Save
-            </p>
+            <div class="blue" ng-if=activity.user.saves
+                 ng-click="unsaveActivity(activity.id); activity.user.saves = !activity.user.saves; activity.saves_count = activity.saves_count - 1;">
+              <span class="count-icon">
+              <i class="icon ion-bookmark card-bottom"></i>
+                <span class="count-span ">{{activity.saves_count}}</span>
+                <p>Saved</p>
+              </span>
+            </div>
+            <div ng-if=!activity.user.saves
+                 ng-click="saveActivity(activity.id); activity.user.saves = !activity.user.saves; activity.saves_count = activity.saves_count + 1;">
+              <span class="count-icon">
+              <i class="icon ion-bookmark card-bottom"></i>
+                <span class="count-span count-span-follow">{{activity.saves_count}}</span>
+                <p>Save</p>
+              </span>
+            </div>
           </div>
           <div class="col blue" ng-if=activity.user.following>
               <span class="count-icon">

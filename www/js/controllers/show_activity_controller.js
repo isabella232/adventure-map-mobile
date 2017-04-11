@@ -10,6 +10,8 @@ function showActivityController($scope,
                                 Follow,
                                 LikeActivity,
                                 UnlikeActivity,
+                                SaveActivity,
+                                UnsaveActivity,
                                 Utilities) {
 
   var activityId;
@@ -94,7 +96,7 @@ function showActivityController($scope,
     $scope.activity.comments = $scope.activity.comments.sort(function (a, b) {
       return Date.parse(b.created_at) - Date.parse(a.created_at);
     });
-    if ($scope.activity.comments != []) {
+    if ($scope.activity.comments !== []) {
       $scope.activity.comments = $scope.activity.comments.map(function (comment) {
         date = new Date(Date.parse(comment.created_at));
         comment.created_at = date.toDateString();
@@ -120,6 +122,14 @@ function showActivityController($scope,
 
   $scope.unlikeActivity = function (activity_id) {
     UnlikeActivity.unlikeActivity(activity_id);
+  }
+
+  $scope.saveActivity = function (activity_id) {
+    SaveActivity.saveActivity(activity_id);
+  };
+
+  $scope.unsaveActivity = function (activity_id) {
+    UnsaveActivity.unsaveActivity(activity_id);
   }
 
 }
