@@ -1,6 +1,6 @@
-<div class="list card" ng-repeat="activity in activities">
+<div class="list card gray" ng-repeat="activity in activities">
   <div ng-controller="showActivityController">
-    <div class="item item-avatar gray" ng-click="navigateToActivity(activity)">
+    <div class="item item-avatar" ng-click="navigateToActivity(activity)">
       <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
       <h2 class="activity_title">{{activity.user.name}}</h2>
       <p ng-repeat="interest in activity.user.interests">
@@ -9,14 +9,14 @@
       <p>{{activity.created_at}}</p>
     </div>
 
-    <div class="item item-body gray">
+    <div class="item item-body">
       <span class="difficulty-icon">
         <span class="activity-category">{{activity.category}}</span>
         <i class="icon ion-ios-ionic-outline" ng-if="activity.difficulty === 1"></i>
         <i class="icon ion-ios-ionic" ng-if="activity.difficulty === 2"></i>
         <i class="icon ion-social-angular" ng-if="activity.difficulty === 3"></i>
       </span>
-      <div class="item gray card item-inner" ng-click="navigateToActivity(activity)">
+      <div class="item card item-inner" ng-click="navigateToActivity(activity)">
         <display-first-image images_for="{{activity}}"></display-first-image>
         <div class="padding">
           <h3>{{activity.title}}</h3>
