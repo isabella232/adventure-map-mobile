@@ -87,7 +87,7 @@ function showActivityController($scope,
       }
     })
   };
-
+  
   $scope.nextSlide = function (index) {
     $ionicSlideBoxDelegate.slide(index);
   };
