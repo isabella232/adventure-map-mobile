@@ -131,7 +131,6 @@ angular.module('adventureMap.services', [])
         // Set default filter
         if ($scope.activityData.filters.default) {
           $scope.activityData.filters.default = false;
-          $scope.activityData.filters.stars = $scope.stars;
           $localStorage.defaultFilter = $scope.activityData.filters;
           $localStorage.defaultFilter.category = $scope.activityData.filters.category;
         }
