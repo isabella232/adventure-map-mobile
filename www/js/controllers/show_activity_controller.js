@@ -71,14 +71,9 @@ function showActivityController($scope,
   };
 
   $scope.followUser = function (userId) {
-    $ionicLoading.show({
-      template: 'Following user...'
-    });
     Follow.save({user_id: userId}, function (response) {
       $ionicLoading.hide();
       if (response.status === 'success') {
-        console.log('user followed');
-        getActivity(activityId);
       } else {
         console.log(response);
         $ionicPopup.alert({
@@ -87,7 +82,20 @@ function showActivityController($scope,
       }
     })
   };
-  
+
+  $scope.unfollowUser = function (userId) {
+    Follow.delete({id: userId}, function (response) {
+      if (response.status === 'success') {
+        console.log('user deleted, hopefully');
+      } else {
+        console.log(response);
+        $ionicPopup.alert({
+          title: 'User could not be unfollowed.'
+        })
+      }
+    })
+  };
+
   $scope.nextSlide = function (index) {
     $ionicSlideBoxDelegate.slide(index);
   };

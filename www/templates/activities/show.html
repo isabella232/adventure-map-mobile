@@ -77,14 +77,14 @@
               </span>
             </div>
           </div>
-          <div class="col blue" ng-if=activity.user.following>
+          <div class="col blue" ng-if=activity.user.following ng-click="unfollowUser(activity.user.id); activity.user.following = !activity.user.following; activity.user.followers_count = activity.user.followers_count - 1">
               <span class="count-icon">
               <i class="icon ion-person card-bottom"></i>
                 <span class="count-span">{{activity.user.followers_count}}</span>
                 <p>Following</p>
               </span>
           </div>
-          <div class='col' ng-if=!activity.user.following ng-click="followUser(activity.user.id)">
+          <div class='col' ng-if=!activity.user.following ng-click="followUser(activity.user.id); activity.user.following = !activity.user.following; activity.user.followers_count = activity.user.followers_count + 1">
             <span class="count-icon">
               <i class="icon ion-person card-bottom"></i>
               <span class="count-span">{{activity.user.followers_count}}</span>

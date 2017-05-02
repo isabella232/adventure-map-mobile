@@ -22,8 +22,9 @@ angular.module('adventureMap.services', [])
   })
 
   .factory('Follow', function ($resource, API_URL) {
-    return $resource(API_URL + '/follows', {}, {
-      save: {method: 'POST'}
+    return $resource(API_URL + '/follows/:id', {id: '@id'}, {
+      save: {method: 'POST'},
+      delete: { method: 'DELETE' }
     });
   })
 
@@ -48,7 +49,7 @@ angular.module('adventureMap.services', [])
   .factory('MyFollowers', function($resource, API_URL) {
     return $resource(API_URL + '/follows', {request: '@request'}, {
       get: { method: 'GET' }
-    })
+    });
   })
 
   .factory('LikeActivity', function(Like) {
