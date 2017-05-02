@@ -1,4 +1,14 @@
-function authController($scope, $auth, $ionicLoading, $state, $rootScope, $localStorage, API_URL, CATEGORY_WORDS, $ionicHistory, $ionicModal) {
+function authController($scope,
+                        $auth,
+                        $ionicLoading,
+                        $state,
+                        $localStorage,
+                        API_URL,
+                        CATEGORY_WORDS,
+                        $ionicHistory,
+                        $ionicModal,
+                        $ionicPopup)
+{
   $scope.credentials = {};
   $scope.signupForm = {};
   $scope.errorMessage = null;
@@ -32,8 +42,6 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
     storeUser();
     // The server expects a string and returns a string (instead of an array)
     console.dir($scope.signupForm);
-    // Store activity preferences in default filter.
-    $localStorage.defaultFilter.category = $scope.signupForm.category;
     $auth.getConfig().apiUrl = API_URL;
     $ionicLoading.show({
       template: 'Signing up...'
@@ -46,7 +54,12 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
         $ionicLoading.hide();
       })
       .catch(function (response) {
+        console.log(response);
+        $ionicPopup.alert({
+          title: response.data.errors.full_messages
+        })
         $ionicLoading.hide();
+        $scope.activitiesModal.hide();
         $scope.errorMessage = response.data.errors.full_messages.toString();
       })
   };
@@ -133,5 +146,14 @@ function authController($scope, $auth, $ionicLoading, $state, $rootScope, $local
     $localStorage.user = $scope.user;
     console.log('storing user');
     console.log($localStorage.user);
+
+    // Set default filter
+    $localStorage.defaultFilter = [];
+    $localStorage.defaultFilter.category = $scope.signupForm.category;
+    $localStorage.defaultFilter.difficulty1 = true;
+    $localStorage.defaultFilter.difficulty2 = true;
+    $localStorage.defaultFilter.difficulty3 = true;
+    $localStorage.defaultFilter.follow = true;
+
   }
 }
