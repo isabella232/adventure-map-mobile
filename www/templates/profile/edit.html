@@ -1,0 +1,68 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="editProfileModal.hide()">
+        Cancel
+      </button>
+    </div>
+    <h1 class="title">Update Profile</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="updateProfile()">
+        Update
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="has-header">
+    <div class="list">
+      <p ng-repeat="error in errors">{{error}}</p>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="{{user.first}}" ng-model="user.name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Nickname</span>
+        <input type="text" placeholder="{{user.nickname  || 'Enter a nickname'}}" ng-model="user.nickname">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Email</span>
+        <input type="text" placeholder="{{user.email}}" ng-model="user.email">
+      </label>
+      <label class="item item-input item-floating-label textarea">
+        <span class="input-label">Description</span>
+        <textarea placeholder="{{user.description || 'Enter a description'}}" rows="6" ng-model="user.description" style="resize: none;"></textarea>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">City</span>
+        <input type="text" placeholder="{{user.city || 'City'}}" ng-model="user.city">
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Gender
+        </div>
+      <select ng-model="user.gender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Birthday</span>
+        <input type="text" placeholder="{{user.birthday || 'Birthday'}}" ng-model="user.date_of_birth">
+      </label>
+      <div class="item item-divider">
+        Interests
+      </div>
+      <div class="item item-input wrap-label">
+        <ion-list ng-repeat="icon in category_icons" class="margin-10" >
+          <div class="row" ng-click="activityData.filters.category[$index + 1] = !activityData.filters.category[$index + 1];">
+            <div>
+              <img class="menu-icon" ng-src="{{icon}}"  ng-if="activityData.filters.category[$index + 1]">
+              <img class="menu-icon menu-icon-unselected" ng-src="{{icon}}" ng-if="!activityData.filters.category[$index + 1]" ng-model="user.interest_list[$index]">
+            </div>
+          </div>
+        </ion-list>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -120,6 +120,12 @@ angular.module('adventureMap.services', [])
     }
   })
 
+  .factory('User', function($resource, API_URL) {
+    return $resource(API_URL + '/auth', {user: '@user'}, {
+      update: {method: 'PUT'}
+    })
+  })
+
   .factory('Filters', function ($localStorage) {
     return {
       applyFilters: function ($scope) {
