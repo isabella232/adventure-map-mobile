@@ -23,6 +23,8 @@
       </div>
     </div>
 
-    <button class="button action-button button-block button-balanced" ng-click="signup()">SIGN UP</button>
+    <button class="button action-button button-block button-balanced" ng-if="user.provider !== 'facebook'" ng-click="signup()">SIGN UP</button>
+    <button class="button action-button button-block button-balanced" ng-if="user.provider === 'facebook'" ng-click="updateFacebookUser()">FINISH SIGN UP</button>
+
   </ion-content>
 </ion-view>

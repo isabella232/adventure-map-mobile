@@ -5,6 +5,7 @@ function authController($scope,
                         $localStorage,
                         API_URL,
                         CATEGORY_WORDS,
+                        User,
                         $ionicHistory,
                         $ionicModal,
                         $ionicPopup)
@@ -95,6 +96,22 @@ function authController($scope,
     $scope.signupForm.interest_list = tempArray.join(', ');
   };
 
+  $scope.updateFacebookUser = function () {
+    translateActivityArray();
+    console.log($scope.signupForm.interest_list);
+    $localStorage.user.interest_list = $scope.signupForm.interest_list;
+    $scope.user.interest_list = $scope.signupForm.interest_list.split(', ');
+    storeUser();
+    // Put interest list to server.
+    User.update($scope.user, function (resp) {
+      if (resp.status === 'success') {
+        console.log(resp)
+        $state.go('app.activities');
+        $scope.activitiesModal.hide()
+      }
+    })
+  }
+
   $scope.facebookSignIn = function () {
     $auth.signOut();
     $auth.getConfig().apiUrl = API_URL.replace(/^https:\/\//i, 'http://');
@@ -105,12 +122,13 @@ function authController($scope,
     $auth.authenticate('facebook')
       .then(function (response) {
         $auth.validateUser().then(function (resp) {
-          console.log('validateUser');
           storeUser();
-          console.log(resp)
         });
-        // This needs to be updated to send FB users through activity selection as well.
-        $state.go('app.activities');
+        if($scope.user.interest_list === undefined || $scope.user.interest_list === []) {
+          $scope.getActivitySelection();
+        } else {
+          $state.go('app.activities');
+        }
         $ionicLoading.hide();
       })
       .catch(function (ev, response) {

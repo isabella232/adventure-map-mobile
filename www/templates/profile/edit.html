@@ -55,10 +55,10 @@
       </div>
       <div class="item item-input wrap-label">
         <ion-list ng-repeat="icon in category_icons" class="margin-10" >
-          <div class="row" ng-click="activityData.filters.category[$index + 1] = !activityData.filters.category[$index + 1];">
+          <div class="row" ng-click="user.interest_list_booleans[$index] = !user.interest_list_booleans[$index];">
             <div>
-              <img class="menu-icon" ng-src="{{icon}}"  ng-if="activityData.filters.category[$index + 1]">
-              <img class="menu-icon menu-icon-unselected" ng-src="{{icon}}" ng-if="!activityData.filters.category[$index + 1]" ng-model="user.interest_list[$index]">
+              <img class="menu-icon" ng-src="{{icon}}"  ng-if="user.interest_list_booleans[$index]">
+              <img class="menu-icon menu-icon-unselected" ng-src="{{icon}}" ng-if="!user.interest_list_booleans[$index]">
             </div>
           </div>
         </ion-list>
