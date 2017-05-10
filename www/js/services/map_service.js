@@ -8,11 +8,8 @@ angular.module('adventureMap.mapService', [])
 
     var watch = null;
     var markers = [];
-
-    var token = '92d5a97a6b85449f224b30aa589095f5'
-    var wmtsUrl = 'https://api.lantmateriet.se/open/topowebb-ccby/v1/wmts/token/' + token
-      + '/?service=wmts&request=GetTile&version=1.0.0&LAYER=topowebb&style=default&'
-      + 'tilematrixset=3006&tilematrix={z}&tilerow={y}&tilecol={x}&format=image%2Fpng';
+    
+    var wmtsUrl = 'https://lacunaserver.se/mapproxy/wmts/combined_sweden/grid_sweden/{z}/{x}/{y}.png';
 
     // Service methods
     var startTrackingFunction = function (lat, long, map) {
