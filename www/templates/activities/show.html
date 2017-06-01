@@ -1,19 +1,18 @@
 <ion-view class="activity-show">
   <ion-nav-title> {{ activity.title }}</ion-nav-title>
 
-  <ion-content class="padding has-header gray">
+  <ion-content class="has-header gray">
     <div class="list card">
       <div class="item item-avatar">
         <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
         <h2 class="activity_title">{{activity.user.name}}</h2>
-        <p ng-repeat="interest in activity.user.interests">
-          <i class="mybadge badge-royal">{{interest.name}}</i>
-        </p>
-        <p>{{activity.created_at}}</p>
+        <span class="activity-category">{{activity.category}}</span>
+        <!--
+                <p>{{activity.created_at}}</p>
+        -->
       </div>
       <div class="item item-body">
         <span class="difficulty-icon">
-          <span class="activity-category">{{activity.category}}</span>
           <i class="icon ion-ios-ionic-outline" ng-if="activity.difficulty === 1"></i>
           <i class="icon ion-ios-ionic" ng-if="activity.difficulty === 2"></i>
           <i class="icon ion-social-angular" ng-if="activity.difficulty === 3"></i>
@@ -48,6 +47,7 @@
               </span>
             </div>
           </div>
+
           <div ng-if=!activity.user.likes
                ng-click="likeActivity(activity.id, $event); activity.user.likes = !activity.user.likes; activity.likes_count = activity.likes_count + 1;">
             <div class='col'>
@@ -58,8 +58,7 @@
               </span>
               <!--<img src="img/icons/like.svg"> This is the icon sent by Morgan -->
             </div>
-          </div>
-          <div class='col'>
+
             <div class="blue" ng-if=activity.user.saves
                  ng-click="unsaveActivity(activity.id); activity.user.saves = !activity.user.saves; activity.saves_count = activity.saves_count - 1;">
               <span class="count-icon">
@@ -68,6 +67,7 @@
                 <p>Saved</p>
               </span>
             </div>
+
             <div ng-if=!activity.user.saves
                  ng-click="saveActivity(activity.id); activity.user.saves = !activity.user.saves; activity.saves_count = activity.saves_count + 1;">
               <span class="count-icon">
@@ -76,37 +76,40 @@
                 <p>Save</p>
               </span>
             </div>
-          </div>
-          <div class="col blue" ng-if=activity.user.following ng-click="unfollowUser(activity.user.id); activity.user.following = !activity.user.following; activity.user.followers_count = activity.user.followers_count - 1">
+
+            <div class="col blue" ng-if=activity.user.following ng-click="unfollowUser(activity.user.id); activity.user.following = !activity.user.following; activity.user.followers_count = activity.user.followers_count - 1">
               <span class="count-icon">
               <i class="icon ion-person card-bottom"></i>
                 <span class="count-span">{{activity.user.followers_count}}</span>
                 <p>Following</p>
               </span>
-          </div>
-          <div class='col' ng-if=!activity.user.following ng-click="followUser(activity.user.id); activity.user.following = !activity.user.following; activity.user.followers_count = activity.user.followers_count + 1">
+            </div>
+
+            <div class='col' ng-if=!activity.user.following ng-click="followUser(activity.user.id); activity.user.following = !activity.user.following; activity.user.followers_count = activity.user.followers_count + 1">
             <span class="count-icon">
               <i class="icon ion-person card-bottom"></i>
               <span class="count-span">{{activity.user.followers_count}}</span>
               <p>Follow {{activity.user.name}}</p>
             </span>
-          </div>
-          <div class='col' ng-click="openCommentBox(activity.id)">
+            </div>
+
+            <div class='col' ng-click="openCommentBox(activity.id)">
             <span class="count-icon">
               <i class="icon ion-chatboxes card-bottom"></i>
               <span class="count-span">{{activity.comments_count}}</span>
               <p>Make a Comment</p>
             </span>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-    <div class="comment-list comments" ng-repeat="comment in activity.comments">
-      <div class="comment-user">{{comment.user.name}}:</div>
-      <div class="comment-body">
-        {{comment.body}}
+      <div class="comment-list comments" ng-repeat="comment in activity.comments">
+        <div class="comment-user">{{comment.user.name}}:</div>
+        <div class="comment-body">
+          {{comment.body}}
+        </div>
+        <div class="comment-date">{{comment.created_at}}</div>
       </div>
-      <div class="comment-date">{{comment.created_at}}</div>
-    </div>
   </ion-content>
 </ion-view>
