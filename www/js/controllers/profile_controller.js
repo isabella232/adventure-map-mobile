@@ -76,6 +76,13 @@ function profileController ($scope,
     })
   }
 
+  $scope.showFollows = function (request) {
+    $ionicPlatform.ready(function () {
+      // $window.location.reload(true);
+      showFollows(request)
+    })
+  }
+
   showSavedActivities = function () {
     $ionicLoading.show({
       template: 'Getting my saved activities...'
@@ -95,13 +102,6 @@ function profileController ($scope,
       }
     }, function (resp) {
       $ionicLoading.hide()
-    })
-  }
-
-  $scope.showFollows = function (request) {
-    $ionicPlatform.ready(function () {
-      // $window.location.reload(true);
-      showFollows(request)
     })
   }
 

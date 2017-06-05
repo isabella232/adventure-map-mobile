@@ -1,22 +1,29 @@
 <ion-view title="Users I Follow" ng-init="showFollows('followings')">
   <!-- ion-nav-title provides the back button -->
-  <ion-nav-title> Users I Follow</ion-nav-title>
+  <ion-nav-title>My Connections</ion-nav-title>
 
-  <ion-content>
-    <ion-list class="profile-list">
-      <div ng-repeat="following in myFollow">
-        <div class="item item-divider smaller-profile-divider"></div>
-        <ion-item class="item item-icon-right list-item height-50" ui-sref="user.show">
-          <!-- should link to user's profile page -->
-          <span class="main-text">{{following.name}}
-          <span class="badge icon-badge">
-            <img ng-src="{{othersProfileImage($index)}}">
-          </span>
-          </span>
+  <div class="bar bar-subheader">
+    <div class="button-bar bar-follows">
+      <a class="button button-followings col-50" ng-click="showFollows('followings')">Following</a>
+      <a class="button button-followings col-50" ng-click="showFollows('followers')">Followers</a>
+    </div>
+  </div>
 
-          <i class="icon ion-ios-arrow-right"></i>
-        </ion-item>
-      </div>
-    </ion-list>
-  </ion-content>
+    <ion-content class="followings-list">
+      <ion-list class="profile-list">
+        <div ng-repeat="follow in myFollow">
+          <div class="item item-divider smaller-profile-divider"></div>
+          <ion-item class="item item-icon-right list-item height-50" ui-sref="user.show">
+            <!-- should link to user's profile page -->
+            <span class="main-text">{{follow.name}}
+            <span class="badge icon-badge">
+              <img ng-src="{{othersProfileImage($index)}}">
+            </span>
+            </span>
+
+            <i class="icon ion-ios-arrow-right"></i>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-content>
 </ion-view>
