@@ -12,7 +12,8 @@ function showActivityController($scope,
                                 UnlikeActivity,
                                 SaveActivity,
                                 UnsaveActivity,
-                                Utilities) {
+                                Utilities,
+                                MapService) {
 
   var activityId;
 
@@ -113,6 +114,28 @@ function showActivityController($scope,
     }
   }
 
+  function showSmallMap(lat, lng){
+    //var lat, long;
+    var srs_code = 'EPSG:3006';
+    var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
+    var crs = new L.Proj.CRS(srs_code, proj4def, {
+      resolutions: [
+        4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8
+      ],
+      origin: [-1200000.000000, 8500000.000000],
+      bounds: L.bounds([-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
+    });
+
+    var map = new L.Map('small-map', {
+      crs: crs,
+      continuousWorld: true,
+      zoomControl: false
+    });
+    map.setView([lat, lng], 10);
+    MapService.addToMap(lat, lng, map);
+  }
+
+
   function getActivity(id) {
     Activity.get({id: id}, function (response) {
       $scope.activity = response.data;
@@ -120,6 +143,8 @@ function showActivityController($scope,
       $scope.activity.routes = Utilities.sanitizeArrayFromNullObjects($scope.activity.routes);
       $scope.activity.waypoints = Utilities.sanitizeArrayFromNullObjects($scope.activity.waypoints);
       prepareComments();
+      console.log($scope.activity);
+      showSmallMap($scope.activity.coords.lat, $scope.activity.coords.lng)
 
     });
   }

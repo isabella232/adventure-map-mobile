@@ -106,6 +106,12 @@
   color: #fff;
 }
 
+.routes {
+  color: #4ea4be;
+  font-weight: bold;
+  padding-right: 5px;
+}
+
 
 /*****************
 PROFILE
@@ -306,7 +312,6 @@ COMMENTS
 
 
 .comment-user {
-  padding-top: 10px;
   color: #4ea4be;
   font-weight: bold;
 }
@@ -317,22 +322,20 @@ COMMENTS
 
 .comment-date {
   text-align: right;
-  font-size: 90%;
+  font-size: 65%;
   color: rgba(77, 77, 77, 0.52);
 }
 
-show-activity-feed {
-  .card {
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-  }
+.card {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
 
-  .col {
-    text-align: center;
-  }
+.col {
+  text-align: center;
+}
 
-  .white {
-    background-color: #FFFFFF;
-  }
+.white {
+  background-color: #FFFFFF;
 }

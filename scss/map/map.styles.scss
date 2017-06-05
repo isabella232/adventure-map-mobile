@@ -8,6 +8,11 @@ MAP
   z-index: 1;
 }
 
+#small-map {
+  width: 100%;
+  height: 200px;
+}
+
 #over_map {
   position: absolute;
   z-index: 2;
