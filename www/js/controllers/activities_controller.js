@@ -5,6 +5,7 @@ function activitiesController($scope,
                               $auth,
                               $ionicModal,
                               $ionicPopup,
+                              $cordovaGeolocation,
                               Activity,
                               ActivityDetail,
                               Filters,
@@ -215,6 +216,36 @@ function activitiesController($scope,
     }, function cameraError(error) {
       console.debug("Unable to obtain picture: " + error, "app");
     }, options);
+  };
+
+  $scope.setLocation = function(){
+    var posOptions = {
+      maximumAge: 30000,
+      timeout: 5000,
+      enableHighAccuracy: true // may cause errors if true
+    };
+
+    var geolocation = $cordovaGeolocation.getCurrentPosition(posOptions);
+
+
+    $ionicLoading.show({
+      template: 'Loading current location...'
+    });
+
+    geolocation.then(function (position) {
+      var lat = position.coords.latitude;
+      var long = position.coords.longitude;
+      console.log(lat + ', ' + long);
+      angular.extend($scope.activity, {lat: lat, lng: long});
+      console.log($scope.activity);
+
+      $ionicLoading.hide();
+    }, function (err) {
+      $ionicLoading.hide();
+      console.log(err);
+    });
+    $ionicLoading.hide();
+
   };
 
   function addImages(activityId) {

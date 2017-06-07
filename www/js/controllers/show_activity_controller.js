@@ -141,10 +141,10 @@ function showActivityController($scope,
       MapService.addToMap(lat, lng, map);
     }
     console.log($scope.activity);
-    if (typeof $scope.activity.routes !== 'undefined' && $scope.activity.routes !== null) {
+    if (typeof $scope.activity.routes.length !== 0) {
       showRoute($scope.activity, map);
     }
-    if (typeof $scope.activity.waypoints !== 'undefined' && $scope.activity.waypoints !== null) {
+    if (typeof $scope.activity.waypoints.length !== 0) {
       showWaypoint($scope.activity, map);
     }
   }
