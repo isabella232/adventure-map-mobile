@@ -4,8 +4,15 @@
   padding-top: 7px;
 }
 
-tab-item-active {
+.tab-item-active {
   padding-top: 7px;
+}
+
+.item-body {
+  overflow: auto;
+  padding: 0px;
+  text-overflow: inherit;
+  white-space: normal;
 }
 
 .eighty_percent {
@@ -320,7 +327,6 @@ COMMENTS
 
 
 .comment-user {
-  padding-top: 10px;
   color: #4ea4be;
   font-weight: bold;
 }
@@ -360,4 +366,33 @@ COMMENTS
 
 .followings-list {
   padding-top: 27px;
+}
+
+/**************
+SAVED ACTIVITIES
+ */
+
+div.title-div {
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
+div.date-div {
+  padding-top: 7px;
+  padding-left: 40px;
+}
+
+div.saved-body {
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+
+  h3 {
+    color: #46a3c2 !important;
+  }
+}
+
+div.arrow-div {
+  padding-top: 10px;
+  color: #46a3c2 !important;
 }

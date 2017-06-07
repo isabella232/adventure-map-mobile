@@ -5,6 +5,7 @@ function showActivityController($scope,
                                 $ionicLoading,
                                 $ionicSlideBoxDelegate,
                                 $ionicPopup,
+                                $http,
                                 Activity,
                                 Comment,
                                 Follow,
@@ -26,6 +27,9 @@ function showActivityController($scope,
 
   $scope.navigateToActivity = function (activity) {
     switch ($state.current.name) {
+      case 'app.my-saved-activities':
+        $state.go('app.profile-activity', {id: activity.id});
+        break;
       case 'app.activities':
         $state.go('app.activity', {id: activity.id});
         break;
@@ -114,13 +118,13 @@ function showActivityController($scope,
     }
   }
 
-  function showSmallMap(lat, lng){
+  function showSmallMap(lat, lng) {
     //var lat, long;
     var srs_code = 'EPSG:3006';
-    var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
+    var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs';
     var crs = new L.Proj.CRS(srs_code, proj4def, {
       resolutions: [
-        4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8
+        4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4
       ],
       origin: [-1200000.000000, 8500000.000000],
       bounds: L.bounds([-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
@@ -131,10 +135,65 @@ function showActivityController($scope,
       continuousWorld: true,
       zoomControl: false
     });
-    map.setView([lat, lng], 10);
-    MapService.addToMap(lat, lng, map);
+    //noinspection JSValidateTypes
+    if (typeof lat !== null && lng !== null) {
+      map.setView([lat, lng], 16);
+      MapService.addToMap(lat, lng, map);
+    }
+    console.log($scope.activity);
+    if (typeof $scope.activity.routes !== 'undefined' && $scope.activity.routes !== null) {
+      showRoute($scope.activity, map);
+    }
+    if (typeof $scope.activity.waypoints !== 'undefined' && $scope.activity.waypoints !== null) {
+      showWaypoint($scope.activity, map);
+    }
   }
 
+  function showRoute(activity, map) {
+    $http.get(activity.routes[0].file_attachment).success(function (response) {
+        var routeInfo = response;
+
+        console.log(routeInfo);
+        map.setView([routeInfo.route[0].lat, routeInfo.route[0].long], 32);
+        var polOptions = {
+          color: 'blue',
+          weight: 3,
+          opacity: 0.5,
+          smoothFactor: 1
+        };
+        var old_lat, old_long;
+        routeInfo.route.forEach(function (result, index, arr) {
+          if (arr.indexOf(result) == arr.indexOf(arr[0])) {
+            old_lat = result.lat;
+            old_long = result.long;
+          }
+          else {
+            old_lat = arr[index - 1].lat;
+            old_long = arr[index - 1].long;
+          }
+          var pointA = new L.LatLng(old_lat, old_long);
+          var pointB = new L.LatLng(result.lat, result.long);
+          var pointList = [pointA, pointB];
+
+          var polyline = new L.polyline(pointList, polOptions);
+          polyline.addTo(map);
+
+        })
+        MapService.addToMap(routeInfo.route[0].lat, routeInfo.route[0].long, map);
+      }
+    );
+  }
+
+
+  function showWaypoint(activity, map) {
+    $http.get(activity.waypoints[0].file_attachment).success(function (response) {
+        var waypointInfo = response;
+        map.setView([waypointInfo.route[0].lat, waypointInfo.route[0].long], 32);
+
+        MapService.addToMap(waypointInfo.route[0].lat, waypointInfo.route[0].long, map);
+      }
+    );
+  }
 
   function getActivity(id) {
     Activity.get({id: id}, function (response) {
@@ -144,7 +203,8 @@ function showActivityController($scope,
       $scope.activity.waypoints = Utilities.sanitizeArrayFromNullObjects($scope.activity.waypoints);
       prepareComments();
       console.log($scope.activity);
-      showSmallMap($scope.activity.coords.lat, $scope.activity.coords.lng)
+      showSmallMap($scope.activity.coords.lat, $scope.activity.coords.lng);
+
 
     });
   }

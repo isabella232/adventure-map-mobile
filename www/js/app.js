@@ -221,6 +221,16 @@ angular.module('adventureMap', [
           }
         }
       })
+      .state('app.profile-activity', {
+        url: '/profile/activities/:id',
+        cache: false,
+        views: {
+          'tab-profile-view': {
+            templateUrl: 'templates/activities/show.html',
+            controller: 'showActivityController'
+          }
+        }
+      })
       .state('app.edit-profile', {
         url: '/edit-profile',
         views: {

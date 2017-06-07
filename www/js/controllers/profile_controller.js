@@ -95,6 +95,7 @@ function profileController ($scope,
           if (a.created_at > b.created_at) return 1
           return 0
         })
+        console.log($scope.mySaves)
       } else {
         $ionicPopup.alert({
           title: resp.message[0]

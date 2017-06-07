@@ -1,9 +1,10 @@
 <ion-view title="My Saved Activities" ng-init="showSavedActivities()">
   <ion-nav-buttons side="right">
-    <button class="button button-icon icon ion-ios-plus-empty" ng-controller="activitiesController" ng-click="createModal.show()"></button>
+    <button class="button button-icon icon ion-ios-plus-empty"
+            ng-controller="activitiesController" ng-click="createModal.show()"></button>
   </ion-nav-buttons>
 
-  <ion-content class="gray">
-    <show-activity-feed activities="mySaves"></show-activity-feed>
+  <ion-content class="gray" activities="mySaves">
+    <show-saved-activities saved="mySaves"></show-saved-activities>
   </ion-content>
 </ion-view>

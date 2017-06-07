@@ -1,7 +1,7 @@
 function mapController($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform, MapService, FileService) {
   var lat, long;
   var srs_code = 'EPSG:3006';
-  var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs'
+  var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs';
   var crs = new L.Proj.CRS(srs_code, proj4def, {
     resolutions: [
       4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8
@@ -39,7 +39,7 @@ function mapController($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatfor
       var lat = $scope.currentLocation.coords.lat;
       var long = $scope.currentLocation.coords.long;
       console.log(lat + ', ' + long);
-      map.setView([lat, long], 13);
+      map.setView([lat, long], 16);
       MapService.addToMap(lat, long, map);
       $ionicLoading.hide();
     }, function (err) {

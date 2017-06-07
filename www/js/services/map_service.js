@@ -3,12 +3,12 @@ angular.module('adventureMap.mapService', [])
     var watchOptions = {
       maximumAge: 30000,
       timeout: 5000,
-      enableHighAccuracy: false // may cause errors if true
+      enableHighAccuracy: true // may cause errors if true
     };
 
     var watch = null;
     var markers = [];
-    
+
     var wmtsUrl = 'https://lacunaserver.se/mapproxy/wmts/combined_sweden/grid_sweden/{z}/{x}/{y}.png';
 
     // Service methods
@@ -38,7 +38,6 @@ angular.module('adventureMap.mapService', [])
       function onError(err) {
         console.log(err);
       }
-
       return route;
     };
 
