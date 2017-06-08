@@ -3,6 +3,7 @@ angular
   .directive("displayFirstImage", displayFirstImage)
   .directive('showActivityFeed', showActivityFeed)
   .directive('showSavedActivities', showSavedActivities)
+  .directive('showMyActivities', showMyActivities)
 
   .directive('preImg', function () {
     return {
@@ -87,6 +88,14 @@ function showSavedActivities() {
   const directive = {
     scope: {saved: '='},
     templateUrl: 'templates/directives/saved-activities.html'
+  };
+  return directive;
+}
+
+function showMyActivities() {
+  const directive = {
+    scope: {mine: '='},
+    templateUrl: 'templates/directives/my-activities.html'
   };
   return directive;
 }
