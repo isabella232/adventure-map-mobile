@@ -8,38 +8,33 @@
   </ion-header-bar>
   <ion-content class="auth-content" has-bouncing="false">
     <div class="content-wrapper">
-      <div class="row row-no-padding everything-but-legal">
+      <div class="row everything-but-legal">
         <div class="col">
-          <div class="row social-buttons-row">
-            <div class="col">
-              <button class="button button-block icon-left ion-social-facebook social-button facebook-button"
-                      ng-click="facebookSignIn()">
-                <span class="inner-text">Log in via Facebook</span>
-              </button>
-            </div>
-          </div>
           <form class="row form-container" novalidate>
             <div class="col">
-              <div class="list">
-                <div class="item item-divider">
-                  <span>or log in using email</span>
-                </div>
+              <div class="list log-in">
                 <div class="item item-divider" ng-if="errorMessage">
                   <span class="error-message" ng-bind="errorMessage"></span>
                 </div>
-                <label class="item item-input item-stacked-label">
-                  <span class="input-label">Email</span>
-                  <input type="email" placeholder="required" ng-model="credentials.email">
+                <label class="item item-input">
+                  <input type="email" placeholder="Email" ng-model="credentials.email">
                 </label>
-                <label class="item item-input item-stacked-label">
-                  <span class="input-label">Password</span>
-                  <input type="password" placeholder="required" ng-model="credentials.password">
+                <label class="item item-input">
+                  <input type="password" placeholder="Password" ng-model="credentials.password">
                 </label>
               </div>
               <button class="button action-button button-block button-balanced" ng-click="login()">LOGIN</button>
-              <div class="col alt-actions-container">
-                <a class="button button-clear button-small button-stable forgot-password-button">Forgot
+              <div class="col center">
+                <a class="button button-clear button-small forgot-password-button">Forgot
                   Password?</a>
+              </div>
+              <div class="row social-buttons-row">
+                <div class="col">
+                  <button class="button button-block icon-left ion-social-facebook social-button facebook-button"
+                          ng-click="facebookSignIn()">
+                    <span class="inner-text">Log in via Facebook</span>
+                  </button>
+                </div>
               </div>
             </div>
           </form>

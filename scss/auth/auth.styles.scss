@@ -3,8 +3,7 @@
   color: $auth-color;
 
   .auth-header {
-    background-color: $auth-header-bg !important;
-    background: $auth-header-bg !important;
+    background-color: transparent !important;
     border: none !important;
     background-size: 0px !important; // To remove bottom border on header
 
@@ -51,6 +50,7 @@
     padding-left: 0px;
     border: none;
     line-height: 47px;
+    margin-bottom: 0px;
 
     &.icon-left:before {
       padding: 3px 15px;
@@ -103,6 +103,7 @@
       border: none;
       padding: 0px;
       margin-bottom: 15px;
+      background-color: transparent;
 
       &:last-child {
         margin-bottom: 0px;
@@ -138,7 +139,12 @@
     }
 
     .alt-actions-container {
+      margin-top: 20px;
       text-align: center;
+    }
+    
+    .signup-fb {
+      color: #333;
     }
   }
 

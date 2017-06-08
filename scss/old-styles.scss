@@ -327,6 +327,7 @@ COMMENTS
 
 
 .comment-user {
+  padding-top: 10px;
   color: #4ea4be;
   font-weight: bold;
 }
@@ -366,6 +367,30 @@ COMMENTS
 
 .followings-list {
   padding-top: 27px;
+}
+
+/**************
+ SIGN UP
+*/
+
+.sign-up {
+  padding-top: 30px;
+}
+
+.log-in {
+  margin-bottom: 40px;
+}
+
+.black {
+  color: #333;
+}
+
+.login-button {
+  padding-left: 0px;
+}
+
+.forgot-password-button {
+  color: #333 !important;
 }
 
 /**************
