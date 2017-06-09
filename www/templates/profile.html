@@ -8,7 +8,7 @@
   <ion-content>
     <div class="row row-no-padding">
       <div class="col user-col">
-        <div class="user-image-container">
+        <div class="user-image-container" ng-controller="profileController" ng-click="selectAvatar()">
           <pre-img ratio="_1_1" helper-class="avatar-image">
             <img ng-src="{{profileImage()}}" spinner-on-load>
           </pre-img>

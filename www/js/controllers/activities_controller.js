@@ -80,6 +80,10 @@ function activitiesController($scope,
   $scope.setFilters = function () {
     // reset no-results-found message
     $scope.activityData.message = undefined;
+    // hard coding the difficulty settings for now since we removed them from the filtering panel
+    $scope.activityData.filters.difficulty1 = true;
+    $scope.activityData.filters.difficulty2 = true;
+    $scope.activityData.filters.difficulty3 = true;
     Filters.applyFilters($scope);
     $scope.filterModal.hide();
   };

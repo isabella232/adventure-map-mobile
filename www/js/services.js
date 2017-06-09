@@ -190,10 +190,10 @@ angular.module('adventureMap.services', [])
 
         // Show users a message instead of a blank screen if there are no activities that match their search.
         if ($scope.activityData.activityList.length === 0) {
-          $scope.activityData.message = 'Your search returned no results. Try adding some categories, difficulties or looking for activities from strangers.';
+          $scope.activityData.message = 'Your search returned no results. Try adding some categories';
         }
 
-        console.log('activities: ' + $scope.activityData.activityList.length);
+        //console.log('activities: ' + $scope.activityData.activityList.length);
 
       }
     };

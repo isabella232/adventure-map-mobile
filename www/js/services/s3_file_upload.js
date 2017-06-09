@@ -27,6 +27,7 @@ angular.module('adventureMap.s3FileUpload', [])
             cache: false, headers: { 'Content-Type' : file.type }
           }).then(
             function(response) {
+              console.log(response);
               response = {
                 message: 'File was successfully uploaded!',
                 public_url: resp.public_url,
