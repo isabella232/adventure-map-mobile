@@ -10,7 +10,6 @@
   }
 }
 
-
 .pre-img {
   position: relative;
   background-color: $pre-img-bg;
@@ -75,6 +74,11 @@ ion-spinner.spinner-on-load {
 
 .error-message {
   color: $assertive;
+}
+
+.success-message {
+  color: $balanced;
+  word-wrap: break-word;
 }
 
 .no-margin {

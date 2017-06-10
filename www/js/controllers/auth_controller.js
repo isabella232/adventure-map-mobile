@@ -8,10 +8,10 @@ function authController($scope,
                         User,
                         $ionicHistory,
                         $ionicModal,
-                        $ionicPopup)
-{
+                        $ionicPopup) {
   $scope.credentials = {};
   $scope.signupForm = {};
+
   $scope.errorMessage = null;
   if (!$localStorage.defaultFilter) {
     $localStorage.defaultFilter = {};
@@ -110,7 +110,7 @@ function authController($scope,
         $scope.activitiesModal.hide()
       }
     })
-  }
+  };
 
   $scope.facebookSignIn = function () {
     $auth.signOut();
@@ -124,7 +124,7 @@ function authController($scope,
         $auth.validateUser().then(function (resp) {
           storeUser();
         });
-        if($scope.user.interest_list === undefined || $scope.user.interest_list === []) {
+        if ($scope.user.interest_list === undefined || $scope.user.interest_list === []) {
           $scope.getActivitySelection();
         } else {
           $state.go('app.activities');
@@ -173,5 +173,25 @@ function authController($scope,
     $localStorage.defaultFilter.difficulty3 = true;
     $localStorage.defaultFilter.follow = true;
 
+  };
+
+
+  $scope.requestPassword = function () {
+    $scope.errorMessage = '';
+    $scope.successMessage = '';
+    $ionicLoading.show({
+      template: 'Requesting new password...'
+    });
+    $auth.requestPasswordReset($scope.credentials)
+      .then(function (response) {
+        console.log(response);
+        $scope.successMessage = response.data.message;
+        $ionicLoading.hide();
+      })
+      .catch(function (response) {
+        console.log(response)
+        $scope.errorMessage = response.data.errors.toString();
+        $ionicLoading.hide();
+      });
   }
 }
