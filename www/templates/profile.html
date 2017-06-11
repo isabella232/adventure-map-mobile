@@ -5,7 +5,7 @@
     </button>
   </ion-nav-buttons>
 
-  <ion-content>
+  <ion-content scroll="false">
     <div class="row row-no-padding">
       <div class="col user-col">
         <div class="user-image-container" ng-controller="profileController" ng-click="selectAvatar()">
@@ -34,14 +34,13 @@
       </div>
     </div>
     <ion-list class="profile-list">
-      <div class="item item-divider profile-divider"></div>
       <ion-item class="item item-icon-right list-item" ui-sref="app.my-saved-activities">
         <span class="main-text">Saved Activities</span>
         <span class="badge">{{user.counts.my_saved_activities}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
       <ion-item class="item item-icon-right list-item" ui-sref="app.my-activities">
-        <span class="main-text">My Activities</span>
+        <span class="main-text">Activities I Made</span>
         <span class="badge">{{user.counts.my_activities}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
@@ -55,14 +54,12 @@
         <span class="badge">{{files.length}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
-
     </ion-list>
-    <button class="button button-full button-outline button-assertive no-margin" ng-controller="authController"
-            ng-click="signOut()">
+
+    <button class="button button-full button-calm no-margin"
+            ng-controller="authController" ng-click="signOut()">
       Log Out
     </button>
 
-    <div class="item item-divider">
-    </div>
   </ion-content>
 </ion-view>
