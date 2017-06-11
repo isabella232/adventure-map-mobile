@@ -19,6 +19,8 @@
     "identicon.js": "identicon#^2.1.0",
     "ngstorage": "^0.3.11",
     "Proj4Leaflet": "proj4leaflet#^1.0.1",
-    "ionic-ion-horizontal-scroll-cards": "*"
+    "ionic-ion-horizontal-scroll-cards": "*",
+    "angular-translate": "^2.15.1",
+    "angular-translate-loader-static-files": "^2.15.1"
   }
 }

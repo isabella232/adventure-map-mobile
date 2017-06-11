@@ -8,7 +8,8 @@ function authController($scope,
                         User,
                         $ionicHistory,
                         $ionicModal,
-                        $ionicPopup) {
+                        $ionicPopup,
+                        $translate) {
   $scope.credentials = {};
   $scope.signupForm = {};
 
@@ -19,6 +20,10 @@ function authController($scope,
 
   $scope.skipIntro = function () {
     $state.go('intro.login');
+  };
+
+  $scope.switchLanguage = function (key) {
+    $translate.use(key);
   };
 
   $scope.login = function () {

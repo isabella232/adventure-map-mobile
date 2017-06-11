@@ -429,3 +429,12 @@ div.arrow-div {
   padding-top: 10px;
   color: #46a3c2 !important;
 }
+
+
+// Custom map icon
+
+.map-marker {
+  background-repeat: no-repeat;
+  background-position:center;
+  background-image: url('../img/icons/map-marker.svg');
+}

@@ -15,7 +15,8 @@ angular.module('adventureMap', [
     'ngCordova', 'ng-token-auth',
     'ngResource',
     'ngStorage',
-    'ionic.contrib.ui.hscrollcards'
+    'ionic.contrib.ui.hscrollcards',
+    'pascalprecht.translate'
   ])
   //.constant('API_URL', 'https://adventuremap-dev.herokuapp.com/api/v1')
   .constant('API_URL', 'http://adventuremap-dev.craftacademylabs.com/api/v1')
@@ -79,6 +80,10 @@ angular.module('adventureMap', [
 
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.backButton.icon('ion-ios-arrow-left').previousTitleText(false).text('');
+    $ionicConfigProvider.views.maxCache(0);                     // the default is 10
+    // $ionicConfigProvider.views.transition('none');
+    $ionicConfigProvider.views.transition('platform');           // platform, ios, android, none
+    $ionicConfigProvider.views.forwardCache(false);              // the default is false
   })
 
   .run(function ($ionicPlatform, $rootScope, $state) {
@@ -107,6 +112,22 @@ angular.module('adventureMap', [
         return true;
       }
     }
+  })
+
+  .config(function($translateProvider){
+    $translateProvider
+      .useStaticFilesLoader({
+        prefix: 'js/locales/',
+        suffix: '.json'
+      })
+      .registerAvailableLanguageKeys(['se', 'en'], {
+        'en' : 'en',
+        'se' : 'se'
+      })
+      .preferredLanguage('se')
+      .fallbackLanguage('se')
+      .determinePreferredLanguage()
+      .useSanitizeValueStrategy('escapeParameters');
   })
 
 
