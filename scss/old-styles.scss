@@ -397,6 +397,13 @@ COMMENTS
 SAVED ACTIVITIES
  */
 
+div.avatar img{
+  margin: 6px 6px 6px 6px;
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 50%;
+}
+
 div.title-div {
   padding-top: 5px;
   padding-left: 10px;

@@ -50,7 +50,6 @@ angular.module('adventureMap.fileService', [])
               $cordovaFile.readAsText(cordova.file.dataDirectory, entry.name)
                 .then(function (content) {
                   var fileContent = angular.fromJson(content);
-                  console.log("Reading file " + entry.name + ' ' + fileContent.createdAt);
                   files.push({
                     fileName: entry.name,
                     date: fileContent.createdAt
@@ -64,7 +63,6 @@ angular.module('adventureMap.fileService', [])
               $cordovaFile.readAsText(cordova.file.dataDirectory, entry.name)
                 .then(function (content) {
                   var fileContent = angular.fromJson(content);
-                  console.log("Reading file " + entry.name + ' ' + fileContent.createdAt);
                   if (fileContent.type === type){
                     files.push({
                       fileName: entry.name,

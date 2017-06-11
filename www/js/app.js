@@ -14,7 +14,8 @@ angular.module('adventureMap', [
     'adventureMap.utilities',
     'ngCordova', 'ng-token-auth',
     'ngResource',
-    'ngStorage'
+    'ngStorage',
+    'ionic.contrib.ui.hscrollcards'
   ])
   //.constant('API_URL', 'https://adventuremap-dev.herokuapp.com/api/v1')
   .constant('API_URL', 'http://adventuremap-dev.craftacademylabs.com/api/v1')
@@ -77,7 +78,7 @@ angular.module('adventureMap', [
   })
 
   .config(function ($ionicConfigProvider) {
-    $ionicConfigProvider.backButton.icon('ion-ios-arrow-back').previousTitleText(true);
+    $ionicConfigProvider.backButton.icon('ion-ios-arrow-left').previousTitleText(false).text('');
   })
 
   .run(function ($ionicPlatform, $rootScope, $state) {
@@ -223,6 +224,7 @@ angular.module('adventureMap', [
       })
       .state('app.profile', {
         url: '/profile',
+        cache: false,
         views: {
           'tab-profile-view': {
             templateUrl: 'templates/profile.html',

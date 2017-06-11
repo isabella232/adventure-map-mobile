@@ -39,6 +39,14 @@ function showActivityController($scope,
     }
   };
 
+  $scope.carouselOptions = {
+    carouselId    : 'image-carousel',
+    align         : 'right',
+    selectFirst   : true,
+    centerOnSelect: true,
+    template      : 'templates/partials/image-carousel.html'
+  };
+
   $scope.closeCommentModal = function () {
     $scope.comment_modal.hide();
     $scope.comment_modal.remove();
@@ -141,10 +149,10 @@ function showActivityController($scope,
       MapService.addToMap(lat, lng, map);
     }
     console.log($scope.activity);
-    if (typeof $scope.activity.routes.length !== 0) {
+    if ($scope.activity.routes.length !== 0) {
       showRoute($scope.activity, map);
     }
-    if (typeof $scope.activity.waypoints.length !== 0) {
+    if ($scope.activity.waypoints.length !== 0) {
       showWaypoint($scope.activity, map);
     }
   }
