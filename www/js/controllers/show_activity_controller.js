@@ -128,24 +128,30 @@ function showActivityController($scope,
 
   function showSmallMap(lat, lng) {
     //var lat, long;
-    var srs_code = 'EPSG:3006';
-    var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs';
-    var crs = new L.Proj.CRS(srs_code, proj4def, {
-      resolutions: [
-        4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4
-      ],
-      origin: [-1200000.000000, 8500000.000000],
-      bounds: L.bounds([-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
-    });
+    var posOptions = {
+      maximumAge: 30000,
+      timeout: 5000,
+      enableHighAccuracy: true
+    };
 
-    var map = new L.Map('small-map', {
-      crs: crs,
+    map = new L.Map('small-map', {
       continuousWorld: true,
       zoomControl: false
     });
+
+    var mapproxyUrl = 'https://lacunaserver.se/mapproxy/service?';
+    baseMaps = {
+      combined_sweden: L.tileLayer.wms(mapproxyUrl,
+        {
+          layers: 'combined_sweden',
+          transparent: true,
+          format: 'image/png',
+          attribution: "<a href='http://adventuremap.se'>AdventureMap</a>"
+        }).addTo(map)
+    };
     //noinspection JSValidateTypes
     if (typeof lat !== null && lng !== null) {
-      map.setView([lat, lng], 16);
+      map.setView([lat, lng], 13);
       MapService.addToMap(lat, lng, map);
     }
     console.log($scope.activity);

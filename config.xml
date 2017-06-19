@@ -2,19 +2,22 @@
 <widget id="com.ionicframework.adventuremapmobile649822" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>adventure-map-mobile</name>
   <description>
-        An Ionic Framework and Cordova project.
+       AdventureMap - An Ionic Framework and Cordova project.
     </description>
   <author email="you@example.com" href="http://example.com/">
-      Your Name Here
+      Thomas Ochman
     </author>
-  <content src="index.html"/>
-  <access origin="*"/>
+  <content src="http://192.168.1.216:8100" original-src="index.html"/>
+  <access origin="*" allows-arbitrary-loads-in-media="true" allows-arbitrary-loads-in-web-content="true" allows-local-networking="true"/>
   <allow-navigation href="*"/>
   <allow-navigation href="http://192.168.1.216:8100"/>
+  <allow-navigation href="http://130.229.148.131:8100"/>
+  <allow-navigation href="http://192.168.0.13:8100"/>
+  <allow-navigation href="http://172.20.10.2:8100"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
-  <preference name="SplashScreenDelay" value="7000"/>
+  <preference name="SplashScreenDelay" value="4000"/>
   <preference name="FadeSplashScreenDuration" value="2000"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>

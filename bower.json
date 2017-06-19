@@ -21,6 +21,9 @@
     "Proj4Leaflet": "proj4leaflet#^1.0.1",
     "ionic-ion-horizontal-scroll-cards": "*",
     "angular-translate": "^2.15.1",
-    "angular-translate-loader-static-files": "^2.15.1"
+    "angular-translate-loader-static-files": "^2.15.1",
+    "leaflet-providers": "^1.1.15",
+    "leaflet.markercluster": "^1.0.5",
+    "what-input": "^4.1.3"
   }
 }

@@ -84,6 +84,8 @@ angular.module('adventureMap', [
     // $ionicConfigProvider.views.transition('none');
     $ionicConfigProvider.views.transition('platform');           // platform, ios, android, none
     $ionicConfigProvider.views.forwardCache(false);              // the default is false
+    $ionicConfigProvider.tabs.position('bottom');                // other values: top
+
   })
 
   .run(function ($ionicPlatform, $rootScope, $state) {

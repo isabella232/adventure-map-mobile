@@ -1,32 +1,60 @@
-function mapController($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform, MapService, FileService) {
+function mapController($scope,
+                       $http,
+                       $cordovaGeolocation,
+                       $ionicLoading,
+                       $ionicPlatform,
+                       MapService,
+                       FileService) {
   var lat, long;
-  var srs_code = 'EPSG:3006';
-  var proj4def = '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs';
-  var crs = new L.Proj.CRS(srs_code, proj4def, {
-    resolutions: [
-      4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8
-    ],
-    origin: [-1200000.000000, 8500000.000000],
-    bounds: L.bounds([-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
-  });
 
   $scope.inProgress = false;
   $scope.currentRoute = [];
   $scope.hasRecording = false;
+  $scope.hasFilters = false;
+
+  $scope.openFilters = function (value) {
+    $scope.hasFilters = value === false;
+    $scope.entries = null === false;
+  };
+
+  $scope.performSearch = function (term) {
+    if (term.length >= 3) {
+      $http.get('http://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + term).then(function (result) {
+        $scope.entries = result.data;
+        angular.element(document.getElementsByClassName("results")).removeClass('hidden')
+      });
+    }
+  };
+
 
   $ionicPlatform.ready(function () {
     // called when ready
     var posOptions = {
       maximumAge: 30000,
       timeout: 5000,
-      enableHighAccuracy: false
+      enableHighAccuracy: true
     };
 
     map = new L.Map('map-container', {
-      crs: crs,
       continuousWorld: true,
       zoomControl: false
     });
+
+    var mapproxyUrl = 'https://lacunaserver.se/mapproxy/service?';
+    baseMaps = {
+      combined_sweden: L.tileLayer.wms(mapproxyUrl,
+        {
+          layers: 'combined_sweden',
+          transparent: true,
+          format: 'image/png',
+          attribution: "<a href='http://adventuremap.se'>AdventureMap</a>"
+        }).addTo(map)
+    };
+
+
+    L.control.scale({
+      imperial: false
+    }).addTo(map);
 
     const geolocation = $cordovaGeolocation.getCurrentPosition(posOptions);
 
@@ -39,11 +67,15 @@ function mapController($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatfor
       var lat = $scope.currentLocation.coords.lat;
       var long = $scope.currentLocation.coords.long;
       console.log(lat + ', ' + long);
-      map.setView([lat, long], 16);
+      map.setView([lat, long], 12);
       MapService.addToMap(lat, long, map);
+      MapService.addClusters(map);
       $ionicLoading.hide();
     }, function (err) {
-      console.log(err);
+      $ionicLoading.hide().then(function () {
+        console.log(err);
+
+      });
     });
   });
 
@@ -89,6 +121,12 @@ function mapController($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatfor
     if (window.cordova) {
       FileService.saveToFile($scope.currentLocation.timestamp, $scope.currentLocation.coords, 'Waypoint');
     }
+  };
+
+  $scope.navigateTo = function(coords){
+    map.panTo([coords.lat, coords.long], {animate: true, duration: 1.5});
+    MapService.addToMap(coords.lat, coords.long, map);
+    angular.element(document.getElementsByClassName("results")).addClass('hidden')
   };
 
   function setCurrentLocation(position) {

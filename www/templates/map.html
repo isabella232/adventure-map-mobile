@@ -1,8 +1,35 @@
-<ion-view title="AdventureMap">
+<ion-view>
+  <ion-nav-buttons side="left">
+    <div class="bar bar-header item-input-inset" ng-if="hasFilters">
+      <label class="item-input-wrapper textbox-search">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="{{ 'SEARCH' | translate }}" ng-model="search.term"
+               ng-change="performSearch(search.term)">
+      </label>
+
+    </div>
+  </ion-nav-buttons>
+  <ion-nav-title ng-show="!hasFilters">
+    AdventureMap
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <a data-tap-disabled="true" class=" button button-icon icon positive" ng-click="openFilters(hasFilters);"
+       ng-class="{'ion-ios-search':!hasFilters,'ion-ios-close-outline':hasFilters}"></a>
+  </ion-nav-buttons>
+
   <div id="map-container"></div>
+  <div id="search-results" ng-show="entries.length >= 0">
+    <ul class="results">
+      <li ng-repeat="location in entries"
+          data-lat="{{ location.lat }}"
+          data-long="{{ location.lon }}"
+      ng-click="navigateTo({lat: location.lat, long: location.lon })">{{ location.display_name }}</li>
+    </ul>
+  </div>
   <div id="over-map">
     <div class="filter-btn">
-      <button class="button button-clear button-small" ng-click="startTracking()" ng-disabled="inProgress || hasRecording">
+      <button class="button button-clear button-small" ng-click="startTracking()"
+              ng-disabled="inProgress || hasRecording">
         <i class="ion-plus-circled"></i>
       </button>
       <button class="button button-clear button-small" ng-click="addWaypoint()" ng-disabled="inProgress">
