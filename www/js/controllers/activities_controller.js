@@ -16,10 +16,12 @@ function activitiesController($scope,
                               CATEGORY_ICONS,
                               CATEGORY_WORDS) {
 
+
   setState();
   $scope.activity = {};
   $scope.uploadedImages = [];
   $scope.uploadedFiles = [];
+
 
   $ionicModal.fromTemplateUrl('templates/activities/filter_modal.html', {
     scope: $scope,

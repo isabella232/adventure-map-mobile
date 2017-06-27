@@ -1,6 +1,7 @@
 <div class="list card" ng-repeat="activity in activities">
   <div ng-controller="showActivityController">
 
+
     <div class="item item-avatar" ng-click="navigateToActivity(activity)">
       <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
       <h2 class="activity_title">{{activity.user.name}}</h2>
