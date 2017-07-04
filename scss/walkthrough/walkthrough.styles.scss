@@ -5,180 +5,126 @@
 }
 
 .walkthrough-view {
-  .intro-header {
-    background-color: $walkthrough-slider-bg !important;
-    background: $walkthrough-slider-bg !important;
-    border: none !important;
-    background-size: 0px !important; // To remove bottom border on header
-
-    .buttons {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      bottom: 5px;
-    }
-
-    .skip-button {
-      color: $walkthrough-color;
-      font-size: 14px;
-    }
-  }
-
   .intro-content {
     margin: 0px;
     padding: 0px;
-
     .scroll {
       height: 100%;
     }
   }
-
   .slider-row {
-    height: $walkthrough-slider-height;
+    height: 92%;
     margin: 0px;
-    background: $walkthrough-slider-bg;
-
-    & > .col {
+    background: $walkthrough-slider-bg; // background-image: linear-gradient(110deg, #37ecba 0%, #72afd3 100%);
+    background-image: url('../img/activity_images/forest-dark-map.jpg');
+    background-image: url('../img/activity_images/forest-darker.jpg'); // background-image: url('../img/activity_images/mapbg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    &>.col {
       height: 100%;
     }
-
     .intro-slider {
       height: 100%;
-
       .slide-row {
-        height: 100%;
         position: relative;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
       }
-
       .slide-title {
-        text-align: center;
+        font-size: 39px;
         font-weight: 400;
-        color: $walkthrough-color;
-        font-size: 42px;
+        position: relative;
+        margin: 7px 0 25px 0;
+        text-align: center;
+        color: $walkthrough-textcolor;
+        &:after {
+          position: absolute;
+          right: 0;
+          bottom: -11px;
+          left: 0;
+          display: inline-block;
+          width: 30%;
+          height: 1px;
+          margin: auto;
+          content: '';
+          background-color: #FFF;
+          background-image: linear-gradient(120deg, $green 0%, $blue 100%);
+        }
       }
-
       .slide-heading {
-        @extend .slide-title;
         font-size: 32px;
-
         position: absolute;
-        @include position(40%, 5%, 90%);
+        @extend .slide-title;
+        @include position(40%,
+        5%,
+        90%);
       }
-
       .slide-sub-title {
-        @extend .slide-title;
+        font-size: 24px;
         font-weight: 300;
-        font-size: 20px;
-
-        position: absolute;
-        @include position(25%, 5%, 90%);
+        max-width: 80%;
+        margin: auto;
+        text-align: center;
+        color: $walkthrough-textcolor;
       }
-
-      .slide-text {
-        @extend .slide-title;
-        font-weight: 300;
-        font-size: 14px;
-
-        position: absolute;
-        @include position(18%, 5%, 90%);
-      }
-
       .slide-1 {
         .logo-image-container {
           width: 35%;
-          margin: 8% auto 0px;
+          margin: 27% auto 0px;
         }
-
         .logo-image {
           &.pre-img {
             border-radius: 8px;
           }
-
           img {
             width: 100%;
           }
         }
       }
-
-      .slide-2,
-      .slide-3,
-      .slide-4 {
-        .slide-image-container {
-          width: 35%;
-          margin: 8% auto 0px;
-        }
-
-        .slide-image {
-          img {
-            width: 100%;
-          }
+      .slide-image-container {
+        width: 35%;
+        margin: 27% auto 0px;
+      }
+      .slide-image {
+        img {
+          width: 100%;
         }
       }
     }
-
     .slider-pager {
+      bottom: 20px;
       height: initial;
-      bottom: 10px;
-
       .slider-pager-page {
-        color: $walkthrough-slider-pager-color;
-        margin: 0px 4px;
         width: 10px;
-
+        margin: 0px 7px;
+        color: #FFFFFF;
         .icon {
-          font-size: 10px;
+          font-size: 12px;
         }
       }
     }
   }
-
-  .actions-row {
-    height: $walkthrough-actions-height;
+  .buttons-row {
+    height: 8%;
     margin: 0px;
-    padding: 0px 5px;
-
-    .main-subtitle {
-      color: $walkthrough-color;
-      font-size: 15px;
-      font-weight: 300;
-      text-align: center;
-      margin: 0px;
-      line-height: 19px;
+    .button {
+      line-height: 54px;
+      min-height: 58px;
     }
-
-    .second-subtitle {
-      color: $walkthrough-subtitle-color;
-      font-size: 10px;
-      text-align: center;
-      margin: 0px;
-      line-height: 14px;
-    }
-
-    .facebook-connect-button {
-      @include button-style($facebook, $facebook, darken($facebook, 5%), darken($facebook, 5%), $walkthrough-facebook-button-color);
-      font-size: 15px;
-      min-height: $button-height;
-      line-height: $button-height - 5px;
-      margin: 8px 0px;
-    }
-  }
-
-  .buttons-row
-  {
-    height: $walkthrough-buttons-height;
-    margin: 0px;
-
-    .auth-button
-    {
-      @include button-style($walkthrough-bg, $walkthrough-buttons-border-color, darken($walkthrough-bg, 5%), darken($walkthrough-buttons-border-color, 5%), $walkthrough-color);
-      margin: 0px;
-      border-radius: 0px;
-      border-style: solid;
-      border-width: 0px;
-      border-top-width: 1px;
+    .auth-button {
       font-size: 14px;
       font-weight: 500;
-
+      margin: 0px;
+      color: #fff;
+      border: none;
+      border-radius: 0;
+      background-color: $green;
+      &.blue {
+        background-color: $blue;
+      }
       &::after {
         top: 0px;
         right: 0px;
@@ -186,51 +132,5 @@
         left: 0px;
       }
     }
-
-    .col:first-child {
-      .auth-button {
-        border-right-width: 1px;
-      }
-    }
   }
-
-
-
-
 }
-
-// .walkthrough-view {
-//   background-color: white;
-//   color: $walkthrough-color;
-//   .bg, .second-view{
-//   img{
-//   width:120px;
-//   margin-top:100px;
-//   }
-//   background-color:$walkthrough-bg;
-//   height:70vh;
-//   width:100%;
-//   text-align:center;
-//   padding-top:0px;
-//     p{
-//     color:red;
-//     font-size:40px;
-//     }
-//     h6{
-//     color:red;
-//     font-size:24px;
-//     }
-//   }
-//   .second-view{
-//   height:20vh;
-//   background-color:white;
-//   button{
-//   background-color:$facebook;
-//   border-radius:3px;
-//   color:white;
-//   width:95%;
-//   height:50px;
-//   border-color:transparent;
-//   }
-//   }
-// }
