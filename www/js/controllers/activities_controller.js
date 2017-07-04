@@ -5,6 +5,7 @@ function activitiesController($scope,
                               $auth,
                               $ionicModal,
                               $ionicPopup,
+                              $ionicPopover,
                               $cordovaGeolocation,
                               Activity,
                               ActivityDetail,
@@ -96,7 +97,7 @@ function activitiesController($scope,
       // Sort by date
       $scope.activityData.activityList = response.data;
 
-      $scope.activityData.activityList.forEach(function(activity){
+      $scope.activityData.activityList.forEach(function (activity) {
         var index = $scope.activityData.activityList.indexOf(activity);
         $scope.activityData.activityList[index].images = Utilities.sanitizeArrayFromNullObjects(activity.images);
       });
@@ -224,7 +225,7 @@ function activitiesController($scope,
     }, options);
   };
 
-  $scope.setLocation = function(){
+  $scope.setLocation = function () {
     var posOptions = {
       maximumAge: 30000,
       timeout: 5000,

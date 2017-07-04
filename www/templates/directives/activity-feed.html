@@ -25,7 +25,7 @@
     <div class="item item-divider row-no-padding white">
       <div class="button-bar">
 
-        <div class="col col-25">
+        <div class="col col-20">
           <span ng-if=activity.user.likes ng-click="unlikeActivity(activity.id);
             activity.user.likes = !activity.user.likes; activity.likes_count = activity.likes_count - 1;">
             <a class="button white blue">
@@ -41,7 +41,7 @@
           </div>
         </div>
 
-        <div class="col col-25">
+        <div class="col col-20">
           <span ng-if=activity.user.saves ng-click="unsaveActivity(activity.id);
             activity.user.saves = !activity.user.saves; activity.saves_count = activity.saves_count - 1;">
             <a class="button white blue">
@@ -57,7 +57,7 @@
           </span>
         </div>
 
-        <div class="col col-25">
+        <div class="col col-20">
           <span ng-if=activity.user.following ng-click="unfollowUser(activity.user.id);
             activity.user.following = !activity.user.following; activity.user.followers_count = activity.user.followers_count - 1">
             <a class="button white blue">
@@ -73,10 +73,20 @@
           </span>
         </div>
 
-        <div class="col col-25" ng-click="navigateToActivity(activity)">
+        <div class="col col-20" ng-click="navigateToActivity(activity)">
           <a class="button white">
             <i class="icon ion-chatboxes"></i>
           </a>
+        </div>
+
+        <div class="col col-20" ng-controller="showActivityController">
+            <a class="button white" ng-click="shareUsingFacebook(activity)">
+              <i class="icon ion-social-facebook"></i>
+            </a>
+
+            <a class="button white white">
+              <i class="icon ion-social-facebook"></i>
+            </a>
         </div>
 
       </div>
