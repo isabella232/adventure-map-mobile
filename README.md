@@ -1,7 +1,13 @@
 [![CircleCI](https://circleci.com/gh/CraftAcademyLabs/adventure-map-mobile.svg?style=svg&circle-token=490dd46cd4b07d41ff4682e6ec0904d6a6471bed)](https://circleci.com/gh/CraftAcademyLabs/adventure-map-mobile)
 # Adventure Map Mobile (Ionic 1.x)
 AdventureMap Mobile application - Ionic v1 😞
-
+### Install
+Fork and clone the repo to your localhost.
+Intall dependencies:
+```
+$ npm install && bower install
+```
+You should be ready to go. Fire app `ionic serve` to load the application in your browser. (See below for more info) 
 
 ### Running tests
 
