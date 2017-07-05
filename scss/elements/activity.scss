@@ -1,9 +1,51 @@
 .list.card {
+  
+  // avatar
+  .item-avatar {
+    min-height: 55px;
+    padding: 10px 10px 9px 57px;
+    &:after {
+      max-width: 44px;
+      max-height: 44px;
+      left: 7px;
+      top: 7px;
+      width: 100%;
+      z-index: -1;
+      height: 100%;
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+      background-image: linear-gradient(120deg, $green 0%, $blue 100%);
+      position: absolute;
+    }
+    .ng-binding {
+      font-size: 13px;
+    }
+    h2 {
+      margin-bottom: -1px;
+      margin-top: 3px;
+    }
+    >img:first-child {
+      left: 9px;
+      top: 9px;
+    }
+  } 
+  
+  // text content
+  h3 {
+    font-size: 18px;
+    margin-bottom: 3px;
+  } 
+  
+  // interact
   .button-bar {
+    .col {
+      padding: 0;
+    }
     .button {
       &.blue {
         color: $blue;
       }
     }
-  }  
+  }
 }

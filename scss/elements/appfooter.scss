@@ -2,18 +2,5 @@
   background-color: $bggrey;
   * {
     color: $black;
-    
-  }
-  &:before {
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 0;
-    display: inline-block;
-    width: 100%;
-    height: 1px;
-    margin: auto;
-    content: '';
-    background-image: linear-gradient(120deg, $green 0%, $blue 100%);
   }
 }
