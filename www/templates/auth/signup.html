@@ -12,23 +12,21 @@
         <div class="col">
           <form class="row form-container" novalidate>
             <div class="col">
-              <div class="list">
-                <div class="item item-divider" ng-if="errorMessage">
-                  <span class="error-message" ng-bind="errorMessage"></span>
-                </div>
-                <label class="item item-input">
-                  <input type="text" placeholder="Name" ng-model="signupForm.name">
-                </label>
-                <label class="item item-input">
-                  <input type="email" placeholder="Email" ng-model="signupForm.email">
-                </label>
-                <label class="item item-input">
-                  <input type="password" placeholder="Password" name="password" ng-model="signupForm.password">
-                </label>
-                <label class="item item-input">
-                  <input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model="signupForm.password_confirmation">
-                </label>
+              <div class="item item-divider" ng-if="errorMessage">
+                <span class="error-message" ng-bind="errorMessage"></span>
               </div>
+              <label class="item item-input custom">
+                <input type="text" placeholder="Name" ng-model="signupForm.name">
+              </label>
+              <label class="item item-input custom">
+                <input type="email" placeholder="Email" ng-model="signupForm.email">
+              </label>
+              <label class="item item-input custom">
+                <input type="password" placeholder="Password" name="password" ng-model="signupForm.password">
+              </label>
+              <label class="item item-input custom">
+                <input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model="signupForm.password_confirmation">
+              </label>
               <button class="button action-button button-block button-balanced" ng-click="signup()" translate="SIGN_UP"></button>
                 <div class="col alt-actions-container">
                   <div class="item item-divider signup-fb">

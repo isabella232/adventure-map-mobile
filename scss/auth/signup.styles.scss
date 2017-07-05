@@ -6,8 +6,11 @@
   }
 
   .login-button {
-    color: $auth-color !important;
+    color: $auth-color;
     font-size: 14px;
     font-weight: 500;
+  }
+  .button.button-stable.button-clear {
+    color: $blue;
   }
 }

@@ -12,28 +12,27 @@
         <div class="col">
           <form class="row form-container" novalidate>
             <div class="col">
-              <div class="list log-in">
+
                 <div class="item item-divider" ng-if="errorMessage">
                   <span class="error-message" ng-bind="errorMessage"></span>
                 </div>
-                <label class="item item-input">
+                <label class="item item-input custom">
                   <input type="email" placeholder="Email" ng-model="credentials.email">
                 </label>
-                <label class="item item-input">
+                <label class="item item-input custom">
                   <input type="password" placeholder="Password" ng-model="credentials.password">
                 </label>
-              </div>
-              <button class="button action-button button-block button-balanced" ng-click="login()">LOGIN</button>
-              <div class="col alt-actions-container">
+            
+              <button class="button action-button button-block button-balanced" ng-click="login()">Logga in</button>
+              <div class="col">
                 <a class="button button-clear button-small button-stable forgot-password-button"
-                   ui-sref="intro.password_reset">Forgot
-                  Password?</a>
+                   ui-sref="intro.password_reset">Forgot Password?</a>
               </div>
               <div class="row social-buttons-row">
                 <div class="col">
                   <button class="button button-block icon-left ion-social-facebook social-button facebook-button"
                           ng-click="facebookSignIn()">
-                    <span class="inner-text">Log in via Facebook</span>
+                    <span class="inner-text">Logga in med Facebook</span>
                   </button>
                 </div>
               </div>
