@@ -8,8 +8,19 @@
     }
   }
   .button.button-clear {
-    color:$black;
+    color: $black;
     font-weight: 400;
     font-size: 14px;
+  }
+
+  .ion-ios-settings-strong {
+    color: $inactive;
+    &:before {
+      font-size: 26px;
+    }
+  }
+  .ion-ios-plus {
+    color:$green;
+    
   }
 }
