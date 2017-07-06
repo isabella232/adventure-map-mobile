@@ -1,6 +1,52 @@
 .tab-nav.tabs {
   background-color: $bggrey;
+  height: 53px;
+  padding-top: 0;
   * {
     color: $black;
+  }
+
+  .tab-item {
+    padding-top: 3px;
+  }
+
+
+  .tab-title {
+    color:#6b6c6c;
+  }
+  .tab-item-active .tab-title {
+    color:$blue;
+  }
+  
+
+  .icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 26px 26px;
+  } 
+  // Custom map icon
+  .map-marker {
+    background-image: url('../img/icons/map.inactive.png');
+  }
+  .tab-item-active .map-marker {
+    background-image: url('../img/icons/map.active.png');
+  } 
+  
+  // Custom user icon
+  .user-marker {
+    background-image: url('../img/icons/user-inactive.png');
+    background-size: 24px 24px;
+  }
+  .tab-item-active .user-marker {
+    background-image: url('../img/icons/user-active.png');
+  }
+
+  // Custom activity icon
+  .activity-marker {
+    background-image: url('../img/icons/activity-inactive.png');
+    
+  }
+  .tab-item-active .activity-marker {
+    background-image: url('../img/icons/activity-active.png');
   }
 }
