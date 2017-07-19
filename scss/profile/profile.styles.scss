@@ -68,6 +68,8 @@
 .profile-list {
   .list {
     background-color: $profile-color;
+    padding-bottom: 0;
+    padding-top: 10px;
   }
   .profile-divider {
     height: 35px;
@@ -81,18 +83,22 @@
     &:last-child {
       border-bottom: 0;
     }
+    &:first-child {
+      border-top: none;;
+    }
     .item-content {
-      padding-top: 12px;
-      padding-bottom: 12px;
+      padding-top: 15px;
+      padding-bottom: 15px;
       padding-left: 8px;
     }
     .main-text {
-      color: $profile-bg;
+      font-family: $font-script;
+      font-size: 23px;
     }
     .badge {
       font-size: 18px;
       font-weight: 400;
-      top: 11px;
+      top: 18px;
       color: $black;
     }
     .icon {
@@ -197,7 +203,7 @@
 }
 
 .button.button-calm {
-  background-color: $blue;
+  background-color: $inactive;
   font-size: 14px;
   font-weight: 500;
   margin: 15px auto !important;

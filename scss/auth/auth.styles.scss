@@ -16,6 +16,7 @@
       text-align: center;
       text-transform: uppercase;
       color: $auth-color;
+      font-family: $font-script !important;
     }
     .buttons {
       position: absolute;
@@ -24,9 +25,10 @@
       left: 5px;
     }
     .cancel-button {
-      color: $auth-header-icon-color;
+      color: $auth-alt-color;
       &::before {
         font-size: 46px !important;
+        margin-left: 12px;
       }
     }
   }
