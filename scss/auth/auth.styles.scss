@@ -1,6 +1,8 @@
 .auth-view {
   color: $auth-color;
   background-color: $auth-bg;
+  // background-image: url('../img/activity_images/bike_sunset.jpg');
+  // background-size: cover;
   .auth-header {
     margin-top: 10px;
     border: none !important;
@@ -141,6 +143,7 @@
     color: $blue !important;
   }
   .legal-row {
+    width: 100%;
     font-size: 11px;
     padding: 13px 15px 15px 15px;
     text-align: center;

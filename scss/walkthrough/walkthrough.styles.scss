@@ -15,7 +15,8 @@
   .slider-row {
     height: 92%;
     margin: 0px;
-    background: $walkthrough-slider-bg; // background-image: linear-gradient(110deg, #37ecba 0%, #72afd3 100%);
+    // background: $walkthrough-slider-bg; 
+    // background-image: linear-gradient(110deg, #37ecba 0%, #72afd3 100%);
     //background-image: url('../img/activity_images/forest-dark-map.jpg');
     background-image: url('../img/activity_images/forest-hiking.jpg'); // background-image: url('../img/activity_images/mapbg.jpg');
     background-repeat: no-repeat;
@@ -40,6 +41,7 @@
         margin: 7px 0 25px 0;
         text-align: center;
         color: $walkthrough-textcolor;
+        font-family: $font-script;
         &:after {
           position: absolute;
           right: 0;
@@ -60,7 +62,9 @@
         max-width: 80%;
         margin: auto;
         text-align: center;
-        color: $walkthrough-textcolor;
+        // color: $walkthrough-heading-color;
+        color: #fff;
+        text-shadow: 0 3px 7px rgba(0,0,0,0.8);
       }
       .slide-swipe {
         color: $walkthrough-textcolor;
@@ -78,14 +82,17 @@
           font-size: 20px;
           font-weight: 600;
           margin: 7px 0 45px 0;
+          font-family: $font-sans-seriff;
           &:after {
             display: none;
           }
         }
         .slide-sub-title {
-          font-size: 44px;
+          font-size: 65px;
           line-height: 1.1;
-          font-weight: 600;
+          // font-weight: 600;
+          text-transform: uppercase;
+          font-family: $font-script;
         }
         .logo-image-container {
           width: 35%;
@@ -124,16 +131,18 @@
     }
   }
   .buttons-row {
-    height: 8%;
+    // height: 7%;
     margin: 0px;
     .button {
       line-height: 54px;
-      min-height: 54px;
+      min-height: 60px;
     }
     .auth-button {
-      font-size: 14px;
-      font-weight: 500;
-      margin: 0px;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 0;
+      padding: 3px 0 0 0;
       color: #fff;
       border: none;
       border-radius: 0;

@@ -4,12 +4,12 @@
       <button class="button button-clear button-icon icon ion-ios-close-empty cancel-button" ng-click="cancelAuth()">
       </button>
     </div>
-    <h3 class="title" translate="SIGN_UP_HEADER"></h3>
   </ion-header-bar>
   <ion-content class="auth-content" has-bouncing="false">
     <div class="content-wrapper">
       <div class="row everything-but-legal">
         <div class="col">
+          <h3 class="title" translate="SIGN_UP_HEADER"></h3>
           <form class="row form-container" novalidate>
             <div class="col">
               <div class="item item-divider" ng-if="errorMessage">
@@ -48,7 +48,7 @@
           </form>
         </div>
       </div>
-      <div ng-include src="'templates/partials/toc-links.html'"></div>
+      <div ng-include src="'templates/partials/toc-links.html'" class="full-width"></div>
     </div>
   </ion-content>
 </ion-view>

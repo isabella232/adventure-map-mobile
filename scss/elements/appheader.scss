@@ -1,14 +1,14 @@
 .bar.bar-positive {
-  background-color: $bggrey;
+  background-color: $black;
   .title,
   * {
-    color: $black;
+    color: $theme-color-1;
     &:hover {
       color: $black;
     }
   }
   .button.button-clear {
-    color: $black;
+    color: $theme-color-1;
     font-weight: 400;
     font-size: 14px;
   }
@@ -20,7 +20,7 @@
     }
   }
   .ion-ios-plus {
-    color:$green;
+    color:$theme-color-1;
     
   }
 }
