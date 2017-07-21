@@ -1,10 +1,10 @@
 .bar.bar-positive {
-  background-color: $google;
+  background-color: $login;
   .title,
   * {
-    color: $black;
+    color: $theme-color-1;
     &:hover {
-      color: $black;
+      color: $theme-color-1;
     }
   }
   .title {
@@ -17,19 +17,19 @@
     margin: 0;
   }
   .button.button-clear {
-    color: $black;
+    color: $theme-color-1;
     font-weight: 400;
     font-size: 14px;
   }
 
   .ion-ios-settings-strong {
-    color: $black;
+    color: $theme-color-1;
     &:before {
       font-size: 26px;
     }
   }
   .ion-ios-plus {
-    color: $black;
+    color: $theme-color-1;
     
   }
 }
@@ -38,4 +38,8 @@ h4.ng-binding {
   font-size: 40px;
   font-family: $font-script;
   line-height: 120%;
+}
+
+.bar.bar-header.item-input-inset {
+  margin-top: -4px;
 }
