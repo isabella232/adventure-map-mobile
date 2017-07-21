@@ -6,6 +6,7 @@ function showActivityController($scope,
                                 $ionicSlideBoxDelegate,
                                 $ionicPopup,
                                 $http,
+                                $cordovaSocialSharing,
                                 Activity,
                                 Comment,
                                 Follow,
@@ -38,6 +39,17 @@ function showActivityController($scope,
         break;
     }
   };
+
+  $scope.shareUsingFacebook = function (activity) {
+    console.log(activity.body);
+    $cordovaSocialSharing
+      .shareViaFacebook(activity.body, activity.images, null)
+      .then(function (result) {
+        // Success!
+      }, function (err) {
+        // An error occurred. Show a message to the user
+      });
+  }
 
   $scope.carouselOptions = {
     carouselId    : 'image-carousel',
