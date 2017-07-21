@@ -1,9 +1,10 @@
 .list.card {  
-  
-  // avatar
+  margin: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   .item-avatar {
     min-height: 55px;
     padding: 10px 10px 9px 57px;
+    background: $google;
     &:after {
       max-width: 44px;
       max-height: 44px;
@@ -15,19 +16,29 @@
       border-radius: 50%;
       content: '';
       display: inline-block;
-      background-image: linear-gradient(120deg, $green 0%, $blue 100%);
+      // background-image: linear-gradient(120deg, $green 0%, $blue 100%);
+      background: $theme-color-1;
+      // box-shadow: 0 2px 4px rgba(0,0,0,0.5);
       position: absolute;
     }
     .ng-binding {
-      font-size: 13px;
-    }
-    h2 {
-      margin-bottom: -1px;
-      margin-top: 3px;
+      color: $theme-color-1;
     }
     >img:first-child {
       left: 9px;
       top: 9px;
+    }
+    h2 {
+      font-size: 18px;
+      line-height: 100%;
+      margin-bottom: -1px;
+      margin-top: 3px;
+      font-family: $font-sans-seriff;
+    }
+    p {
+      font-size: 11px;
+      line-height: 150%;
+      text-transform: uppercase;
     }
     &.activity >img:first-child {
       left: 3px;

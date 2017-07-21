@@ -77,8 +77,11 @@ ion-spinner.spinner-on-load {
 }
 
 .success-message {
-  color: $balanced;
+  color: $green;
   word-wrap: break-word;
+  font-family: $font-script;
+  font-size: 30px;
+  line-height: 130%;
 }
 
 .no-margin {

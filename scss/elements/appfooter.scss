@@ -50,3 +50,7 @@
     background-image: url('../img/icons/activity-active.png');
   }
 }
+
+ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active {
+  border-color: $blue; 
+}
