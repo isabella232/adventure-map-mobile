@@ -69,7 +69,7 @@
   .list {
     background-color: $profile-color;
     padding-bottom: 0;
-    padding-top: 10px;
+    padding-top: 6px;
   }
   .profile-divider {
     height: 35px;
@@ -87,19 +87,20 @@
       border-top: none;;
     }
     .item-content {
-      padding-top: 15px;
-      padding-bottom: 15px;
+      padding-top: 7px;
+      padding-bottom: 6px;
       padding-left: 8px;
     }
     .main-text {
-      font-family: $font-script;
-      font-size: 23px;
+      font-family: $font-sans-seriff;
+      font-size: 17px;
     }
     .badge {
       font-size: 18px;
       font-weight: 400;
-      top: 18px;
-      color: $black;
+      top: 7px;
+      color: $inactive;
+      font-family: $font-sans-seriff;
     }
     .icon {
       font-size: 22px;

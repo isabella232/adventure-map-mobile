@@ -1,5 +1,5 @@
 .list.card {  
-  margin: 15px;
+  margin: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   .item-avatar {
     min-height: 55px;
@@ -60,6 +60,9 @@
     .button {
       &.blue {
         color: $blue;
+      }
+      &:first-child {
+        border-radius: 0;
       }
     }
   }

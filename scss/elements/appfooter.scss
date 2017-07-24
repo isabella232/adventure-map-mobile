@@ -1,24 +1,22 @@
 .tab-nav.tabs {
   background-color: $bggrey;
-  height: 53px;
-  padding-top: 0;
+  height: 63px;
+  padding-top: 0;  
   * {
     color: $black;
   }
-
   .tab-item {
-    padding-top: 3px;
+    padding-top: 6px;
+    border-top: 2px solid $bggrey;
   }
-
-
   .tab-title {
     color:$inactive;
+    font-size: 10px;
+    text-transform: uppercase;
   }
   .tab-item-active .tab-title {
     color:$blue;
   }
-  
-
   .icon {
     background-repeat: no-repeat;
     background-position: center;
@@ -51,6 +49,7 @@
   }
 }
 
-ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active {
-  border-color: $blue; 
+ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active, 
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active { 
+  border-top: 2px solid $blue;
 }

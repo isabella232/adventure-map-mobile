@@ -1,7 +1,9 @@
 .bar.bar-positive {
-  background-color: $login;
+  background-color: $blue;
   padding-left: 10px;
   padding-right: 20px;
+  border-color: transparent;
+  border: none;
   .title,
   * {
     color: $theme-color-1;
@@ -11,7 +13,7 @@
   }
   .title {
     font-family: $font-script;
-    font-size: 24px;
+    font-size: 18px;
     text-transform: uppercase;
     text-align: center;
     position: absolute;
