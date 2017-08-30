@@ -1,16 +1,19 @@
 <ion-tabs ng-class="{'tabs-item-hide': hideTabs}" class="tabs-icon-top tabs-color-active-positive">
+
   <!-- Activity Feed Tab -->
-  <ion-tab icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" href="#/app/activities">
+  <ion-tab title="Äventyr" icon-off="activity-marker" icon-on="activity-marker"href="#/app/activities">
     <ion-nav-view name="tab-activities-view"></ion-nav-view>
   </ion-tab>
 
   <!-- Map Tab -->
-  <ion-tab icon-off="map-marker" icon-on="map-marker" href="#/app/map">
+  <ion-tab title="Karta" icon-off="map-marker" icon-on="map-marker" href="#/app/map">
     <ion-nav-view name="tab-map-view"></ion-nav-view>
   </ion-tab>
 
   <!-- Profile Tab -->
-  <ion-tab icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/app/profile">
-    <ion-nav-view name="tab-profile-view"></ion-nav-view>
+  <ion-tab title="Profil" icon-off="user-marker" icon-on="user-marker" href="#/app/profile">
+    <ion-nav-view name="tab-profile-view">
+
+    </ion-nav-view>
   </ion-tab>
 </ion-tabs>

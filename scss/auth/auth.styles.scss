@@ -1,166 +1,189 @@
 .auth-view {
-  background-color: $auth-bg;
   color: $auth-color;
-
+  background-color: $auth-bg;
+  // background-image: url('../img/activity_images/bike_sunset.jpg');
+  // background-size: cover;
   .auth-header {
-    background-color: transparent !important;
+    margin-top: 10px;
     border: none !important;
+    background-color: transparent !important;
     background-size: 0px !important; // To remove bottom border on header
-
     .title {
+      font-weight: 600;
+      right: 0 !important;
+      left: 0 !important;
+      margin: auto;
+      text-align: center;
+      text-transform: uppercase;
       color: $auth-color;
-      font-weight: 400;
+      font-family: $font-script !important;
     }
-
     .buttons {
       position: absolute;
       top: 5px;
-      left: 5px;
       bottom: 5px;
+      left: 5px;
     }
-
     .cancel-button {
-      color: $auth-header-icon-color;
-
+      color: $auth-alt-color;
       &::before {
         font-size: 46px !important;
+        margin-left: 12px;
       }
     }
   }
-
   .auth-content {
     margin: 0px;
     padding: 0px;
-
     .scroll {
       height: 100%;
     }
-
     .content-wrapper {
       display: flex;
+      height: 100%;
       flex-wrap: wrap;
       align-content: space-between;
-      height: 100%;
     }
   }
-
   .social-button {
-    text-align: left;
-    color: #FFF;
-    padding-left: 0px;
-    border: none;
     line-height: 47px;
     margin-bottom: 0px;
-
+    padding-left: 0px;
+    text-align: left;
+    color: #FFF;
+    border: none;
     &.icon-left:before {
-      padding: 3px 15px;
-      border-radius: 4px 0px 0px 4px;
       width: 50px;
+      padding: 3px 15px;
       text-align: center;
+      border-radius: 4px 0px 0px 4px;
     }
-
     .inner-text {
-      margin-left: 15px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-left: 33px;
     }
   }
   .facebook-button {
+    margin: 15px 0 40px 0;
     background-color: $facebook;
-
     &.activated {
       background-color: darken($facebook, 4%);
     }
-
     &.icon-left:before {
       background-color: darken($facebook, 8%);
     }
   }
   .google-button {
     background-color: $google;
-
     &.activated {
       background-color: darken($google, 4%);
     }
-
     &.icon-left:before {
       background-color: darken($google, 8%);
     }
   }
-
   .form-container {
     .item-divider {
+      font-size: 12px;
+      line-height: 15px;
       margin: 0px;
-      border: none;
-      background-color: transparent;
+      padding-right: 0px;
+      padding-left: 0px;
+      word-spacing: 1px;
       text-transform: uppercase;
       color: $auth-alt-color;
-      font-size: 12px;
-      word-spacing: 1px;
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-
-    .item-input {
       border: none;
-      padding: 0px;
-      margin-bottom: 15px;
       background-color: transparent;
-
+    }
+    .item-input {
+      margin-bottom: 15px;
+      padding: 0px;
+      border: none;
+      background-color: transparent;
       &:last-child {
         margin-bottom: 0px;
       }
-
       input,
       textarea {
-        background: transparent;
         color: rgba(lighten($auth-color, 5%), .8);
-
+        background: transparent;
         @include _placeholder {
-          color: $auth-alt-color;
-          letter-spacing: 1px;
           font-weight: 300;
+          letter-spacing: 1px;
+          color: $auth-alt-color;
         }
       }
     }
-
     .input-label {
+      font-size: 12px;
+      font-weight: 500;
       padding: 0px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       color: $auth-color;
-      font-size: 12px;
-      letter-spacing: 1px;
-      font-weight: 500;
     }
-
     .action-button {
-      background-color: $login;
+      font-size: 14px;
+      font-weight: 500;
       margin-bottom: 0px;
-      letter-spacing: 1px;
-      font-size: 15px;
+      text-transform: none;
+      background-color: $blue;
     }
-
     .alt-actions-container {
-      margin-top: 20px;
+      margin-top: 30px;
       text-align: center;
     }
-    
     .signup-fb {
+      margin-bottom: -25px;
       color: #333;
     }
   }
-
+  .forgot-password-button {
+    font-size: 100% !important;
+    margin: 10px 0 20px 0;
+    color: $blue !important;
+  }
   .legal-row {
-    color: $auth-alt-color;
+    width: 100%;
     font-size: 11px;
+    padding: 13px 15px 15px 15px;
     text-align: center;
-    padding: 5px 10px;
-
+    color: $auth-alt-color;
+    border-top: 1px solid rgba($auth-alt-color, .4);
     a {
-      color: rgba($auth-color, .9);
       text-decoration: underline;
+      color: rgba($auth-color, .7);
     }
-
     .legal-text {
       margin: 5px 0px;
     }
+  }
+}
+
+.password-reset {
+  margin-top: 30px;
+  h2 {
+    margin-bottom: 5px;
+    text-transform: none;
+  }
+  span {
+    text-transform: none;
+  }
+  &+.alt-actions-container {
+    margin-top: 20px !important;
+  }
+}
+
+.disclaimer {
+  .col {
+    text-align: left;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  .copy {
+    margin: 30px 0 10px 0;
+    text-align: center;
   }
 }

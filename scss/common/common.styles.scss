@@ -77,10 +77,41 @@ ion-spinner.spinner-on-load {
 }
 
 .success-message {
-  color: $balanced;
+  color: $green;
   word-wrap: break-word;
+  font-family: $font-script;
+  font-size: 30px;
+  line-height: 130%;
 }
 
 .no-margin {
   margin: 0 !important;
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+
+// Handle text overflow
+.item,
+.item h1,
+.item h2,
+.item h3,
+.item h4,
+.item h5,
+.item h6,
+.item p,
+.item-content,
+.item-content h1,
+.item-content h2,
+.item-content h3,
+.item-content h4,
+.item-content h5,
+.item-content h6,
+.item-content p {
+  overflow: visible;
+  text-overflow: initial;
+  white-space: normal;
 }

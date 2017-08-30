@@ -1,0 +1,58 @@
+.tab-nav.tabs {
+  background-color: $bggrey;
+  height: 68px;
+  padding-top: 0;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  * {
+    color: $black;
+  }
+  .tab-item {
+    padding-top: 10px;
+    // border-top: 2px solid $bggrey;
+    // border-top: 2px solid #333;
+    border-bottom: 4px solid transparent;
+  }
+  .tab-title {
+    color:$inactive;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+  .tab-item-active .tab-title {
+    color:$blue;
+  }
+  .icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 26px 26px;
+  } 
+  // Custom map icon
+  .map-marker {
+    background-image: url('../img/icons/map.inactive.png');
+  }
+  .tab-item-active .map-marker {
+    background-image: url('../img/icons/map.active.png');
+  } 
+  
+  // Custom user icon
+  .user-marker {
+    background-image: url('../img/icons/user-inactive.png');
+    background-size: 24px 24px;
+  }
+  .tab-item-active .user-marker {
+    background-image: url('../img/icons/user-active.png');
+  }
+
+  // Custom activity icon
+  .activity-marker {
+    background-image: url('../img/icons/activity-inactive.png');
+    
+  }
+  .tab-item-active .activity-marker {
+    background-image: url('../img/icons/activity-active.png');
+  }
+}
+
+ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active, 
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active { 
+  border-bottom: 4px solid $blue;
+}

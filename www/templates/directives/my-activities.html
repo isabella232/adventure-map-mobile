@@ -2,7 +2,7 @@
   <div ng-controller="showActivityController">
   <div class="item item-divider row-no-padding white" ng-click="navigateToActivity(activity)">
     <div class="row">
-      <div class="col-10 avatar"><img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}"></div>
+      <div class="col-10 avatar item-avatar activity"><img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}"></div>
       <div class="col-60 title-div"><h2>{{activity.user.name}}</h2></div>
       <div class="col-20 comment-date date-div">{{activity.created_at}}</p></div>
     </div>

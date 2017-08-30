@@ -2,14 +2,16 @@
   <div ng-controller="showActivityController">
 
 
+    
+
+    <div ng-click="navigateToActivity(activity)">
+      <display-first-image images_for="{{activity}}"></display-first-image>
+    </div>
+    
     <div class="item item-avatar" ng-click="navigateToActivity(activity)">
       <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
       <h2 class="activity_title">{{activity.user.name}}</h2>
       <p>{{activity.created_at}}</p>
-    </div>
-
-    <div ng-click="navigateToActivity(activity)">
-      <display-first-image images_for="{{activity}}"></display-first-image>
     </div>
 
     <div class="padding" ng-click="navigateToActivity(activity)">
@@ -28,14 +30,14 @@
         <div class="col col-20">
           <span ng-if=activity.user.likes ng-click="unlikeActivity(activity.id);
             activity.user.likes = !activity.user.likes; activity.likes_count = activity.likes_count - 1;">
-            <a class="button white blue">
+            <a class="button blue">
               <i class="icon ion-thumbsup"></i>
             </a>
           </span>
 
           <div ng-if=!activity.user.likes ng-click="likeActivity(activity.id, $event);
             activity.user.likes = !activity.user.likes; activity.likes_count = activity.likes_count + 1;">
-            <a class="button white">
+            <a class="button">
               <i class="icon ion-thumbsup"></i>
             </a>
           </div>
@@ -44,14 +46,14 @@
         <div class="col col-20">
           <span ng-if=activity.user.saves ng-click="unsaveActivity(activity.id);
             activity.user.saves = !activity.user.saves; activity.saves_count = activity.saves_count - 1;">
-            <a class="button white blue">
+            <a class="button blue">
               <i class="icon ion-bookmark"></i>
             </a>
           </span>
 
           <span ng-if=!activity.user.saves ng-click="saveActivity(activity.id);
                activity.user.saves = !activity.user.saves; activity.saves_count = activity.saves_count + 1;">
-            <a class="button white">
+            <a class="button">
               <i class="icon ion-bookmark"></i>
             </a>
           </span>
@@ -60,33 +62,33 @@
         <div class="col col-20">
           <span ng-if=activity.user.following ng-click="unfollowUser(activity.user.id);
             activity.user.following = !activity.user.following; activity.user.followers_count = activity.user.followers_count - 1">
-            <a class="button white blue">
+            <a class="button blue">
               <i class="icon ion-person"></i>
             </a>
           </span>
 
           <span ng-if=!activity.user.following ng-click="followUser(activity.user.id);
             activity.user.following = !activity.user.following; activity.user.followers_count = activity.user.followers_count + 1">
-            <a class="button white white">
+            <a class="button">
               <i class="icon ion-person"></i>
             </a>
           </span>
         </div>
 
         <div class="col col-20" ng-click="navigateToActivity(activity)">
-          <a class="button white">
+          <a class="button">
             <i class="icon ion-chatboxes"></i>
           </a>
         </div>
 
         <div class="col col-20" ng-controller="showActivityController">
-            <a class="button white" ng-click="shareUsingFacebook(activity)">
+            <a class="button" ng-click="shareUsingFacebook(activity)">
               <i class="icon ion-social-facebook"></i>
             </a>
 
-            <a class="button white white">
+            <!--<a class="button">
               <i class="icon ion-social-facebook"></i>
-            </a>
+            </a>-->
         </div>
 
       </div>

@@ -1,0 +1,36 @@
+// Do we need Important to override icon?
+// Fonts basic
+body, 
+html,  
+h4, 
+h5, 
+h6, 
+p, 
+span, 
+li, 
+a, 
+button, 
+input, 
+em, 
+strong {
+    font-family: $font-sans-seriff;
+}
+
+
+h1, 
+h2, 
+h3 {
+    font-family: $font-script;
+}
+
+h1 {
+    font-size: inherit;
+}
+
+h2 {
+    font-size: inherit;
+}
+
+h3 {
+    font-size: 35px;
+}

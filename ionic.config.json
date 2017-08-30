@@ -15,5 +15,6 @@
     "www/**/*.html",
     "www/**/*.js",
     "www/**/*.css"
-  ]
+  ],
+  "type": "ionic1"
 }

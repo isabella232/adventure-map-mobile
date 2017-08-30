@@ -4,36 +4,36 @@
       <button class="button button-clear button-icon icon ion-ios-close-empty cancel-button" ng-click="cancelAuth()">
       </button>
     </div>
-    <h3 class="title">Login</h3>
+    
   </ion-header-bar>
   <ion-content class="auth-content" has-bouncing="false">
     <div class="content-wrapper">
       <div class="row everything-but-legal">
         <div class="col">
+          <h3 class="title">Login</h3>
           <form class="row form-container" novalidate>
             <div class="col">
-              <div class="list log-in">
+
                 <div class="item item-divider" ng-if="errorMessage">
                   <span class="error-message" ng-bind="errorMessage"></span>
                 </div>
-                <label class="item item-input">
+                <label class="item item-input custom">
                   <input type="email" placeholder="Email" ng-model="credentials.email">
                 </label>
-                <label class="item item-input">
+                <label class="item item-input custom">
                   <input type="password" placeholder="Password" ng-model="credentials.password">
                 </label>
-              </div>
-              <button class="button action-button button-block button-balanced" ng-click="login()">LOGIN</button>
-              <div class="col alt-actions-container">
+            
+              <button class="button action-button button-block button-balanced" ng-click="login()">Logga in</button>
+              <div class="col">
                 <a class="button button-clear button-small button-stable forgot-password-button"
-                   ui-sref="intro.password_reset">Forgot
-                  Password?</a>
+                   ui-sref="intro.password_reset">Forgot Password?</a>
               </div>
               <div class="row social-buttons-row">
                 <div class="col">
                   <button class="button button-block icon-left ion-social-facebook social-button facebook-button"
                           ng-click="facebookSignIn()">
-                    <span class="inner-text">Log in via Facebook</span>
+                    <span class="inner-text">Logga in med Facebook</span>
                   </button>
                 </div>
               </div>
@@ -41,7 +41,7 @@
           </form>
         </div>
       </div>
-      <div ng-include src="'templates/partials/toc-links.html'"></div>
+      <div ng-include src="'templates/partials/toc-links.html'" class="full-width"></div>
     </div>
   </ion-content>
 </ion-view>

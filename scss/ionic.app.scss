@@ -35,6 +35,12 @@ For example, you might change some of the default colors:
 
 
 // Include custom styles
+// Form
+@import "scss/form/form.styles";
+// App elements
+@import "scss/elements/appheader";
+@import "scss/elements/appfooter";
+@import "scss/elements/activity";
 // Common
 @import "scss/common/common.styles";
 // Walkthrough

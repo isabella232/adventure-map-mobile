@@ -1,100 +1,114 @@
 .profile-view {
-  background-color: $profile-alt-bg;
   color: $profile-color;
+  background-color: $profile-alt-bg;
 }
 
 .user-col {
   background-color: $profile-bg;
-
+  background-image: url('../img/activity_images/forest-hiking.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   .user-image-container {
+    width: 95px;
     margin: 0 auto;
     margin-top: 20px;
-    width: 95px;
   }
-
   .avatar-image {
+    position: relative;
+    z-index: 2;
     &.pre-img {
       border-radius: 50%;
     }
-
     img {
-      border: 2px solid $profile-color;
-      border-radius: 50%;
+      top: 2px;
+      left: 2px;
       width: 100%;
+      margin: auto;
+      border: 2px solid transparent;
+      border-radius: 50%;
+    }
+    &:after {
+      position: absolute;
+      z-index: -1;
+      right: 0;
+      left: 0;
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      margin: auto;
+      content: '';
+      border-radius: 50%;
+      background-image: linear-gradient(120deg, $green 0%, $blue 100%);
     }
   }
-
   .user-name {
-    color: $profile-color;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-  }
-
-  .username {
-    color: rgba($profile-color, .7);
-    text-align: center;
-  }
-
-  .user-social {
+    margin-bottom: 2px;
     color: $profile-color;
-    text-align: center;
   }
-
+  .username {
+    text-align: center;
+    margin-top: 2px;
+    color: rgba($profile-color, .7);
+  }
+  .user-social {
+    text-align: center;
+    color: $profile-color;
+  }
   .user-bio {
-    color: rgba($profile-color, .8);
     margin: 0 10% 12%;
     text-align: center;
+    color: rgba($profile-color, .8);
   }
 }
 
 .profile-list {
   .list {
     background-color: $profile-color;
+    padding-bottom: 0;
+    padding-top: 6px;
   }
-
   .profile-divider {
     height: 35px;
   }
-
   .smaller-profile-divider {
     min-height: 15px;
   }
-
   .list-item {
-    border-left: 0;
     margin-left: 8px;
-
+    border-left: 0;
     &:last-child {
       border-bottom: 0;
     }
-
+    &:first-child {
+      border-top: none;;
+    }
     .item-content {
-      padding-bottom: 12px;
+      padding-top: 7px;
+      padding-bottom: 6px;
       padding-left: 8px;
-      padding-top: 12px;
     }
-
     .main-text {
-      color: $profile-bg;
+      font-family: $font-sans-seriff;
+      font-size: 17px;
     }
-
     .badge {
-      color: $profile-alt-color;
       font-size: 18px;
-      font-weight: 300;
-      top: 11px;
+      font-weight: 400;
+      top: 7px;
+      color: $inactive;
+      font-family: $font-sans-seriff;
     }
-
     .icon {
-      color: $profile-alt-color;
       font-size: 22px;
+      color: $black;
     }
-
     .icon-badge {
       top: 4px !important;
     }
-
   }
   .height-50 {
     line-height: 50px;
@@ -103,53 +117,54 @@
 
 #profile-bg {
   position: fixed;
-  left: 0;
   top: 44px;
+  left: 0;
   width: 100%;
   height: 150px;
-
+  text-align: center;
+  background-position: 50% 20%;
   /*     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/94311/bg.jpg') no-repeat transparent;*/
   background-size: 100%;
-  background-position: 50% 20%;
-
-  text-align: center;
 }
 
 #content {
   position: relative;
   margin-top: 150px;
-  background-color: white;
-  box-shadow: 0px -1px 10px rgba(0,0,0,0.4);
   padding-top: 200px;
+  background-color: white;
+  box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.4);
 }
 
 #profile-info {
   position: absolute;
+  z-index: 2;
   top: -95px;
   width: 100%;
-  z-index: 2;
   text-align: center;
 }
+
 #profile-name {
-  color: #444;
   font-size: 26px;
+  color: #444;
 }
+
 #profile-description {
   font-size: 15px;
   color: #888;
 }
+
 #profile-description a {
   color: #888;
 }
 
 #profile-image {
   display: block;
-  border-radius: 100px;
-  border: 1px solid #fff;
   width: 128px;
   height: 128px;
   margin: 30px auto 0;
-  box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
+  border: 1px solid #fff;
+  border-radius: 100px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
 }
 
 .list-item-content {
@@ -165,24 +180,33 @@
 }
 
 .post-time {
-  position: absolute;
-  right: 5px;
-  top: 5px;
   font-size: 11px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
   color: #888;
 }
 
 .post-profile-image {
   display: inline-block;
-  vertical-align: top;
   width: 48px;
   height: 48px;
   margin-right: 10px;
+  vertical-align: top;
 }
+
 .post-options {
-  position: absolute;
   font-size: 16px;
+  position: absolute;
   right: 5px;
   bottom: 5px;
   color: #888;
+}
+
+.button.button-calm {
+  background-color: $inactive;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 15px auto !important;
+  max-width: 92%;
 }

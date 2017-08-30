@@ -37,7 +37,7 @@ MAP
   span {
     width: 40px;
     height: 40px;
-    background: #3a879f;
+    background: $blue;
     display: block;
     position: absolute;
     right: 15px;
@@ -68,7 +68,7 @@ MAP
     height: 170px;
     width: 170px;
     content: '';
-    background-color: #3a879f;
+    background-color: $blue;;
     position: absolute;
     top: -410px;
     right: -50px;
@@ -78,10 +78,10 @@ MAP
   }
   &.open {
     span.toggle-btn.ion-android-funnel {
-      background-color: #3a879f;
+      background-color: $blue;
     }
     .ion-android-funnel:before {
-      content: "\f2d7";
+      // content: "\f2d7";
     }
   }
 }
