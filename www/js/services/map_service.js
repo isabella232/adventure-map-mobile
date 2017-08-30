@@ -10,6 +10,28 @@ angular.module('adventureMap.mapService', [])
     var markers = [];
 
     // Service methods
+    var initiateMapFunction = function(element) {
+      var openStreetMap =  L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+        maxZoom: 16
+      });
+
+      var combinedSweden = L.tileLayer.wms('https://lacunaserver.se/mapproxy/service?',
+        {
+          layers: 'combined_sweden',
+          transparent: true,
+          format: 'image/png',
+          attribution: "<a href='http://adventuremap.se'>AdventureMap</a>"
+        });
+
+      map = new L.Map(element, {
+        layers: [openStreetMap, combinedSweden],
+        attribution: false,
+        tileSize: 512,
+        continuousWorld: true,
+        zoomControl: false
+      });
+
+    };
     var startTrackingFunction = function (lat, long, map) {
       clearLines(map);
       var route = [];
@@ -155,6 +177,7 @@ angular.module('adventureMap.mapService', [])
 
 
     return {
+      initiateMap: initiateMapFunction,
       startTracking: startTrackingFunction,
       stopTracking: stopTrackingFunction,
       addToMap: addToMapFunction,

@@ -77,7 +77,7 @@ ion-spinner.spinner-on-load {
 }
 
 .success-message {
-  color: $green;
+  color: $hunter-green;
   word-wrap: break-word;
   font-family: $font-script;
   font-size: 30px;
@@ -114,4 +114,8 @@ ion-spinner.spinner-on-load {
   overflow: visible;
   text-overflow: initial;
   white-space: normal;
+}
+
+h3 {
+  color: $hunter-green !important;
 }

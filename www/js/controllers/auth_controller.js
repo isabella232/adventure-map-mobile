@@ -126,9 +126,10 @@ function authController($scope,
 
     $auth.authenticate('facebook')
       .then(function (response) {
-        $auth.validateUser().then(function (resp) {
-          storeUser();
-        });
+        storeUser();
+        //$auth.validateUser().then(function (resp) {
+        //
+        //});
         if ($scope.user.interest_list === undefined || $scope.user.interest_list === []) {
           $scope.getActivitySelection();
         } else {

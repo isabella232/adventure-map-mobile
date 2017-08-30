@@ -5,10 +5,10 @@
         Cancel
       </button>
     </div>
-    <h1 class="title">Filter Activities</h1>
+    <h1 class="title">{{ "FILTER_ACTIVITIES" | translate }}</h1>
     <div class="buttons">
       <button class="button button-clear" ng-click="setFilters()">
-        Apply
+        {{ "APPLY" | translate }}
       </button>
     </div>
   </ion-header-bar>
@@ -16,7 +16,7 @@
   <ion-content>
     <div class="list">
       <div class="item item-toggle">
-        Only show users I follow
+        {{ "USERS_I_FOLLOW" | translate }}
         <label class="toggle toggle-positive">
           <input type="checkbox"
                  ng-model="activityData.filters.follow"
@@ -31,7 +31,7 @@
         <label class="item item-input">
           <i class="icon ion-search placeholder-icon"></i>
           <input type="text"
-                 placeholder="Change Location"
+                 placeholder="{{ 'CHANGE_LOCATION' | translate}}"
                  ng-model="activityData.filters.location">
         </label>
       </div>
@@ -53,30 +53,32 @@
             {{ 3 | difficultyWord }}
           </ion-checkbox>
         </ion-list-->
-      </div>
-      <div class="item item-divider">
-        Category
-      </div>
-      <div class="list">
-        <div class="item item-input wrap-label">
-          <ion-list ng-repeat="icon in category_icons" class="margin-10">
-            <div class="row" ng-click="activityData.filters.category[$index + 1] = !activityData.filters.category[$index + 1];">
-              <div>
-                <img class="menu-icon" ng-src="{{icon}}"  ng-if="activityData.filters.category[$index + 1]">
-                <img class="menu-icon menu-icon-unselected" ng-src="{{icon}}" ng-if="!activityData.filters.category[$index + 1]">
-              </div>
+    </div>
+    <div class="item item-divider">
+      {{ "CATEGORIES" | translate}}
+    </div>
+    <div class="list">
+      <div class="item item-input wrap-label">
+        <ion-list ng-repeat="icon in category_icons" class="margin-10">
+          <div class="row"
+               ng-click="activityData.filters.category[$index + 1] = !activityData.filters.category[$index + 1];">
+            <div>
+              <img class="menu-icon" ng-src="{{icon}}" ng-if="activityData.filters.category[$index + 1]">
+              <img class="menu-icon menu-icon-unselected" ng-src="{{icon}}"
+                   ng-if="!activityData.filters.category[$index + 1]">
             </div>
-          </ion-list>
-        </div>
-      </div>
-      <div class="list">
-        <ion-list>
-          <ion-checkbox
-            ng-model="activityData.filters.default"
-            ng-checked="activityData.filters.default">Set search as default
-          </ion-checkbox>
+          </div>
         </ion-list>
       </div>
+    </div>
+    <div class="list">
+      <ion-list>
+        <ion-checkbox
+          ng-model="activityData.filters.default"
+          ng-checked="activityData.filters.default">{{ "SET_AS_DEFAULT" | translate}}
+        </ion-checkbox>
+      </ion-list>
+    </div>
     </div>
   </ion-content>
 </ion-modal-view>

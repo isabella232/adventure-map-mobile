@@ -16,5 +16,8 @@
     "www/**/*.js",
     "www/**/*.css"
   ],
-  "type": "ionic1"
+  "type": "ionic1",
+  "integrations": {
+    "cordova": {}
+  }
 }

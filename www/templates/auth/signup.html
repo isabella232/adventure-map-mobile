@@ -16,16 +16,16 @@
                 <span class="error-message" ng-bind="errorMessage"></span>
               </div>
               <label class="item item-input custom">
-                <input type="text" placeholder="Name" ng-model="signupForm.name">
+                <input type="text" placeholder="{{ 'NAME' | translate}}" ng-model="signupForm.name">
               </label>
               <label class="item item-input custom">
-                <input type="email" placeholder="Email" ng-model="signupForm.email">
+                <input type="email" placeholder="{{ 'EMAIL' | translate}}" ng-model="signupForm.email">
               </label>
               <label class="item item-input custom">
-                <input type="password" placeholder="Password" name="password" ng-model="signupForm.password">
+                <input type="password" placeholder="{{ 'PASSWORD' | translate}}" name="password" ng-model="signupForm.password">
               </label>
               <label class="item item-input custom">
-                <input type="password" placeholder="Password Confirmation" name="password_confirmation" ng-model="signupForm.password_confirmation">
+                <input type="password" placeholder="{{ 'PASSWORD_CONFIRMATION' | translate}}" name="password_confirmation" ng-model="signupForm.password_confirmation">
               </label>
               <button class="button action-button button-block button-balanced" ng-click="signup()" translate="SIGN_UP"></button>
                 <div class="col alt-actions-container">
@@ -35,7 +35,7 @@
                   <div class="row social-buttons-row">
                     <div class="col">
                       <button class="button button-block icon-left ion-social-facebook social-button facebook-button" ng-click="facebookSignIn()">
-                        <span class="inner-text" translate="LOG_IN_WITH_FACEBOOK"></span>
+                        <span class="inner-text" translate="SIGN_UP_WITH_FACEBOOK"></span>
                       </button>
                     </div>
                   </div>

@@ -1,17 +1,17 @@
 // Theme variables
 $facebook: #3B5999;
 $google: #F5A623;
-$green: #0bb919;
-$blue: #0094ec;
+$hunter-orange: #ff6600;
+$hunter-green: #336633;
 $black: #1F1D1D;
 $bggrey: #edeef1;
-$inactive: #6b6c6c;
+$inactive: #ffffff;
 $lightgrey: #C4CACA;
 $darkgrey: #3B3C3C;
 $dark-red: #2D0503;
 $white: #FFFFFF;
 
-$theme-color-1: #FFFFFF;
+$theme-color-1: #ff6600;
 $theme-color-1-a: darken($theme-color-1, 3%);
 $theme-color-1-b: darken($theme-color-1, 6%);
 $theme-color-1-c: darken($theme-color-1, 12%);
@@ -21,6 +21,8 @@ $theme-color-1-d: darken($theme-color-1, 24%);
 // $font-script:'Delius', cursive;
 $font-script:'Cabin Sketch', cursive;
 $font-sans-seriff: 'Nunito Sans', sans-serif;
+
+
 
 
 

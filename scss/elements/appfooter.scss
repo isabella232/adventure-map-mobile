@@ -1,10 +1,10 @@
 .tab-nav.tabs {
-  background-color: $bggrey;
+  background-color: $hunter-green;
   height: 68px;
   padding-top: 0;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   * {
-    color: $black;
+    color: $hunter-orange;
   }
   .tab-item {
     padding-top: 10px;
@@ -13,46 +13,49 @@
     border-bottom: 4px solid transparent;
   }
   .tab-title {
-    color:$inactive;
+    color: $inactive;
     font-size: 10px;
     text-transform: uppercase;
+
   }
   .tab-item-active .tab-title {
-    color:$blue;
+    color: $hunter-orange;
   }
   .icon {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 26px 26px;
-  } 
+  }
+
+
   // Custom map icon
   .map-marker {
-    background-image: url('../img/icons/map.inactive.png');
+    background-image: url('../img/icons/map-inactive-white.png');
+
   }
   .tab-item-active .map-marker {
-    background-image: url('../img/icons/map.active.png');
-  } 
-  
+    background-image: url('../img/icons/map-active-orange.png');
+  }
   // Custom user icon
   .user-marker {
-    background-image: url('../img/icons/user-inactive.png');
+    background-image: url('../img/icons/user-inactive-white.png');
     background-size: 24px 24px;
   }
   .tab-item-active .user-marker {
-    background-image: url('../img/icons/user-active.png');
+    background-image: url('../img/icons/user-active-orange.png');
   }
 
   // Custom activity icon
   .activity-marker {
-    background-image: url('../img/icons/activity-inactive.png');
-    
+    background-image: url('../img/icons/activity-inactive-white.png');
   }
+
   .tab-item-active .activity-marker {
-    background-image: url('../img/icons/activity-active.png');
+    background-image: url('../img/icons/activity-active_orange.png');
   }
 }
 
-ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active, 
-ion-tabs.tabs-color-active-positive .tab-item.tab-item-active { 
-  border-bottom: 4px solid $blue;
+ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active,
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active {
+  border-bottom: 4px solid $hunter-green;
 }

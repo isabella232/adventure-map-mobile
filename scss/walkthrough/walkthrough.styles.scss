@@ -15,7 +15,7 @@
   .slider-row {
     height: 92%;
     margin: 0px;
-    // background: $walkthrough-slider-bg; 
+    // background: $walkthrough-slider-bg;
     // background-image: linear-gradient(110deg, #37ecba 0%, #72afd3 100%);
     //background-image: url('../img/activity_images/forest-dark-map.jpg');
     background-image: url('../img/activity_images/forest-hiking.jpg'); // background-image: url('../img/activity_images/mapbg.jpg');
@@ -40,7 +40,7 @@
         position: relative;
         margin: 7px 0 25px 0;
         text-align: center;
-        color: $walkthrough-textcolor;
+        color: $white;
         font-family: $font-script;
         &:after {
           position: absolute;
@@ -53,7 +53,7 @@
           margin: auto;
           content: '';
           background-color: #FFF;
-          background-image: linear-gradient(120deg, $green 0%, $blue 100%);
+          background-image: linear-gradient(120deg, $hunter-green 0%, $hunter-orange 100%);
         }
       }
       .slide-sub-title {
@@ -62,12 +62,11 @@
         max-width: 80%;
         margin: auto;
         text-align: center;
-        // color: $walkthrough-heading-color;
-        color: #fff;
+        color: $white !important;
         text-shadow: 0 3px 7px rgba(0,0,0,0.8);
       }
       .slide-swipe {
-        color: $walkthrough-textcolor;
+        color: $white;
         display: block;
         position: absolute;
         text-align: center;
@@ -83,6 +82,8 @@
           font-weight: 600;
           margin: 7px 0 45px 0;
           font-family: $font-sans-seriff;
+          color: $white !important;
+
           &:after {
             display: none;
           }
@@ -123,7 +124,8 @@
       .slider-pager-page {
         width: 10px;
         margin: 0px 7px;
-        color: #FFFFFF;
+        color: $hunter-orange;
+
         .icon {
           font-size: 12px;
         }
@@ -146,9 +148,9 @@
       color: #fff;
       border: none;
       border-radius: 0;
-      background-color: $green;
+      background-color: $hunter-green;
       &.blue {
-        background-color: $blue;
+        background-color: $hunter-orange;
       }
       &::after {
         top: 0px;

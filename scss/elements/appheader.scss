@@ -1,14 +1,14 @@
 .bar.bar-positive {
-  background-color: $blue;
+  background-color: $hunter-green;
   padding-left: 10px;
   padding-right: 20px;
   border-color: transparent;
   border: none;
   .title,
   * {
-    color: $theme-color-1;
+    color: $hunter-orange;
     &:hover {
-      color: $theme-color-1;
+      color: $hunter-orange;
     }
   }
   .title {
@@ -36,7 +36,7 @@
   }
   .ion-ios-plus {
     color: $theme-color-1;
-    
+
   }
 }
 

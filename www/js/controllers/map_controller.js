@@ -35,26 +35,8 @@ function mapController($scope,
       enableHighAccuracy: true
     };
 
-    map = new L.Map('map-container', {
-      continuousWorld: true,
-      zoomControl: false
-    });
+    MapService.initiateMap('map-container');
 
-    var mapproxyUrl = 'https://lacunaserver.se/mapproxy/service?';
-    baseMaps = {
-      combined_sweden: L.tileLayer.wms(mapproxyUrl,
-        {
-          layers: 'combined_sweden',
-          transparent: true,
-          format: 'image/png',
-          attribution: "<a href='http://adventuremap.se'>AdventureMap</a>"
-        }).addTo(map)
-    };
-
-
-    L.control.scale({
-      imperial: false
-    }).addTo(map);
 
     const geolocation = $cordovaGeolocation.getCurrentPosition(posOptions);
 
@@ -67,7 +49,9 @@ function mapController($scope,
       var lat = $scope.currentLocation.coords.lat;
       var long = $scope.currentLocation.coords.long;
       console.log(lat + ', ' + long);
-      map.setView([lat, long], 12);
+      map.setView([lat, long], 12, {
+        reset: true
+      });
       MapService.addToMap(lat, long, map);
       MapService.addClusters(map);
       $ionicLoading.hide();
@@ -123,7 +107,7 @@ function mapController($scope,
     }
   };
 
-  $scope.navigateTo = function(coords){
+  $scope.navigateTo = function (coords) {
     map.panTo([coords.lat, coords.long], {animate: true, duration: 1.5});
     MapService.addToMap(coords.lat, coords.long, map);
     angular.element(document.getElementsByClassName("results")).addClass('hidden')

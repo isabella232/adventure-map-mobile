@@ -1,9 +1,16 @@
 {
   "ALREADY_MEMBER": "Already a member?",
+  "NOT_A_MEMBER": "No a mamber? Create an account!",
   "SIGN_UP_HEADER": "Create an account",
   "LOG_IN_WITH_FACEBOOK": "Log in using Facebook",
+  "SIGN_UP_WITH_FACEBOOK": "Sign up using Facebook",
   "SIGN_UP": "Sign up",
+  "FORGOT_PASSWORD": "Forgot password?",
   "LOG_IN": "Login",
+  "NAME": "Name",
+  "EMAIL": "Email",
+  "PASSWORD": "Password",
+  "PASSWORD_CONFIRMATION": "Password confirmation",
   "SKIP": "Skip intro",
   "SEARCH": "Search",
   "OR_FACEBOOK": "Or sign up using Facebook",
@@ -17,6 +24,19 @@
   "ADVENTURES_2_HEADER": "Your adventures",
   "ADVENTURES_2_SUBHEADER": "Find new adventures and share yours with others",
   "ADVENTURES_3_HEADER": "Adventurers",
-  "ADVENTURES_3_SUBHEADER": "You're not alone, connect with others."
+  "ADVENTURES_3_SUBHEADER": "You're not alone, connect with others.",
+  "TOC_CONSENT": "By logging in, you agree to AdventureMaps's",
+  "TOC": "Terms and Conditions",
+  "PRIVACY_POLICY": "Privacy Policy",
+  "COOKIE_POLICY": "Cookie Policy",
+  "DISCLAIMER": "Disclaimer",
+  "AND": "and",
+  "CHANGE_LOCATION": "Change Location",
+  "FILTER_ACTIVITIES": "Filter Activities",
+  "APPLY": "Apply",
+  "CANCEL": "Cancel",
+  "CATEGORIES": "Choose categories",
+  "SET_AS_DEFAULT": "Save settings",
+  "USERS_I_FOLLOW": "Only from show users I follow"
 
 }

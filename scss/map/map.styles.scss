@@ -23,7 +23,8 @@ MAP
 #search-results {
   position: absolute;
   z-index: 3;
-  top: 50px;
+  top: 10px;
+
   margin-left: 10px;
 }
 
@@ -37,7 +38,7 @@ MAP
   span {
     width: 40px;
     height: 40px;
-    background: $blue;
+    background: $hunter-green;
     display: block;
     position: absolute;
     right: 15px;
@@ -68,7 +69,7 @@ MAP
     height: 170px;
     width: 170px;
     content: '';
-    background-color: $blue;;
+    background-color: $hunter-green;;
     position: absolute;
     top: -410px;
     right: -50px;
@@ -78,7 +79,7 @@ MAP
   }
   &.open {
     span.toggle-btn.ion-android-funnel {
-      background-color: $blue;
+      background-color: $hunter-green;
     }
     .ion-android-funnel:before {
       // content: "\f2d7";

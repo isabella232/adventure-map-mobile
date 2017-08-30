@@ -121,12 +121,11 @@ function activitiesController($scope,
   function setState() {
     $scope.activityData = $scope.activityData || {activityData: {}};
     $scope.activityData.filters = $localStorage.defaultFilter || {};
-    $scope.activityData.filters.default = false;
+    $scope.activityData.filters.default = true;
     $scope.activityData.message = undefined;
     $scope.category_icons = CATEGORY_ICONS;
     $scope.categories = CATEGORY_WORDS;
     $scope.difficulty_words = DIFFICULTY_WORDS;
-
     // Set default filters - these should change based on the user's default filter.
     if (!$localStorage.defaultFilter) {
       $scope.activityData.filters.category = [];

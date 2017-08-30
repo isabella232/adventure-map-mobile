@@ -1,4 +1,4 @@
-.list.card {  
+.list.card {
   margin: 15px 10px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   background: #eee;
@@ -11,11 +11,8 @@
       min-height: 54px;
       margin-top: -60px;
       padding: 10px 10px 0 60px;
-      background: -webkit-linear-gradient(left, rgba(0,0,0,0.72) 0%, rgba(229,229,229,0) 100%);
-      background: -moz-linear-gradient(left, rgba(0,0,0,0.72) 0%, rgba(229,229,229,0) 100%);
-      background: -o-linear-gradient(left, rgba(0,0,0,0.72) 0%, rgba(229,229,229,0) 100%);
-      background: linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(229,229,229,0) 100%); 
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8000000', endColorstr='#00e5e5e5',GradientType=1 ); 
+      background: linear-gradient(to right, rgba(51,102,51,0.7) 20%, rgba(255,102,0,0) 100%);
+      //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8000000', endColorstr='#00e5e5e5',GradientType=1 );
       &:after {
         max-width: 44px;
         max-height: 44px;
@@ -55,14 +52,14 @@
         left: 3px;
         top: 3px;
       }
-    }        
-  
+    }
+
   // text content
   h3 {
     font-size: 18px;
     margin-bottom: 3px;
-  } 
-  
+  }
+
   // interact
   .button-bar {
     background: #eee;;
@@ -73,7 +70,7 @@
       background: none;
       opacity: 0.6;
       &.blue {
-        color: $blue;
+        color: $hunter-green;
       }
       &:first-child {
         border-radius: 0;

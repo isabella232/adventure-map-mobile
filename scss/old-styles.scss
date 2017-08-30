@@ -122,7 +122,7 @@
 }
 
 .routes {
-  color: #4ea4be;
+  color: $hunter-orange;
   font-weight: bold;
   padding-right: 5px;
 }
@@ -161,7 +161,7 @@ PROFILE
 }
 
 .blue {
-  color: #4ea4be;
+  color: $hunter-orange;
 }
 
 /**************
@@ -315,10 +315,10 @@ COMMENTS
   right: 10px;
   height: 19px;
   width: 19px;
-  background: #4ea4be;
+  background: $hunter-orange;
   border-radius: 8px;
   text-align: center;
-  color: #444;
+  color: $hunter-green;
 
 }
 .count-span-follow {
@@ -328,7 +328,7 @@ COMMENTS
 
 .comment-user {
   padding-top: 10px;
-  color: #4ea4be;
+  color: $hunter-green;
   font-weight: bold;
 }
 
