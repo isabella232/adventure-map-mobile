@@ -10,7 +10,8 @@ function profileController($scope,
                            Save,
                            User,
                            CATEGORY_WORDS,
-                           md5) {
+                           md5,
+                           $translate) {
 
 
   var user = $scope.user;
@@ -19,6 +20,9 @@ function profileController($scope,
     user.interest_list = user.interest_list.join(', ')
   }
 
+  $scope.switchLanguage = function (key) {
+    $translate.use(key);
+  };
 
   $scope.selectAvatar = function () {
     console.log('getting avatar picker');

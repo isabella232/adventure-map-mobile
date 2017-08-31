@@ -1,4 +1,4 @@
-<ion-view cache-view="false" can-swipe-back="false" class="profile-view" view-title="Profile" cache-view="false">
+<ion-view cache-view="false" can-swipe-back="false" class="profile-view" view-title="{{ 'PROFILE.PROFILE_HEADER' | translate}}" cache-view="false">
   <ion-nav-buttons side="right">
     <button class=" button button-clear" ng-controller="profileController" ng-click="openProfileEditor()">
       Edit
@@ -35,22 +35,22 @@
     </div>
     <ion-list class="profile-list">
       <ion-item class="item item-icon-right list-item" ui-sref="app.my-saved-activities">
-        <span class="main-text">Saved Activities</span>
+        <span class="main-text">{{ "PROFILE.SAVED_ACTIVITIES" | translate}}</span>
         <span class="badge">{{user.counts.my_saved_activities}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
       <ion-item class="item item-icon-right list-item" ui-sref="app.my-activities">
-        <span class="main-text">Activities I Made</span>
+        <span class="main-text">{{ "PROFILE.MY_ACTIVITIES" | translate}}</span>
         <span class="badge">{{user.counts.my_activities}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
       <ion-item class="item item-icon-right list-item" ui-sref="app.followings">
-        <span class="main-text">My Connections</span>
+        <span class="main-text">{{ "PROFILE.MY_CONNECTIONS" | translate}}</span>
         <span class="badge">{{user.counts.followings}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
       <ion-item class="item item-icon-right list-item" ui-sref="app.my-recordings">
-        <span class="main-text">My Recordings</span>
+        <span class="main-text">{{ "PROFILE.MY_RECORDINGS" | translate}}</span>
         <span class="badge">{{files.length}}</span>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
@@ -58,8 +58,15 @@
 
     <button class="button button-full button-calm no-margin"
             ng-controller="authController" ng-click="signOut()">
-      Log Out
+      {{ "LOG_OUT" | translate}}
     </button>
+    <button class="button button-full button-calm no-margin" ng-controller="profileController"
+            ng-click="switchLanguage('se')">{{ "LANGUAGES.SWEDISH" | translate}}</button>
+
+    <button class="button button-full button-calm no-margin" ng-controller="profileController"
+            ng-click="switchLanguage('en')">{{ "LANGUAGES.ENGLISH" | translate}}</button>
+
+
 
   </ion-content>
 </ion-view>

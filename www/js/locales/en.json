@@ -5,6 +5,7 @@
   "LOG_IN_WITH_FACEBOOK": "Log in using Facebook",
   "SIGN_UP_WITH_FACEBOOK": "Sign up using Facebook",
   "SIGN_UP": "Sign up",
+  "LOG_OUT": "Log out",
   "FORGOT_PASSWORD": "Forgot password?",
   "LOG_IN": "Login",
   "NAME": "Name",
@@ -19,6 +20,7 @@
   "INTERESTED_CTA": "Interested? Sign up!",
   "REASSURANCE_1": "This will only take 5 seconds",
   "REASSURANCE_2": "We will never post anything without your permission, Pinky promise!",
+  "EXPLORE": "Explore",
   "ADVENTURES_1_HEADER": "The Map",
   "ADVENTURES_1_SUBHEADER": "Access and download the best detailed map.",
   "ADVENTURES_2_HEADER": "Your adventures",
@@ -37,6 +39,18 @@
   "CANCEL": "Cancel",
   "CATEGORIES": "Choose categories",
   "SET_AS_DEFAULT": "Save settings",
-  "USERS_I_FOLLOW": "Only from show users I follow"
-
+  "USERS_I_FOLLOW": "Only from show users I follow",
+  "SELECT_FAVORITES": "Select your favourite activities",
+  "FINISH_SIGN_UP": "FINISH SIGN UP",
+  "LANGUAGES": {
+    "SWEDISH": "Swedish",
+    "ENGLISH": "English"
+  },
+  "PROFILE": {
+    "PROFILE_HEADER": "Profile",
+    "SAVED_ACTIVITIES": "Saved Activities",
+    "MY_ACTIVITIES": "My Activities",
+    "MY_CONNECTIONS": "My Connections",
+    "MY_RECORDINGS": "My Recordings"
+  }
 }

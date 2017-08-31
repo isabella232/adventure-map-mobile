@@ -23,7 +23,6 @@ function activitiesController($scope,
   $scope.uploadedImages = [];
   $scope.uploadedFiles = [];
 
-
   $ionicModal.fromTemplateUrl('templates/activities/filter_modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -121,7 +120,7 @@ function activitiesController($scope,
   function setState() {
     $scope.activityData = $scope.activityData || {activityData: {}};
     $scope.activityData.filters = $localStorage.defaultFilter || {};
-    $scope.activityData.filters.default = true;
+    $scope.activityData.filters.default = false;
     $scope.activityData.message = undefined;
     $scope.category_icons = CATEGORY_ICONS;
     $scope.categories = CATEGORY_WORDS;

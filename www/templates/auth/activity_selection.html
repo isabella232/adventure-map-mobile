@@ -4,7 +4,7 @@
       <button class="button button-clear button-icon icon ion-ios-close-empty cancel-button" ng-click="cancelAuth()">
       </button>
     </div>
-    <h3 class="title">Select your favourite activities</h3>
+    <h3 class="title">{{ "SELECT_FAVORITES" | translate}}</h3>
   </ion-header-bar>
 
   <ion-content class="padding has-header">
@@ -23,8 +23,8 @@
       </div>
     </div>
 
-    <button class="button action-button button-block button-balanced" ng-if="user.provider !== 'facebook'" ng-click="signup()">SIGN UP</button>
-    <button class="button action-button button-block button-balanced" ng-if="user.provider === 'facebook'" ng-click="updateFacebookUser()">FINISH SIGN UP</button>
+    <button class="button action-button button-block button-balanced" ng-if="user.provider !== 'facebook'" ng-click="signup()">{{ "SIGN_UP" | translate}}</button>
+    <button class="button action-button button-block button-balanced" ng-if="user.provider === 'facebook'" ng-click="updateFacebookUser()">{{ "FINISH_SIGN_UP" | translate}}</button>
 
   </ion-content>
 </ion-view>

@@ -5,6 +5,7 @@
   "LOG_IN_WITH_FACEBOOK": "Logga in med Facebook",
   "SIGN_UP_WITH_FACEBOOK": "Skapa konto med Facebook",
   "SIGN_UP": "Skapa konto",
+  "LOG_OUT": "Logga ut",
   "FORGOT_PASSWORD": "Glömt lösenord?",
   "LOG_IN": "Logga in",
   "NAME": "Namn",
@@ -15,10 +16,11 @@
   "SEARCH": "Sök",
   "OR_FACEBOOK": "Vill du hellre logga in via Facebook?",
   "FIND_YOUR_ADVENTURE": "Hitta ditt nästa äventyr!",
-  "SWIPE_LEFT": "Svep åt vänster för en kort introduktion.",
+  "SWIPE_FOR_TOUR": "Svep åt vänster för en kort introduktion.",
   "INTERESTED_CTA": "Interesserad? Registrera dig!",
   "REASSURANCE_1": "Det tar bara 5 sekunder",
   "REASSURANCE_2": "Vi kommer aldrig att posta något utan ditt medgivande. Vi lovar!",
+  "EXPLORE": "Utforska",
   "ADVENTURES_1_HEADER": "Kartan",
   "ADVENTURES_1_SUBHEADER": "Få tillgång till marknadens bästa kartor",
   "ADVENTURES_2_HEADER": "Dina äventyr",
@@ -37,5 +39,18 @@
   "CANCEL": "Avbryt",
   "CATEGORIES": "Välj kategorier",
   "SET_AS_DEFAULT": "Spara inställningar",
-  "USERS_I_FOLLOW": "Only from show users I follow"
+  "USERS_I_FOLLOW": "Visa inlägg från personer jag följer",
+  "SELECT_FAVORITES": "Välj dina favoritaktiviteter",
+  "FINISH_SIGN_UP": "SLUTFÖR REGISTRERING",
+  "LANGUAGES": {
+    "SWEDISH": "Svenska",
+    "ENGLISH": "Engelska"
+  },
+  "PROFILE": {
+    "PROFILE_HEADER": "Profil",
+    "SAVED_ACTIVITIES": "Sparade aktiviteter",
+    "MY_ACTIVITIES": "Mina aktiviteter",
+    "MY_CONNECTIONS": "Mitt nätverk",
+    "MY_RECORDINGS": "Sparade inselningar"
+  }
 }
