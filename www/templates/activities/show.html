@@ -6,7 +6,7 @@
   <ion-content class="has-header gray">
     <div class="list card">
 
-      <div class="item item-avatar">
+      <div class="item item-avatar" ng-click="navigateToUser(activity.user)">
         <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
         <h2 class="activity_title">{{activity.user.name}}</h2>
         <p>{{activity.created_at}}</p>

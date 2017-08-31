@@ -6,6 +6,7 @@ angular
   .controller('mapController', mapController)
   .controller('userController', userController)
   .controller('profileController', profileController)
+  .controller('usersProfileController', usersProfileController)
   .controller('TabCtrl', ['$state', '$translate', function ($state, $translate) {
     //console.log('HomeTabCtrl');
     this.onTabSelected = function (_scope) {

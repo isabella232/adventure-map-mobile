@@ -1,0 +1,43 @@
+<ion-view cache-view="false" can-swipe-back="true" class="profile-view" title="{{user.name}}">
+
+  <ion-content scroll="true">
+    <div class="row row-no-padding">
+      <div class="col user-col">
+        <div class="user-image-container" ng-controller="usersProfileController">
+          <pre-img ratio="_1_1" helper-class="avatar-image">
+            <img ng-src="{{profileImage()}}" spinner-on-load>
+          </pre-img>
+        </div>
+        <h5 class="username" ng-if="user.nickname">
+          @{{user.nickname}}
+        </h5>
+        <p class="user-social" ng-if="user.description">
+          {{user.description}}
+        </p>
+        <p class="user-social">
+          <i class="ion-heart"></i>
+          <span>{{user.followers_count}}</span> &nbsp;
+          <i class="ion-location"></i>
+          <span>{{user.city}}</span>
+        </p>
+        <div class="row" ng-if="user.interest_list">
+          <div class="col">
+            <p class="user-bio">{{user.interest_list}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-list class="profile-list">
+      <ion-item>{{user.name}}'s {{"PROFILE.ACTIVITIES" | translate}}</ion-item>
+      <ion-item>
+        <div ng-repeat="activity in user.activities">
+          <div ng-click="navigateToActivity(activity)">
+            <h3>{{activity.title}}</h3>
+            <p>{{activity.created_at}}</p>
+            <display-first-image images_for="{{activity}}"></display-first-image>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

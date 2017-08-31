@@ -1,6 +1,7 @@
 function mapController($scope,
                        $http,
                        $cordovaGeolocation,
+                       $translate,
                        $ionicLoading,
                        $ionicPlatform,
                        MapService,
@@ -41,7 +42,7 @@ function mapController($scope,
     const geolocation = $cordovaGeolocation.getCurrentPosition(posOptions);
 
     $ionicLoading.show({
-      template: 'Loading current location...'
+      template: $translate('MAP.LOADING_LOCATION')
     });
 
     geolocation.then(function (position) {

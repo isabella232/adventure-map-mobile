@@ -1,11 +1,11 @@
 <ion-view cache-view="false" can-swipe-back="false" class="profile-view" view-title="{{ 'PROFILE.PROFILE_HEADER' | translate}}" cache-view="false">
   <ion-nav-buttons side="right">
     <button class=" button button-clear" ng-controller="profileController" ng-click="openProfileEditor()">
-      Edit
+      {{ 'PROFILE.EDIT' | translate }}
     </button>
   </ion-nav-buttons>
 
-  <ion-content scroll="false">
+  <ion-content scroll="true">
     <div class="row row-no-padding">
       <div class="col user-col">
         <div class="user-image-container" ng-controller="profileController" ng-click="selectAvatar()">

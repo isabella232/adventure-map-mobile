@@ -2,13 +2,13 @@
   <div ng-controller="showActivityController">
 
 
-    
+
 
     <div ng-click="navigateToActivity(activity)">
       <display-first-image images_for="{{activity}}"></display-first-image>
     </div>
-    
-    <div class="item item-avatar" ng-click="navigateToActivity(activity)">
+
+    <div class="item item-avatar" ng-click="navigateToUser(activity.user)">
       <img ng-src="{{activity.user.image ? activity.user.image : 'img/dummy_images/empty_image.svg'}}">
       <h2 class="activity_title">{{activity.user.name}}</h2>
       <p>{{activity.created_at}}</p>

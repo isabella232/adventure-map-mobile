@@ -19,7 +19,7 @@ angular.module('adventureMap', [
     'ionic.contrib.ui.hscrollcards',
     'pascalprecht.translate'
   ])
-  // .constant('API_URL', 'https://adventuremap-dev.herokuapp.com/api/v1')
+  //.constant('API_URL', 'https://adventuremap-dev.herokuapp.com/api/v1')
   .constant('API_URL', 'http://adventuremap-dev.craftacademylabs.com/api/v1')
   //.constant('API_URL', 'http://localhost:3000/api/v1')//
 
@@ -258,6 +258,18 @@ angular.module('adventureMap', [
           }
         }
       })
+
+      .state('app.users-profile', {
+        url: '/users/:id',
+        views: {
+          'tab-activities-view': {
+            templateUrl: 'templates/profile/users-profile.html',
+            controller: 'usersProfileController'
+          }
+        }
+      })
+
+
       .state('app.profile-activity', {
         url: '/profile/activities/:id',
         cache: false,

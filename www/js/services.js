@@ -24,11 +24,11 @@ angular.module('adventureMap.services', [])
   .factory('Follow', function ($resource, API_URL) {
     return $resource(API_URL + '/follows/:id', {id: '@id'}, {
       save: {method: 'POST'},
-      delete: { method: 'DELETE' }
+      delete: {method: 'DELETE'}
     });
   })
 
-  .factory('ActivityDetail', function($resource, API_URL) {
+  .factory('ActivityDetail', function ($resource, API_URL) {
     return $resource(API_URL + '/activities/:id/activity_details', {id: '@id'}, {
       save: {method: 'POST'}
     })
@@ -46,13 +46,13 @@ angular.module('adventureMap.services', [])
     })
   })
 
-  .factory('MyFollowers', function($resource, API_URL) {
+  .factory('MyFollowers', function ($resource, API_URL) {
     return $resource(API_URL + '/follows', {request: '@request'}, {
-      get: { method: 'GET' }
+      get: {method: 'GET'}
     });
   })
 
-  .factory('LikeActivity', function(Like) {
+  .factory('LikeActivity', function (Like) {
     return {
       likeActivity: function (activity_id) {
         Like.save({activity_id: activity_id}, function (response) {
@@ -69,9 +69,9 @@ angular.module('adventureMap.services', [])
     }
   })
 
-  .factory('UnlikeActivity', function(Like) {
+  .factory('UnlikeActivity', function (Like) {
     return {
-      unlikeActivity: function(activity_id) {
+      unlikeActivity: function (activity_id) {
         Like.delete({id: activity_id}, function (response) {
           if (response.status === 'success') {
             console.log('activity unliked');
@@ -86,7 +86,7 @@ angular.module('adventureMap.services', [])
     }
   })
 
-  .factory('SaveActivity', function(Save, $ionicPopup) {
+  .factory('SaveActivity', function (Save, $ionicPopup) {
     return {
       saveActivity: function (activity_id) {
         Save.save({activity_id: activity_id}, function (response) {
@@ -103,9 +103,9 @@ angular.module('adventureMap.services', [])
     }
   })
 
-  .factory('UnsaveActivity', function(Save, $ionicPopup) {
+  .factory('UnsaveActivity', function (Save, $ionicPopup) {
     return {
-      unsaveActivity: function(activity_id) {
+      unsaveActivity: function (activity_id) {
         Save.delete({id: activity_id}, function (response) {
           if (response.status === 'success') {
             console.log('activity unsaved');
@@ -120,13 +120,20 @@ angular.module('adventureMap.services', [])
     }
   })
 
-  .factory('User', function($resource, API_URL) {
+  .factory('User', function ($resource, API_URL) {
     return $resource(API_URL + '/auth', {user: '@user'}, {
       update: {method: 'PUT'}
     })
   })
 
-  .factory('Filters', function ($localStorage) {
+  .factory('Users', function ($resource, $auth, API_URL) {
+    var headers = $auth.retrieveData('auth_headers');
+    return $resource(API_URL + '/users/:id', {id: '@id'}, {
+      get: {method: 'GET', headers: headers}
+    })
+  })
+
+  .factory('Filters', function ($localStorage, $translate) {
     return {
       applyFilters: function ($scope) {
         console.log($scope.activityData.filters);
@@ -190,7 +197,10 @@ angular.module('adventureMap.services', [])
 
         // Show users a message instead of a blank screen if there are no activities that match their search.
         if ($scope.activityData.activityList.length === 0) {
-          $scope.activityData.message = 'Your search returned no results. Try adding some categories';
+          $translate("MAIN.NOT_FOUND").then(function (translation) {
+            $scope.activityData.message = translation;
+          });
+
         }
 
         //console.log('activities: ' + $scope.activityData.activityList.length);
@@ -199,44 +209,44 @@ angular.module('adventureMap.services', [])
     };
   })
 
-  .factory('ConnectivityMonitor', function($rootScope, $cordovaNetwork, ionicToast){
+  .factory('ConnectivityMonitor', function ($rootScope, $cordovaNetwork, ionicToast) {
 
     return {
-      isOnline: function(){
-        if(ionic.Platform.isWebView()){
+      isOnline: function () {
+        if (ionic.Platform.isWebView()) {
           return $cordovaNetwork.isOnline();
         } else {
           return navigator.onLine;
         }
       },
-      isOffline: function(){
-        if(ionic.Platform.isWebView()){
+      isOffline: function () {
+        if (ionic.Platform.isWebView()) {
           return !$cordovaNetwork.isOnline();
         } else {
           return !navigator.onLine;
         }
       },
-      startWatching: function(){
-        if(ionic.Platform.isWebView()){
+      startWatching: function () {
+        if (ionic.Platform.isWebView()) {
 
-          $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+          $rootScope.$on('$cordovaNetwork:online', function (event, networkState) {
             console.log("went online cordova");
             ionicToast.show('Back online', 'middle', false, 2500);
           });
 
-          $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+          $rootScope.$on('$cordovaNetwork:offline', function (event, networkState) {
             console.log("went offline cordova");
             ionicToast.show('No internet connection', 'middle', false, 5000);
           });
         }
         else {
 
-          window.addEventListener("online", function(e) {
+          window.addEventListener("online", function (e) {
             console.log("went online");
             /*ionicToast.show('Went online', 'bottom', false, 2500);*/
           }, false);
 
-          window.addEventListener("offline", function(e) {
+          window.addEventListener("offline", function (e) {
             console.log("went offline");
             /*ionicToast.show('went offline', 'bottom', false, 2500);*/
           }, false);

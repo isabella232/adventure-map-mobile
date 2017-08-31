@@ -51,6 +51,15 @@
     "SAVED_ACTIVITIES": "Saved Activities",
     "MY_ACTIVITIES": "My Activities",
     "MY_CONNECTIONS": "My Connections",
-    "MY_RECORDINGS": "My Recordings"
+    "MY_RECORDINGS": "My Recordings",
+    "ACTIVITIES": "activities",
+    "EDIT": "Edit"
+  },
+  "MAIN": {
+    "GETTING_ACTIVITIES": "Getting activities...",
+    "NOT_FOUND": "No results.... Redefine your search..."
+  },
+  "MAP": {
+    "LOADING_LOCATION": "Loading current location..."
   }
 }

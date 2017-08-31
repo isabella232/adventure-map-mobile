@@ -16,7 +16,8 @@ function showActivityController($scope,
                                 SaveActivity,
                                 UnsaveActivity,
                                 Utilities,
-                                MapService) {
+                                MapService,
+                                $ionicHistory) {
 
   var activityId;
   $scope.$on('$ionicView.loaded', function () {
@@ -39,6 +40,12 @@ function showActivityController($scope,
         $state.go('app.my-activity', {id: activity.id});
         break;
     }
+  };
+
+  $scope.navigateToUser = function (user) {
+    $ionicHistory.clearHistory();
+    $ionicHistory.clearCache();
+    $state.go('app.users-profile', {id: user.id});
   };
 
   $scope.shareUsingFacebook = function (activity) {

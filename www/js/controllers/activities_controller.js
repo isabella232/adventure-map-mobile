@@ -5,6 +5,7 @@ function activitiesController($scope,
                               $auth,
                               $ionicModal,
                               $ionicPopup,
+                              $translate,
                               $ionicPopover,
                               $cordovaGeolocation,
                               Activity,
@@ -50,7 +51,7 @@ function activitiesController($scope,
         console.log('validated');
         console.log(resp);
         $ionicLoading.show({
-          template: 'Getting activities...'
+          template: $translate("MAIN.GETTING_ACTIVITIES")
         });
 
         getActivities();

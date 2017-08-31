@@ -35,7 +35,7 @@
   "AND": "och",
   "CHANGE_LOCATION": "Ändra plats",
   "FILTER_ACTIVITIES": "Filtrera flödet",
-  "APPLY": "Applicera",
+  "APPLY": "Använd",
   "CANCEL": "Avbryt",
   "CATEGORIES": "Välj kategorier",
   "SET_AS_DEFAULT": "Spara inställningar",
@@ -51,6 +51,15 @@
     "SAVED_ACTIVITIES": "Sparade aktiviteter",
     "MY_ACTIVITIES": "Mina aktiviteter",
     "MY_CONNECTIONS": "Mitt nätverk",
-    "MY_RECORDINGS": "Sparade inselningar"
+    "MY_RECORDINGS": "Sparade inselningar",
+    "ACTIVITIES": "aktiviteter",
+    "EDIT": "Redigera"
+  },
+  "MAIN": {
+    "GETTING_ACTIVITIES": "Hämtar aktiviteter...",
+    "NOT_FOUND": "Hittade inget... Bredda gärna sökningen..."
+  },
+  "MAP": {
+    "LOADING_LOCATION": "Laddar din nuvarande position..."
   }
 }
