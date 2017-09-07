@@ -94,4 +94,8 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="~5.1.8" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <allow-navigation href="http://192.168.101.116:8100" />
+    <plugin name="cordova-fabric-plugin" spec="~1.1.9">
+        <variable name="FABRIC_API_KEY" value="2ba1742e8be26a55456da2d87e698044a19a7742" />
+        <variable name="FABRIC_API_SECRET" value="3a0a599c74a0ae80bcb1f59c6d25d5b7e113f7048d73fbd4b865c3f3b2857067" />
+    </plugin>
 </widget>
