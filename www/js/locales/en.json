@@ -8,6 +8,8 @@
   "LOG_OUT": "Log out",
   "FORGOT_PASSWORD": "Forgot password?",
   "LOG_IN": "Login",
+  "LOGGING_IN": "Logging in...",
+  "LOGGING_IN_FACEBOOK": "Logging in with Facebook...",
   "NAME": "Name",
   "EMAIL": "Email",
   "PASSWORD": "Password",
@@ -41,7 +43,6 @@
   "SET_AS_DEFAULT": "Save settings",
   "USERS_I_FOLLOW": "Only from show users I follow",
   "SELECT_FAVORITES": "Select your favourite activities",
-  "FINISH_SIGN_UP": "FINISH SIGN UP",
   "LANGUAGES": {
     "SWEDISH": "Swedish",
     "ENGLISH": "English"
@@ -53,13 +54,32 @@
     "MY_CONNECTIONS": "My Connections",
     "MY_RECORDINGS": "My Recordings",
     "ACTIVITIES": "activities",
-    "EDIT": "Edit"
+    "EDIT": "Edit",
+    "UPDATE_PROFILE": "Edit profile",
+    "NICKNAME": "Nickname",
+    "EMAIL": "Email",
+    "DESCRIPTION": "About me",
+    "CITY": "City",
+    "GENDER": "Gender",
+    "BIRTHDATE": "Birthday",
+    "INTERESTS": "Interests"
   },
   "MAIN": {
     "GETTING_ACTIVITIES": "Getting activities...",
-    "NOT_FOUND": "No results.... Redefine your search..."
+    "NOT_FOUND": "No results.... Redefine your search...",
+    "SAVING": "Saving..."
   },
   "MAP": {
     "LOADING_LOCATION": "Loading current location..."
+  },
+  "ACCOUNT": {
+    "FINISH_SIGN_UP": "Finish registration",
+    "SIGN_UP": "Sign up",
+    "SIGNING_UP": "Creating account...",
+    "REQUESTING_PASSWORD": "Requesting new password...",
+    "SIGNING_OUT": "Signing out..."
+  },
+  "ELEMENTS": {
+    "CANCEL": "Cancel"
   }
 }

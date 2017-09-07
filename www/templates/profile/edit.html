@@ -2,10 +2,10 @@
   <ion-header-bar class="bar-positive">
     <div class="buttons">
       <button class="button button-clear" ng-click="editProfileModal.hide()">
-        Cancel
+        {{ "ELEMENTS.CANCEL" | translate}}
       </button>
     </div>
-    <h1 class="title">Update Profile</h1>
+    <h1 class="title">{{ "PROFILE.UPDATE_PROFILE" | translate}}</h1>
     <div class="buttons">
       <button class="button button-clear" ng-click="updateProfile()">
         Update
@@ -21,44 +21,46 @@
         <input type="text" placeholder="{{user.first}}" ng-model="user.name">
       </label>
       <label class="item item-input item-floating-label">
-        <span class="input-label">Nickname</span>
+        <span class="input-label">{{'PROFILE.NICKNAME'|translate }}</span>
         <input type="text" placeholder="{{user.nickname  || 'Enter a nickname'}}" ng-model="user.nickname">
       </label>
       <label class="item item-input item-floating-label">
-        <span class="input-label">Email</span>
+        <span class="input-label">{{'PROFILE.EMAIL'|translate }}</span>
         <input type="text" placeholder="{{user.email}}" ng-model="user.email">
       </label>
       <label class="item item-input item-floating-label textarea">
-        <span class="input-label">Description</span>
-        <textarea placeholder="{{user.description || 'Enter a description'}}" rows="6" ng-model="user.description" style="resize: none;"></textarea>
+        <span class="input-label">{{'PROFILE.DESCRIPTION'|translate }}</span>
+        <textarea placeholder="{{user.description || 'Enter a description'}}" rows="6" ng-model="user.description"
+                  style="resize: none;"></textarea>
       </label>
       <label class="item item-input item-floating-label">
-        <span class="input-label">City</span>
+        <span class="input-label">{{'PROFILE.CITY'|translate }}</span>
         <input type="text" placeholder="{{user.city || 'City'}}" ng-model="user.city">
       </label>
       <label class="item item-input item-select">
         <div class="input-label">
-          Gender
+          {{'PROFILE.GENDER'|translate }}
         </div>
-      <select ng-model="user.gender">
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-      </select>
+        <select ng-model="user.gender">
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
       </label>
       <label class="item item-input item-floating-label">
-        <span class="input-label">Birthday</span>
+        <span class="input-label">{{'PROFILE.GENDER'|translate }}</span>
         <input type="text" placeholder="{{user.birthday || 'Birthday'}}" ng-model="user.date_of_birth">
       </label>
       <div class="item item-divider">
-        Interests
+        {{'PROFILE.INTERESTS'|translate }}
       </div>
       <div class="item item-input wrap-label">
-        <ion-list ng-repeat="icon in category_icons" class="margin-10" >
+        <ion-list ng-repeat="icon in category_icons" class="margin-10">
           <div class="row" ng-click="user.interest_list_booleans[$index] = !user.interest_list_booleans[$index];">
             <div>
-              <img class="menu-icon" ng-src="{{icon}}"  ng-if="user.interest_list_booleans[$index]">
-              <img class="menu-icon menu-icon-unselected" ng-src="{{icon}}" ng-if="!user.interest_list_booleans[$index]">
+              <img class="menu-icon" ng-src="{{icon}}" ng-if="user.interest_list_booleans[$index]">
+              <img class="menu-icon menu-icon-unselected" ng-src="{{icon}}"
+                   ng-if="!user.interest_list_booleans[$index]">
             </div>
           </div>
         </ion-list>

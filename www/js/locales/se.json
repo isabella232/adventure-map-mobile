@@ -8,6 +8,8 @@
   "LOG_OUT": "Logga ut",
   "FORGOT_PASSWORD": "Glömt lösenord?",
   "LOG_IN": "Logga in",
+  "LOGGING_IN": "Loggar in...",
+  "LOGGING_IN_FACEBOOK": "Loggar in med Facebook...",
   "NAME": "Namn",
   "EMAIL": "Mailadress",
   "PASSWORD": "Lösenord",
@@ -53,13 +55,32 @@
     "MY_CONNECTIONS": "Mitt nätverk",
     "MY_RECORDINGS": "Sparade inselningar",
     "ACTIVITIES": "aktiviteter",
-    "EDIT": "Redigera"
+    "EDIT": "Redigera",
+    "UPDATE_PROFILE": "Redigera profil",
+    "NICKNAME": "Användarnamn",
+    "EMAIL": "Mailadress",
+    "DESCRIPTION": "Om mig",
+    "CITY": "Stad",
+    "GENDER": "Kön",
+    "BIRTHDATE": "Födelsedag",
+    "INTERESTS": "Intressen"
   },
   "MAIN": {
     "GETTING_ACTIVITIES": "Hämtar aktiviteter...",
-    "NOT_FOUND": "Hittade inget... Bredda gärna sökningen..."
+    "NOT_FOUND": "Hittade inget... Bredda gärna sökningen...",
+    "SAVING": "Sparar..."
   },
   "MAP": {
     "LOADING_LOCATION": "Laddar din nuvarande position..."
+  },
+  "ACCOUNT": {
+    "FINISH_SIGN_UP": "Slutför registrering",
+    "SIGN_UP": "Skapa konto",
+    "SIGNING_UP": "Skapar konto...",
+    "REQUESTING_PASSWORD": "Skickar begäran...",
+    "SIGNING_OUT": "Loggar ut..."
+  },
+  "ELEMENTS": {
+    "CANCEL": "Avbryt"
   }
 }

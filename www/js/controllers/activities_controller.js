@@ -19,10 +19,26 @@ function activitiesController($scope,
                               CATEGORY_WORDS) {
 
 
-  setState();
-  $scope.activity = {};
-  $scope.uploadedImages = [];
-  $scope.uploadedFiles = [];
+
+
+  $scope.$on("$ionicView.enter", function (scopes, states) {
+    setState();
+    $scope.activity = {};
+    $scope.uploadedImages = [];
+    $scope.uploadedFiles = [];
+
+    if (states.stateName === "app.activities") {
+      $auth.validateUser().then(function (resp) {
+        console.log('validated');
+        console.log(resp);
+        $ionicLoading.show({
+          template: $translate("MAIN.GETTING_ACTIVITIES")
+        });
+
+        getActivities();
+      });
+    }
+  });
 
   $ionicModal.fromTemplateUrl('templates/activities/filter_modal.html', {
     scope: $scope,
@@ -45,23 +61,11 @@ function activitiesController($scope,
     $scope.filesModal = modal;
   });
 
-  $scope.$on("$ionicView.enter", function (scopes, states) {
-    if (states.stateName === "app.activities") {
-      $auth.validateUser().then(function (resp) {
-        console.log('validated');
-        console.log(resp);
-        $ionicLoading.show({
-          template: $translate("MAIN.GETTING_ACTIVITIES")
-        });
 
-        getActivities();
-      });
-    }
-  });
 
   $scope.createActivity = function () {
     $ionicLoading.show({
-      template: 'Saving...'
+      template: $translate('MAIN.SAVING')
     });
 
     $auth.validateUser().then(function (resp) {

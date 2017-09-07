@@ -7,7 +7,7 @@
     <author email="you@example.com" href="http://example.com/">
       Thomas Ochman
     </author>
-    <content original-src="index.html" src="http://172.20.10.2:8100" />
+    <content src="index.html" />
     <access allows-arbitrary-loads-in-media="true" allows-arbitrary-loads-in-web-content="true" allows-local-networking="true" origin="*" />
     <allow-navigation href="*" />
     <allow-navigation href="http://192.168.1.216:8100" />

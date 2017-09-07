@@ -9,14 +9,21 @@ function authController($scope,
                         $ionicHistory,
                         $ionicModal,
                         $ionicPopup,
-                        $translate) {
-  $scope.credentials = {};
-  $scope.signupForm = {};
+                        $translate,
+                        $q) {
 
-  $scope.errorMessage = null;
-  if (!$localStorage.defaultFilter) {
-    $localStorage.defaultFilter = {};
-  }
+  $scope.$on('$ionicView.enter', function () {
+    $scope.credentials = {};
+    $scope.signupForm = {};
+    $scope.category_words = CATEGORY_WORDS;
+    $scope.signupForm.category = [false, false, false, false, false, false, false, false, false, false];
+    $scope.activity_images = ['img/activity_images/hiking.png', 'img/activity_images/cross_country_skiing.png', 'img/activity_images/back_country_skiing.png', 'img/activity_images/paddling.png', 'img/activity_images/mountain_biking.png', 'img/activity_images/horse_riding.png', 'img/activity_images/climbing.png', 'img/activity_images/snow_mobiling.png', 'img/activity_images/cross_country_ice_skating.png', 'img/activity_images/foraging.png'];
+    $scope.errorMessage = null;
+    if (!$localStorage.defaultFilter) {
+      $localStorage.defaultFilter = {};
+    }
+  });
+
 
   $scope.skipIntro = function () {
     $state.go('intro.login');
@@ -29,7 +36,7 @@ function authController($scope,
   $scope.login = function () {
     $auth.getConfig().apiUrl = API_URL;
     $ionicLoading.show({
-      template: 'Logging in...'
+      template: $translate('LOGGING_IN')
     });
     $auth.submitLogin($scope.credentials)
       .then(function (response) {
@@ -50,7 +57,7 @@ function authController($scope,
     console.dir($scope.signupForm);
     $auth.getConfig().apiUrl = API_URL;
     $ionicLoading.show({
-      template: 'Signing up...'
+      template: $translate('SIGNING_UP')
     });
 
     $auth.submitRegistration($scope.signupForm)
@@ -63,7 +70,7 @@ function authController($scope,
         console.log(response);
         $ionicPopup.alert({
           title: response.data.errors.full_messages
-        })
+        });
         $ionicLoading.hide();
         $scope.activitiesModal.hide();
         $scope.errorMessage = response.data.errors.full_messages.toString();
@@ -77,9 +84,6 @@ function authController($scope,
     $scope.activitiesModal = modal;
   });
 
-  $scope.category_words = CATEGORY_WORDS;
-  $scope.signupForm.category = [false, false, false, false, false, false, false, false, false, false];
-  $scope.activity_images = ['img/activity_images/hiking.png', 'img/activity_images/cross_country_skiing.png', 'img/activity_images/back_country_skiing.png', 'img/activity_images/paddling.png', 'img/activity_images/mountain_biking.png', 'img/activity_images/horse_riding.png', 'img/activity_images/climbing.png', 'img/activity_images/snow_mobiling.png', 'img/activity_images/cross_country_ice_skating.png', 'img/activity_images/foraging.png'];
 
   $scope.getActivitySelection = function () {
     $scope.activitiesModal.show();
@@ -98,6 +102,7 @@ function authController($scope,
         tempArray.push(CATEGORY_WORDS[index]);
       }
     });
+    debugger;
     $scope.signupForm.interest_list = tempArray.join(', ');
   };
 
@@ -105,40 +110,41 @@ function authController($scope,
     translateActivityArray();
     console.log($scope.signupForm.interest_list);
     $localStorage.user.interest_list = $scope.signupForm.interest_list;
-    $scope.user.interest_list = $scope.signupForm.interest_list.split(', ');
-    storeUser();
-    // Put interest list to server.
-    User.update($scope.user, function (resp) {
-      if (resp.status === 'success') {
-        console.log(resp)
-        $state.go('app.activities');
-        $scope.activitiesModal.hide()
-      }
-    })
+    $scope.user.interest_list = $scope.signupForm.interest_list;
+    storeUser().then(function(){
+      debugger;
+
+      // Put interest list to server.
+      User.update($scope.user, function (resp) {
+        if (resp.status === 'success') {
+          console.log(resp);
+          $state.go('app.activities');
+          $scope.activitiesModal.hide()
+        }
+      })
+    });
+
   };
+
 
   $scope.facebookSignIn = function () {
     $auth.signOut();
     $auth.getConfig().apiUrl = API_URL.replace(/^https:\/\//i, 'http://');
     $ionicLoading.show({
-      template: 'Logging in with Facebook...'
+      template: $translate('LOGGING_IN_FACEBOOK')
     });
-
     $auth.authenticate('facebook')
       .then(function (response) {
-        storeUser();
-        //$auth.validateUser().then(function (resp) {
-        //
-        //});
-        if ($scope.user.interest_list === undefined || $scope.user.interest_list === []) {
-          $scope.getActivitySelection();
-        } else {
-          $state.go('app.activities');
-        }
+        storeUser().then(function () {
+          if ($scope.user.interest_list === "undefined" || $scope.user.interest_list.length === 0) {
+            $scope.getActivitySelection();
+          } else {
+            $state.go('app.activities');
+          }
+        });
         $ionicLoading.hide();
       })
       .catch(function (ev, response) {
-        // handle errors
         console.log(ev);
         console.log(response);
         $ionicLoading.hide();
@@ -147,7 +153,7 @@ function authController($scope,
 
   $scope.signOut = function () {
     $ionicLoading.show({
-      template: 'Signing out...'
+      template: $translate('PROFILE.SIGNING_OUT')
     });
     $auth.signOut()
       .then(function (response) {
@@ -167,6 +173,9 @@ function authController($scope,
   };
 
   storeUser = function () {
+
+    var deferred = $q.defer();
+
     $localStorage.user = $scope.user;
     console.log('storing user');
     console.log($localStorage.user);
@@ -179,6 +188,9 @@ function authController($scope,
     $localStorage.defaultFilter.difficulty3 = true;
     $localStorage.defaultFilter.follow = true;
 
+    deferred.resolve();
+
+    return deferred.promise;
   };
 
 
@@ -186,7 +198,7 @@ function authController($scope,
     $scope.errorMessage = '';
     $scope.successMessage = '';
     $ionicLoading.show({
-      template: 'Requesting new password...'
+      template: $translate('ACCOUNT.REQUESTING_PASSWORD')
     });
     $auth.requestPasswordReset($scope.credentials)
       .then(function (response) {

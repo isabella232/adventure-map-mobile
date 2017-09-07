@@ -69,7 +69,7 @@ $ ionic emulate ios
 Running the simulator with live reload is a much better option.  
  
 ```
-$ ionic emulate ios -l -c
+$ ionic cordova emulate ios -l -c
 ``` 
 This command will give you a console output in the terminal as well as reload the application on every update.  
  

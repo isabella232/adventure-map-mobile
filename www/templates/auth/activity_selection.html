@@ -7,7 +7,7 @@
     <h3 class="title">{{ "SELECT_FAVORITES" | translate}}</h3>
   </ion-header-bar>
 
-  <ion-content class="padding has-header">
+  <ion-content class="has-header">
     <div class="activity-images" ng-repeat="uri in activity_images">
       <!-- show a faded image with gray text if unselected, or full opacity and white if selected -->
       <div ng-if="signupForm.category[$index]"
@@ -23,8 +23,8 @@
       </div>
     </div>
 
-    <button class="button action-button button-block button-balanced" ng-if="user.provider !== 'facebook'" ng-click="signup()">{{ "SIGN_UP" | translate}}</button>
-    <button class="button action-button button-block button-balanced" ng-if="user.provider === 'facebook'" ng-click="updateFacebookUser()">{{ "FINISH_SIGN_UP" | translate}}</button>
+    <button class="button action-button button-block button-calm" ng-if="user.provider !== 'facebook'" ng-click="signup()">{{ "ACCOUNT.SIGN_UP" | translate}}</button>
+    <button class="button action-button button-block button-calm" ng-if="user.provider === 'facebook'" ng-click="updateFacebookUser()">{{ "ACCOUNT.FINISH_SIGN_UP" | translate}}</button>
 
   </ion-content>
 </ion-view>

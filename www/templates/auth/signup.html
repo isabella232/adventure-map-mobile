@@ -16,7 +16,7 @@
                 <span class="error-message" ng-bind="errorMessage"></span>
               </div>
               <label class="item item-input custom">
-                <input type="text" placeholder="{{ 'NAME' | translate}}" ng-model="signupForm.name">
+                <input type="text" placeholder="{{ 'NAME' | translate}}" ng-model="signupForm.nickname">
               </label>
               <label class="item item-input custom">
                 <input type="email" placeholder="{{ 'EMAIL' | translate}}" ng-model="signupForm.email">
@@ -27,7 +27,7 @@
               <label class="item item-input custom">
                 <input type="password" placeholder="{{ 'PASSWORD_CONFIRMATION' | translate}}" name="password_confirmation" ng-model="signupForm.password_confirmation">
               </label>
-              <button class="button action-button button-block button-balanced" ng-click="signup()" translate="SIGN_UP"></button>
+              <button class="button action-button button-block button-balanced" ng-click="getActivitySelection()" translate="SIGN_UP"></button>
                 <div class="col alt-actions-container">
                   <div class="item item-divider signup-fb">
                     <span translate="OR_FACEBOOK"></span>
